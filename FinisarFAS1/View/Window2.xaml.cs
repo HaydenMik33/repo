@@ -18,11 +18,11 @@ using System.Windows.Shapes;
 namespace FinisarFAS1.View
 {
     /// <summary>
-    /// Interaction logic for Window2.xaml
+    /// Interaction logic for OperatorView.xaml
     /// </summary>
-    public partial class Window2 : UserControl
+    public partial class OperatorView : UserControl
     {
-        public Window2()
+        public OperatorView()
         {
             InitializeComponent();
 

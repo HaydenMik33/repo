@@ -188,7 +188,7 @@
                     </TabItem.Header>
                     <StackPanel>
                         <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                        <view:Window2 Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
+                        <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
                     </StackPanel>
                 </TabItem>
             
@@ -200,7 +200,7 @@
                 </TabItem.Header>
                 <StackPanel>
                     <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                    <view:Window2 Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
+                    <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
                 </StackPanel>
             </TabItem>-->           
         </TabControl>
