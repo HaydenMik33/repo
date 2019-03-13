@@ -1,0 +1,12 @@
+{ sys
+	{ eq
+		{ const
+			sxid
+		}
+		{ eqid
+			{ TOOLID
+				sxid=SECSID
+			}
+		}
+	}
+}

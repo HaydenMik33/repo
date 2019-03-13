@@ -1,0 +1,22 @@
+# eqsrv.xsu, Loaded by: eqsrv Executable: tcleqsrv
+log name="all" \
+	level="3" \
+	size="3000" \
+	namestamp="0" \
+	datestamp="1" \
+	timestamp="1"
+
+strextype AUTOSHELL 
+
+include file="(rel)eqsrv.esu"
+
+restore file="(rel)eqsrv.xdv"
+
+set blockbyte="0"
+
+set sys>label_nosysmsg="FALSE"
+
+set sys>preserve_backslash_in_distribute="FALSE"
+
+set sys>msg_dest="TOOLIDgw"
+

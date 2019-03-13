@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MESCommunications.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DBServerName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tex-cs613db-uat.texas.ads.finisar.com</Value>
+    </Setting>
+    <Setting Name="DatabaseName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">insite</Value>
+    </Setting>
+    <Setting Name="DBUserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">insite</Value>
+    </Setting>
+    <Setting Name="DBPasswordEncrypt" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Nf4bUeDWqjspbkXXIw8AIQ==</Value>
+    </Setting>
+    <Setting Name="InsiteHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tex-cs613uat.texas.ads.finisar.com</Value>
+    </Setting>
+    <Setting Name="InsitePort" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2881</Value>
+    </Setting>
+    <Setting Name="InsiteUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">InsiteAdmin</Value>
+    </Setting>
+    <Setting Name="strLogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\MESDLL\Log\</Value>
+    </Setting>
+    <Setting Name="strLogFilePrefix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CamstarMESDLL_</Value>
+    </Setting>
+    <Setting Name="InsitePwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Nf4bUeDWqjspbkXXIw8AIQ==</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ToolConfig xmlns="http://rudolphtech.com/ToolConfigXMLSchema.xsd">
+  <ToolType>ToolType1</ToolType>
+  <Toolid>Toolid1</Toolid>
+  <CommunicationTimeout>0</CommunicationTimeout>
+  <MoveOutValidateData>true</MoveOutValidateData>
+  <MoveInRequireCertification>true</MoveInRequireCertification>
+  <FactoryName>FactoryName1</FactoryName>
+  <LoadLock>0</LoadLock>
+  <LotsPerPort>1</LotsPerPort>
+  <Loadports>
+    <LoadPortName>LoadPortName1</LoadPortName>
+    <LoadPortName>LoadPortName2</LoadPortName>
+    <LoadPortName>LoadPortName3</LoadPortName>
+  </Loadports>
+  <SlotColumnName>SlotColumnName1</SlotColumnName>
+  <CamstarString>CamstarString1</CamstarString>
+  <StartTimerSeconds>-100000000</StartTimerSeconds>
+  <TimeoutBeforeStartFlag>true</TimeoutBeforeStartFlag>
+  <TimeoutBeforeStartSeconds>-100000000</TimeoutBeforeStartSeconds>
+  <EnableAllEvents>true</EnableAllEvents>
+  <EnableAllAlarms>true</EnableAllAlarms>
+  <EnableDefinedEventsAtAppStart>true</EnableDefinedEventsAtAppStart>
+  <DefineEventsAtAppStart>true</DefineEventsAtAppStart>
+  <ControlStateSVID>400000000001</ControlStateSVID>
+  <ProcessStateSVID>400000000001</ProcessStateSVID>
+  <EmailOnAlarmsFlag>true</EmailOnAlarmsFlag>
+  <PrimaryEmailAddressees>
+    <Addressee>Addressee1</Addressee>
+    <Addressee>Addressee2</Addressee>
+    <Addressee>Addressee3</Addressee>
+  </PrimaryEmailAddressees>
+  <EmailAddresseesForAlarms>
+    <Addressee>Addressee1</Addressee>
+    <Addressee>Addressee2</Addressee>
+    <Addressee>Addressee3</Addressee>
+  </EmailAddresseesForAlarms>
+  <EmailOnAppShutdownFlag>true</EmailOnAppShutdownFlag>
+  <EmailAddresseesForAppshutdown>
+    <Addressee>Addressee1</Addressee>
+    <Addressee>Addressee2</Addressee>
+    <Addressee>Addressee3</Addressee>
+  </EmailAddresseesForAppshutdown>
+  <TraceLogFilesPath>TraceLogFilesPath1</TraceLogFilesPath>
+  <LogFilesPath>LogFilesPath1</LogFilesPath>
+  <OperatorWaferTableFields>
+    <Field Name="Name1" />
+    <Field Name="Name2" />
+    <Field Name="Name3" />
+  </OperatorWaferTableFields>
+  <EngineerWaferTableFields>
+    <Field Name="Name1" />
+    <Field Name="Name2" />
+    <Field Name="Name3" />
+  </EngineerWaferTableFields>
+  <EqConstValList>
+    <EqConst>
+      <val>400000000001</val>
+      <name>name1</name>
+    </EqConst>
+    <EqConst>
+      <val>400000000001</val>
+      <name>name2</name>
+    </EqConst>
+    <EqConst>
+      <val>400000000001</val>
+      <name>name3</name>
+    </EqConst>
+  </EqConstValList>
+  <EqConstList>
+    <EqConst>
+      <val>400000000001</val>
+      <name>name1</name>
+    </EqConst>
+    <EqConst>
+      <val>400000000001</val>
+      <name>name2</name>
+    </EqConst>
+    <EqConst>
+      <val>400000000001</val>
+      <name>name3</name>
+    </EqConst>
+  </EqConstList>
+  <EndOfRunDataCollectionItems>
+    <item>
+      <name>name1</name>
+      <id>400000000001</id>
+      <type>type1</type>
+      <camstarName>camstarName1</camstarName>
+    </item>
+    <item>
+      <name>name2</name>
+      <id>400000000001</id>
+      <type>type2</type>
+      <camstarName>camstarName2</camstarName>
+    </item>
+    <item>
+      <name>name3</name>
+      <id>400000000001</id>
+      <type>type3</type>
+      <camstarName>camstarName3</camstarName>
+    </item>
+  </EndOfRunDataCollectionItems>
+  <AlarmList>
+    <alarm>
+      <name>name1</name>
+      <id>400000000001</id>
+      <critical>true</critical>
+    </alarm>
+    <alarm>
+      <name>name2</name>
+      <id>400000000001</id>
+      <critical>false</critical>
+    </alarm>
+    <alarm>
+      <name>name3</name>
+      <id>400000000001</id>
+      <critical>true</critical>
+    </alarm>
+  </AlarmList>
+  <TraceReports>
+    <Report id="0">
+      <vids>
+        <vid name="name1">400000000001</vid>
+        <vid name="name2">400000000001</vid>
+        <vid name="name3">400000000001</vid>
+      </vids>
+      <dsper>1</dsper>
+      <totsmp>400000000001</totsmp>
+    </Report>
+    <Report id="255">
+      <vids>
+        <vid name="name4">254</vid>
+        <vid name="name5">2</vid>
+        <vid name="name6">253</vid>
+      </vids>
+      <dsper>1</dsper>
+      <totsmp>400000000001</totsmp>
+    </Report>
+    <Report id="1">
+      <vids>
+        <vid name="name7">400000000001</vid>
+        <vid name="name8">400000000001</vid>
+        <vid name="name9">400000000001</vid>
+      </vids>
+      <dsper>1</dsper>
+      <totsmp>400000000001</totsmp>
+    </Report>
+  </TraceReports>
+  <eventReports>
+    <report id="0">
+      <vids>
+        <vid name="name1">400000000001</vid>
+        <vid name="name2">400000000001</vid>
+        <vid name="name3">400000000001</vid>
+      </vids>
+      <events>
+        <ceid name="name1">400000000001</ceid>
+        <ceid name="name2">400000000001</ceid>
+        <ceid name="name3">400000000001</ceid>
+      </events>
+    </report>
+    <report id="65535">
+      <vids>
+        <vid name="name4">400000000001</vid>
+        <vid name="name5">400000000001</vid>
+        <vid name="name6">400000000001</vid>
+      </vids>
+      <events>
+        <ceid name="name4">400000000001</ceid>
+        <ceid name="name5">400000000001</ceid>
+        <ceid name="name6">400000000001</ceid>
+      </events>
+    </report>
+    <report id="1">
+      <vids>
+        <vid name="name7">400000000001</vid>
+        <vid name="name8">400000000001</vid>
+        <vid name="name9">400000000001</vid>
+      </vids>
+      <events>
+        <ceid name="name7">400000000001</ceid>
+        <ceid name="name8">400000000001</ceid>
+        <ceid name="name9">400000000001</ceid>
+      </events>
+    </report>
+  </eventReports>
+  <Dialogs>
+    <ShowConfirmationBox>true</ShowConfirmationBox>
+    <PostStartmessage>PostStartmessage1</PostStartmessage>
+    <ShowEmailBox>true</ShowEmailBox>
+    <LoadAnotherPortDialogMessage>LoadAnotherPortDialogMessage1</LoadAnotherPortDialogMessage>
+    <StartNextPortMsg>StartPortMessage1</StartNextPortMsg>
+  </Dialogs>
+</ToolConfig>

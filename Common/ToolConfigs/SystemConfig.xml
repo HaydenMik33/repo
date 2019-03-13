@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SystemConfig>
+  <EmailServer>mailhost</EmailServer>
+  <EmailPort>25</EmailPort>
+  <FromEmailAddress>workssupport@rudolphtech.com</FromEmailAddress>
+  <CamstarConfig>
+    <DBServerName>tex-cs613db-uat.texas.ads.finisar.com</DBServerName> 
+    <DatabaseName>insite</DatabaseName>  
+    <DBUserName>insite</DBUserName> 
+    <DBPasswordEncrypt>Nf4bUeDWqjspbkXXIw8AIQ==</DBPasswordEncrypt> 
+    <InsiteHost>tex-cs613uat.texas.ads.finisar.com</InsiteHost> 
+    <InsitePort>2881</InsitePort> 
+    <InsiteUser>InsiteAdmin</InsiteUser> 
+    <InsitePwd>Nf4bUeDWqjspbkXXIw8AIQ==</InsitePwd> 
+    <strLogPath>C:\MESDLL\Log\</strLogPath> 
+    <stLogrFilePrefix>CamstarMESDLL_</stLogrFilePrefix> 
+  </CamstarConfig>
+  <CamstarURL>http://tex-cs613UAT/imes2015uat/IMESLogin.aspx</CamstarURL>
+  <ACINameServerHost>MyComputer</ACINameServerHost>
+  <ACINameServerPort>1500</ACINameServerPort>
+</SystemConfig>

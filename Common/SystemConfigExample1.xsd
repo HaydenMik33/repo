@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SystemConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="EmailServer" type="xs:string" />
+        <xs:element name="EmailPort" type="xs:unsignedByte" />
+        <xs:element name="CamstarConfig">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DBServerName" type="xs:string" />
+              <xs:element name="DatabaseName" type="xs:string" />
+              <xs:element name="DBUserName" type="xs:string" />
+              <xs:element name="DBPasswordEncrypt" type="xs:string" />
+              <xs:element name="InsiteHost" type="xs:string" />
+              <xs:element name="InsitePort" type="xs:unsignedShort" />
+              <xs:element name="InsiteUser" type="xs:string" />
+              <xs:element name="InsitePwd" type="xs:string" />
+              <xs:element name="strLogPath" type="xs:string" />
+              <xs:element name="stLogrFilePrefix" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Dialogs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ShowConfirmationBox" type="xs:boolean" />
+              <xs:element name="ShowStartMessageBox" type="xs:string" />
+              <xs:element name="ShowEmailBox" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

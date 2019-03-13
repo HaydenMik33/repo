@@ -1,0 +1,6 @@
+﻿*.swp
+*~
+tmp/*
+obj/*
+bin/*
+.p4ignore.txt

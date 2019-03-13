@@ -1,0 +1,441 @@
+﻿<UserControl x:Class="FinisarFAS1.View.Window2"
+             x:Name="me2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:FinisarFAS1.Converters" 
+             xmlns:progress="clr-namespace:ThreadingComponent"       
+             xmlns:local="clr-namespace:FinisarFAS1.View"
+             mc:Ignorable="d" Width="1830" >
+    <!--Height="700" >-->
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:StringToVisibleConverter x:Key="NullVisibilityConverter" />
+            <converters:StringNullOrEmptyToHiddenConverter x:Key="NullHiddenConverter" />
+            <converters:BooleanToVisibleConverter x:Key="BooleanToVisibleConverter" />
+            <converters:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter" />
+            <converters:OppositeBooleanToCollapsedConverter x:Key="OppositeBooleanToCollapsedConverter" />
+
+            <!--<Style TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Height" Value="33" />
+                <Setter Property="Width" Value="140" />
+                <Setter Property="Margin" Value="5,4" />
+            </Style>-->
+                 <!--FontSize="18" Height="33" Width="140" Margin="5,4"--> 
+
+            <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Width" Value="250" />
+                <Setter Property="Margin" Value="0,5,3,0" />
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel x:Name="layoutRoot" >       
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="710" />
+                <ColumnDefinition Width="870" />
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="560" />
+                <RowDefinition Height="125" />
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="LoadPort1Grid"  
+                      Grid.Column="0" Grid.Row="0" 
+                      Grid.ColumnSpan="1" Grid.RowSpan="2"
+                      RowHeight="25" FontSize="16" 
+                      ItemsSource="{Binding Port1Wafers}" AutoGenerateColumns="False" 
+                      IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False"
+                      SelectionMode="Extended" SelectionUnit="FullRow"                    
+                      SelectionChanged="DataGrid_SelectionChanged"                      
+                       >
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{Binding StatusColor}"/>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"  Color="#0078D7"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#0078D7"/>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="2*" MinWidth="60" 
+                                                        Binding="{Binding Slot}"
+                                                        Header="Pocket" />
+                    <DataGridTextColumn Width="3*" MinWidth="200"
+                                                        Binding="{Binding ContainerName}"
+                                                        Header="Container ID" />                    
+                    <DataGridTextColumn Width="15*" MinWidth="190"
+                                                        Binding="{Binding Status}"
+                                                        Header="Wafer Status" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2"
+                        Margin="0,0,0,0" Background="{DynamicResource ResourceKey=BlueGlass}" Orientation="Vertical">                
+                <StackPanel Margin="55,50,0,0" Orientation="Vertical" > 
+                    
+                    <StackPanel Margin="5,8" Orientation="Horizontal" >
+                        <Label  FontSize="18" Height="33" Width="140" Margin="5,4" Content="Operation:" VerticalAlignment="Center" />
+                        <TextBox x:Name="OperationField" KeyboardNavigation.TabIndex="0" IsEnabled="False"
+                             Text="{Binding Path=CurrentOperation, UpdateSourceTrigger=LostFocus}" 
+                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                             VerticalAlignment="Center" />
+                    </StackPanel>
+                    
+                    <StackPanel Margin="5,8" Orientation="Horizontal" >
+                        <Label  FontSize="18" Height="33" Width="140" Margin="5,4" Content="Recipe:" VerticalAlignment="Center" />
+                        <TextBox x:Name="RecipeField" KeyboardNavigation.TabIndex="1" IsEnabled="False"
+                             Text="{Binding Path=Recipe, UpdateSourceTrigger=LostFocus}" 
+                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                             VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Margin="5,8" Orientation="Horizontal"  >
+                        <Label  FontSize="18" Height="33" Width="140" Margin="5,4" Content="Product:" VerticalAlignment="Center" />
+                        <TextBox x:Name="ProductField" IsEnabled="False"
+                             KeyboardNavigation.TabIndex="2" 
+                             Text="{Binding Path=Product, UpdateSourceTrigger=LostFocus}" 
+                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                             VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Margin="5,8" Orientation="Horizontal"  >
+                        <Label  FontSize="18" Height="33" Width="140" Margin="5,4" Content="Step:" VerticalAlignment="Center" />
+                        <TextBox x:Name="StepField" IsEnabled="False"
+                             Text="{Binding Path=Step, UpdateSourceTrigger=LostFocus}" 
+                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                             VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Margin="5,8" Orientation="Horizontal"  >
+                        <Label  FontSize="18" Height="33" Width="140" Margin="5,4" Content="Spec:" VerticalAlignment="Center" />
+                        <TextBox x:Name="SpecField"  IsEnabled="False"
+                             Text="{Binding Path=Spec, UpdateSourceTrigger=LostFocus}" 
+                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                             VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Margin="5,8" Orientation="Horizontal"  >
+                        <Label  FontSize="18" Height="33" Width="140" Margin="5,4" Content="Status:" VerticalAlignment="Center" />
+                        <TextBox x:Name="StatusField"  IsEnabled="False"
+                             Text="{Binding Path=Status, UpdateSourceTrigger=LostFocus}" 
+                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                             VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Margin="5,8" Orientation="Horizontal"  >
+                        <TextBlock  FontSize="18" Width="140" Margin="5,4" Text="Special Instructions:" 
+                                    TextWrapping="Wrap" VerticalAlignment="Top" />
+                        <TextBox x:Name="CommentsField" MaxLines="10" 
+                            Text="{Binding Path=Comments, UpdateSourceTrigger=LostFocus}" 
+                            GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                            VerticalAlignment="Center"
+                            Height="200" Width="500"
+                            TextWrapping="Wrap"
+                            AcceptsReturn="True" IsEnabled="False"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="1"
+                        Orientation="Vertical" Margin="0,0,0,0" 
+                        Background="{DynamicResource ResourceKey=BlueGlass}" >
+                <!--Height="715"-->
+                <StackPanel Orientation="Vertical" >
+                    <!--<Image Margin="0,0" Width="Auto" Source="../Images/II-VI_Finisar5.jpg" />-->
+                    <!--Visibility="{Binding OperatorID, Converter={StaticResource ResourceKey=NullVisibilityConverter}}"-->
+                    <StackPanel Margin="0,10,0,0" Orientation="Vertical" VerticalAlignment="Bottom" >
+                        <StackPanel Margin="0,10,0,10" Orientation="Vertical" Visibility="Collapsed" >
+                            <!--Visibility="{Binding TimeToStart, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                                    <Label Content="Lot 1" HorizontalAlignment="Center" />
+                                    <TextBox x:Name="Lot1" Margin="0,0,0,0" Background="{Binding Port1Lot1Color}" Width="180"
+                                        Text="{Binding Path=Port1Lot1, UpdateSourceTrigger=LostFocus}" KeyboardNavigation.TabIndex="2" 
+                                             GotKeyboardFocus="TextBox_GotKeyboardFocus"
+                                             KeyUp="TextBox_KeyUp" IsEnabled="{Binding Lot1Enabled}"
+                                             HorizontalAlignment="Center" />
+                                </StackPanel>
+                                <Button Height="50" Width="50"
+                                        ToolTip="Delete Lot 1" Command="{Binding DeleteLot1Cmd}"
+                                        Visibility="{Binding Port1Lot1Error, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"                                       
+                                        >
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Image Source="..\Images\red_x.png"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                                    <Label Margin="0,10,0,0" Content="Lot 2"  HorizontalAlignment="Center"  />
+                                    <TextBox x:Name="Lot2"  Margin="0,0,0,10" Background="{Binding Port1Lot2Color}" Width="180"
+                                        Text="{Binding Path=Port1Lot2, UpdateSourceTrigger=LostFocus}" KeyboardNavigation.TabIndex="3" 
+                                        GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding Lot2Enabled}"
+                                        KeyUp="TextBox_KeyUp" HorizontalAlignment="Center" />
+                                </StackPanel>
+                                <Button Height="50" Width="50"
+                                        ToolTip="Delete Lot 2" Command="{Binding DeleteLot2Cmd}"
+                                        Visibility="{Binding Port1Lot2Error, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"                                       
+                                        >
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Image Source="..\Images\red_x.png"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical"  Visibility="{Binding TimeToStart, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >
+                            <Button Margin="0,15" ToolTip="Do a MoveIn for these wafers" Visibility="Collapsed"
+                                    Background="{StaticResource ResourceKey=LimeGlass}"
+                                    IsEnabled="{Binding CanConfirm}"
+                                    Command="{Binding Path=ConfirmPort1Cmd}" >
+                                <StackPanel Margin="0,-6,0,0" Orientation="Horizontal">
+                                    <Label FontSize="26" >Confirm</Label>
+                                </StackPanel>
+                            </Button>
+                            <!--IsEnabled="{Binding AreThereWafers}"-->
+
+                            <Button ToolTip="Cancel current lot" Margin="0,15" FontSize="24"
+                                    Command="{Binding Path=CancelPort1Cmd}" Visibility="Collapsed"
+                                    IsEnabled="{Binding AreThereWafers}"
+                                    Content="Cancel" />
+
+                            <!--BUTTONS TO MOVE ROWS-->
+                            <StackPanel Margin="80,60,0,0" Orientation="Vertical"
+                                        Visibility="{Binding AreThereWafers, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                                        >
+                                <Button Height="120" ToolTip="Move up" Margin="-90,5,0,0"
+                                        Background="Transparent" BorderBrush="Transparent"
+                                    Command="{Binding MoveUpCmd}" >
+                                    <StackPanel>
+                                        <Image Margin="0,0" Height="100" Source="../Images/up3.png" />
+                                    </StackPanel>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                                <Button Height="120" Margin="-90,30,0,10" ToolTip="Add empty row"
+                                        Background="Transparent" BorderBrush="Transparent"
+                                    Command="{Binding AddEmptyRowCmd}" >
+                                    <StackPanel>
+                                        <Image Margin="0,0" Height="100" Source="../Images/both3.png" />
+                                    </StackPanel>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                                <Button Height="120" Margin="-90,30,0,5" ToolTip="Move down"
+                                        Background="Transparent" BorderBrush="Transparent"
+                                    Command="{Binding MoveDownCmd}" >
+                                    <StackPanel>
+                                        <Image Margin="0,0" Height="100" Source="../Images/updown3.png" />
+                                    </StackPanel>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Vertical"  Visibility="{Binding TimeToStart, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
+                            <StackPanel Margin="0,5,0,0" Orientation="Vertical" >
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                                    <Label Margin="0,0" FontSize="18" Content="Lot 1:" HorizontalAlignment="Center" />
+                                    <TextBlock Margin="0,-4,0,0" FontSize="18" Padding="5,0"
+                                               Text="{Binding Path=Port1Lot1}" HorizontalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  >
+                                    <Label FontSize="18" Content="Lot 2:" HorizontalAlignment="Center" 
+                                           Visibility="{Binding Port1Lot2, Converter={StaticResource ResourceKey=NullVisibilityConverter}}" />
+                                    <TextBlock Margin="0,-4,0,0" FontSize="18" Padding="5,0"
+                                               Text="{Binding Path=Port1Lot2}" HorizontalAlignment="Center" 
+                                               Visibility="{Binding Port1Lot2, Converter={StaticResource ResourceKey=NullVisibilityConverter}}" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Button Margin="0,15" ToolTip="Start processing for this load port"
+                                    Background="{StaticResource ResourceKey=LimeGlass}" Foreground="White"
+                                    Command="{Binding Path=StartCmd}"
+                                    Visibility="{Binding IsStoppable, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}">
+                                <StackPanel Margin="0,-6,0,0" Orientation="Horizontal">
+                                    <Label FontSize="28" >Start</Label>
+                                    <Label FontSize="13" Margin="-8,13,0,0" Content="{Binding StartTimerLeft}"
+                                           Visibility="{Binding StartTimerLeft, Converter={StaticResource ResourceKey=NullVisibilityConverter}}" />
+                                    <Image Margin="5,5,0,0" Height="28" Source="../Images/play_button.png" />
+                                </StackPanel>
+                            </Button>
+                            <StackPanel Orientation="Vertical"
+                                        Visibility="{Binding Completed, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >
+                                <!--<Button Margin="0,15" ToolTip="Stop current processing for this load port"
+                                        Background="{StaticResource ResourceKey=RedGlass}" Foreground="White"
+                                        Command="{Binding Path=StopCmd}"                                    
+                                        IsEnabled="{Binding IsStoppable}"
+                                        Visibility="{Binding Started, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
+                                    <StackPanel Margin="0,-6,0,0" Orientation="Horizontal">
+                                        <Label FontSize="28" >Stop</Label>
+                                        <Image Margin="5,5,0,0" Height="28" Source="../Images/stop_button.png" />
+                                    </StackPanel>
+                                </Button>-->
+                                <StackPanel Visibility="{Binding Paused, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >
+                                    <Button Margin="0,15" ToolTip="Pause current processing"
+                                            Background="{StaticResource ResourceKey=YellowGlass}" Foreground="Black" 
+                                            IsEnabled="{Binding OnlineBtnEnable}" 
+                                            Visibility="{Binding Started, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                                            Command="{Binding Path=PauseCmd}" >
+                                        <StackPanel Margin="-8,-6,0,0" Orientation="Horizontal">
+                                            <Label FontSize="28" >Wait</Label>
+                                            <Image Margin="5,5,0,0" Height="28" Source="../Images/pause_button.png" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding Paused, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
+                                    <Button Margin="0,15" ToolTip="Resume current processing"
+                                        Background="{StaticResource ResourceKey=YellowGlass}" Foreground="Black" 
+                                        IsEnabled="{Binding OnlineBtnEnable}" 
+                                        Visibility="{Binding Started, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                                        Command="{Binding Path=ResumeCmd}" >
+                                        <StackPanel Margin="-8,-6,0,0" Orientation="Horizontal">
+                                            <Label FontSize="28" >Continue</Label>
+                                            <Image Margin="5,5,0,0" Height="28" Source="../Images/play_button.png" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <Button Margin="0,15" ToolTip="Abort current processing"
+                                    Command="{Binding Path=AbortCmd}"
+                                    IsEnabled="{Binding OnlineBtnEnable}" 
+                                    Visibility="{Binding Started, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"                                    
+                                    Foreground="White" >
+                                    <StackPanel Margin="-8,-6,0,0" Orientation="Horizontal">
+                                        <Label FontSize="28" >Abort</Label>
+                                        <!--<Image Margin="5,5,0,0" Height="28" Source="../Images/pause_button.png" />-->
+                                    </StackPanel>
+                                </Button>
+                                <Button Margin="0,15" ToolTip="Next"
+                                        Command="{Binding Path=ResumeCmd}"
+                                        IsEnabled="{Binding OnlineBtnEnable}" 
+                                        Content="Next"
+                                        Visibility="{Binding Started, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
+                                </Button>
+                                <Button Margin="0,15" ToolTip="Reload"
+                                        Command="{Binding Path=ResumeCmd}"
+                                        IsEnabled="{Binding OnlineBtnEnable}" 
+                                        Content="Reload"
+                                        Visibility="{Binding Started, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
+                                </Button>
+                            </StackPanel>
+                            <Button Margin="0,15" ToolTip="Confirm completion of this port's processing"
+                                    Command="{Binding Path=CompleteCmd}"
+                                    Visibility="{Binding Completed, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                                    Background="{StaticResource ResourceKey=LimeGlass}" Foreground="White" >
+                                <StackPanel Margin="-8,-6,0,0" Orientation="Horizontal">
+                                    <Label FontSize="28" Content="Complete" ></Label>
+                                    <!--<Image Margin="5,5,0,0" Height="28" Source="../Images/pause_button.png" />-->
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="1" 
+                        Orientation="Vertical" Margin="0,0,0,0" 
+                        Background="{DynamicResource ResourceKey=BlueGlass}" >
+                <StackPanel Margin="0,0,0,0" >
+                    <Button ToolTip="Go Remote" FontSize="22"
+                                        Visibility="{Binding IsLocal, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                                            Command="{Binding Path=GoRemoteCmd}"
+                                            Content="Go Remote"  />
+                    <Button ToolTip="Go Local" FontSize="22"
+                                        Visibility="{Binding IsLocal, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}"                            
+                                            Command="{Binding Path=GoLocalCmd}"
+                                            Content="Go Local"  />
+                </StackPanel>
+            </StackPanel>
+
+            <!--<Grid x:Name="overlay" Opacity=".44" Background="{StaticResource BlackGlass4b}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                  Visibility="{Binding LoadingWafers, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
+                <TextBlock FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,250"
+                    Text="Loading Wafer Configuration..." Foreground="White" />
+                <Viewbox Height="60" Width="65"  Margin="0,0,0,0" >
+                    <progress:CircularProgressBar />
+                </Viewbox>
+            </Grid>-->
+        </Grid>        
+    </StackPanel>
+</UserControl>
+

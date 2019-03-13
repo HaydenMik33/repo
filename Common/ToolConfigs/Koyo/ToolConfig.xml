@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ToolConfig xmlns="http://rudolphtech.com/ToolConfigXMLSchema.xsd">
+  <ToolType>Koyo</ToolType>
+  <Toolid>VFURN-01</Toolid>
+  
+  <CommunicationTimeout>30</CommunicationTimeout>
+  <LoadLock>0</LoadLock>
+  <LotsPerPort>1</LotsPerPort>
+  <Loadports>
+    <LoadPortName>Load Port A</LoadPortName>
+    <LoadPortName>Load Port B</LoadPortName>
+  </Loadports>
+  
+  <SlotColumnName>Slot</SlotColumnName>
+  <CamstarString>Camstar Status</CamstarString>
+  <StartTimerSeconds>20</StartTimerSeconds>
+  <TimeoutBeforeStartFlag>true</TimeoutBeforeStartFlag>
+  <TimeoutBeforeStartSeconds>-1</TimeoutBeforeStartSeconds>
+  <EnableAllEvents>false</EnableAllEvents>
+  <EnableAllAlarms>true</EnableAllAlarms>
+  <EnableDefinedEventsAtAppStart>false</EnableDefinedEventsAtAppStart>
+  <DefineEventsAtAppStart>false</DefineEventsAtAppStart>
+  <ControlStateSVID>411</ControlStateSVID>
+  <ProcessStateSVID>2</ProcessStateSVID>
+  <EmailOnAlarmsFlag>true</EmailOnAlarmsFlag>
+  <PrimaryEmailAddressees>
+    <Addressee>mike.anderson@rudolphtech.com</Addressee>
+    <Addressee>john.mikaluaskas@rudolphtech.com</Addressee>
+  </PrimaryEmailAddressees>
+  <EmailAddresseesForAlarms>
+    <Addressee>mike.anderson@rudolphtech.com</Addressee>
+    <Addressee>john.mikaluaskas@rudolphtech.com</Addressee>
+  </EmailAddresseesForAlarms>
+  <EmailOnAppShutdownFlag>true</EmailOnAppShutdownFlag>
+  <EmailAddresseesForAppshutdown>
+    <Addressee>mike.anderson@rudolphtech.com</Addressee>
+    <Addressee>john.mikaluaskas@rudolphtech.com</Addressee>
+  </EmailAddresseesForAppshutdown>
+  <TraceLogFilesPath>\data</TraceLogFilesPath>
+  <LogFilesPath>\logs</LogFilesPath>
+  <OperatorWaferTableFields>
+    <Field Name="Container ID" />
+    <Field Name="Product" />
+    <Field Name="Operation" />
+    <Field Name="Recipe" />
+    <Field Name="Wafer Status" />
+  </OperatorWaferTableFields>
+  <EngineerWaferTableFields>
+    <Field Name="Container ID" />
+    <Field Name="Product" />
+    <Field Name="Operation" />
+    <Field Name="Recipe" />
+    <Field Name="Wafer Status" />
+  </EngineerWaferTableFields>
+  <EqConstValList>
+    <EqConst>
+      <val>0</val>
+      <name>name1</name>
+    </EqConst>
+    <EqConst>
+      <val>65535</val>
+      <name>name2</name>
+    </EqConst>
+  </EqConstValList>
+  <EqConstList>
+    <EqConst>
+      <val>5710</val>
+      <name>TECSEMACKTIMEOUT</name>
+    </EqConst>
+    <EqConst>
+      <val>5701</val>
+      <name>GENERALALSYSTYPE</name>
+    </EqConst>
+  </EqConstList>
+  <SVidList>
+    <Svid>
+      <name>constant11</name>
+      <id>11</id>
+    </Svid>
+    
+    <Svid>
+      <name>clock</name>
+      <id>22</id>
+    </Svid>
+    <Svid>
+      <name>random</name>
+      <id>33</id>
+    </Svid>
+    <Svid>
+      <name>slope</name>
+      <id>44</id>
+    </Svid>
+    <Svid>
+      <name>onoff</name>
+      <id>55</id>
+    </Svid>
+  </SVidList>
+  <AlarmList>
+    <alarm>
+      <name>ShutterMovingError</name>
+      <id>1</id>
+      
+    </alarm>
+    <alarm>
+      <name>ALAChmbDoorOpenTimerExpired</name>
+      <id>200</id>
+      
+    </alarm>
+    <alarm>
+      <name>BadVacuum</name>
+      <id>1301</id>
+    
+    </alarm>
+  </AlarmList>
+  <TraceReports>
+    <Report id="0">
+      <vids>
+        <vid name="constant11">11</vid>
+        <vid name="random">33</vid>
+        <vid name="onoff">55</vid>
+      </vids>
+      <dsper>000500</dsper>
+      <totsmp>1000</totsmp>
+    </Report>
+    <Report id="2">
+      <vids>
+        <vid name="slope">44</vid>
+        <vid name="clock">22</vid>
+      </vids>
+      <dsper>000500</dsper>
+      <totsmp>1000</totsmp>
+    </Report>
+    
+  </TraceReports>
+  <eventReports>
+      <report id="4">
+      	<vids>
+         <vid name="CONTROLSTATUS">411</vid>
+        </vids>
+      	<events>
+          <ceid name="HOST-OFFLINE">10101</ceid>
+          <ceid name="ONLINE-LOCAL">10102</ceid>
+          <ceid name="ONLINE-REMOTE">10103</ceid>
+          <ceid name="EQUIPMENT-OFFLINE">10104</ceid>
+        </events>
+     </report>
+     <report id="5000">
+      	<vids>
+         <vid name="RecipeReportData">5000</vid>
+        </vids>
+      	<events>
+          <ceid name="SPCReport">5000</ceid>
+        </events>
+      </report>
+     <report id="2">
+      	<vids>
+         <vid name="EquipmentStatus">2</vid>
+        </vids>
+      	<events>
+          <ceid name="ProcessState">5001</ceid>
+        </events>
+      </report>
+     <report id="1122">
+      	<vids>
+         <vid name="EventName">1122</vid>
+        </vids>
+      	<events>
+          <ceid name="LoadReq">5002</ceid>
+          <ceid name="CarrierReq">5003</ceid>
+          <ceid name="LoadComp">5004</ceid>
+          <ceid name="WaitingForStart">5005</ceid>
+          <ceid name="RecipeStarted">5006</ceid>
+          <ceid name="RecipeCompleted">5007</ceid>
+          <ceid name="UnloadReq">5008</ceid>
+          <ceid name="UnloadComp">5009</ceid>
+          <ceid name="Arrived">5010</ceid>
+          <ceid name="Removed">5011</ceid>
+        </events>
+      </report>
+
+
+  </eventReports>
+  <Dialogs>
+    <ShowConfirmationBox>false</ShowConfirmationBox>
+    <PostStartmessage>Close the Door - Please</PostStartmessage>
+    <LoadAnotherPortDialogMessage>Do you want to load another port?</LoadAnotherPortDialogMessage>
+    <StartNextPortMsg>Do you want to Start both loaded ports?</StartNextPortMsg>
+    <ShowEmailBox>false</ShowEmailBox>
+  </Dialogs>
+</ToolConfig>

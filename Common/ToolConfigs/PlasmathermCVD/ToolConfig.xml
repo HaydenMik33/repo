@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ToolConfig xmlns="http://rudolphtech.com/ToolConfigXMLSchema.xsd">
+  <ToolType>PlasmathermCVD</ToolType>
+  <Toolid>VFURN-01</Toolid>
+  
+  <CommunicationTimeout>30</CommunicationTimeout>
+  <LoadLock>0</LoadLock>
+  <LotsPerPort>1</LotsPerPort>
+  <Loadports>
+    <LoadPortName>Load Port A</LoadPortName>
+    <LoadPortName>Load Port B</LoadPortName>
+  </Loadports>
+  
+  <SlotColumnName>Slot</SlotColumnName>
+  <CamstarString>Camstar Status</CamstarString>
+  <StartTimerSeconds>20</StartTimerSeconds>
+  <TimeoutBeforeStartFlag>true</TimeoutBeforeStartFlag>
+  <TimeoutBeforeStartSeconds>-1</TimeoutBeforeStartSeconds>
+  <EnableAllEvents>false</EnableAllEvents>
+  <EnableAllAlarms>true</EnableAllAlarms>
+  <EnableDefinedEventsAtAppStart>false</EnableDefinedEventsAtAppStart>
+  <DefineEventsAtAppStart>false</DefineEventsAtAppStart>
+  <ControlStateSVID>71</ControlStateSVID>
+  <ProcessStateSVID>16</ProcessStateSVID>
+  <EmailOnAlarmsFlag>true</EmailOnAlarmsFlag>
+  <PrimaryEmailAddressees>
+    <Addressee>mike.anderson@rudolphtech.com</Addressee>
+    <Addressee>john.mikaluaskas@rudolphtech.com</Addressee>
+  </PrimaryEmailAddressees>
+  <EmailAddresseesForAlarms>
+    <Addressee>mike.anderson@rudolphtech.com</Addressee>
+    <Addressee>john.mikaluaskas@rudolphtech.com</Addressee>
+  </EmailAddresseesForAlarms>
+  <EmailOnAppShutdownFlag>true</EmailOnAppShutdownFlag>
+  <EmailAddresseesForAppshutdown>
+    <Addressee>mike.anderson@rudolphtech.com</Addressee>
+    <Addressee>john.mikaluaskas@rudolphtech.com</Addressee>
+  </EmailAddresseesForAppshutdown>
+  <TraceLogFilesPath>\data</TraceLogFilesPath>
+  <LogFilesPath>\logs</LogFilesPath>
+  <OperatorWaferTableFields>
+    <Field Name="Container ID" />
+    <Field Name="Product" />
+    <Field Name="Operation" />
+    <Field Name="Recipe" />
+    <Field Name="Wafer Status" />
+  </OperatorWaferTableFields>
+  <EngineerWaferTableFields>
+    <Field Name="Container ID" />
+    <Field Name="Product" />
+    <Field Name="Operation" />
+    <Field Name="Recipe" />
+    <Field Name="Wafer Status" />
+  </EngineerWaferTableFields>
+  <EqConstValList>
+    <EqConst>
+      <val>0</val>
+      <name>name1</name>
+    </EqConst>
+    <EqConst>
+      <val>65535</val>
+      <name>name2</name>
+    </EqConst>
+  </EqConstValList>
+  <EqConstList>
+    <EqConst>
+      <val>5710</val>
+      <name>TECSEMACKTIMEOUT</name>
+    </EqConst>
+    <EqConst>
+      <val>5701</val>
+      <name>GENERALALSYSTYPE</name>
+    </EqConst>
+  </EqConstList>
+  <SVidList>
+    <Svid>
+      <name>constant11</name>
+      <id>11</id>
+    </Svid>
+    
+    <Svid>
+      <name>clock</name>
+      <id>22</id>
+    </Svid>
+    <Svid>
+      <name>random</name>
+      <id>33</id>
+    </Svid>
+    <Svid>
+      <name>slope</name>
+      <id>44</id>
+    </Svid>
+    <Svid>
+      <name>onoff</name>
+      <id>55</id>
+    </Svid>
+  </SVidList>
+  <AlarmList>
+    <alarm>
+      <name>ShutterMovingError</name>
+      <id>1</id>
+      
+    </alarm>
+    <alarm>
+      <name>ALAChmbDoorOpenTimerExpired</name>
+      <id>200</id>
+      
+    </alarm>
+    <alarm>
+      <name>BadVacuum</name>
+      <id>1301</id>
+    
+    </alarm>
+  </AlarmList>
+  <TraceReports>
+    <Report id="0">
+      <vids>
+        <vid name="constant11">11</vid>
+        <vid name="random">33</vid>
+        <vid name="onoff">55</vid>
+      </vids>
+      <dsper>000500</dsper>
+      <totsmp>1000</totsmp>
+    </Report>
+    <Report id="2">
+      <vids>
+        <vid name="slope">44</vid>
+        <vid name="clock">22</vid>
+      </vids>
+      <dsper>000500</dsper>
+      <totsmp>1000</totsmp>
+    </Report>
+    
+  </TraceReports>
+  <eventReports>
+    
+  </eventReports>
+  <Dialogs>
+    <ShowConfirmationBox>false</ShowConfirmationBox>
+    <PostStartmessage>Close the Door - Please</PostStartmessage>
+    <LoadAnotherPortDialogMessage>Do you want to load another port?</LoadAnotherPortDialogMessage>
+    <StartNextPortMsg>Do you want to Start both loaded ports?</StartNextPortMsg>
+    <ShowEmailBox>false</ShowEmailBox>
+  </Dialogs>
+</ToolConfig>

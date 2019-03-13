@@ -1,0 +1,62 @@
+﻿<Window x:Class="FinisarFAS1.View.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinisarFAS1.View"
+        xmlns:converters="clr-namespace:FinisarFAS1.Converters"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="{Binding TitleText}" Height="340" Width="650">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:StringToVisibleConverter x:Key="NullVisibilityConverter" />
+            <converters:StringToOppositeVisibilityConverter x:Key="OppositeNullVisibilityConverter" />
+            <converters:BooleanToVisibleConverter x:Key="BooleanToVisibleConverter" />
+            <converters:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter" />
+            <converters:OppositeBooleanToCollapsedConverter x:Key="OppositeBooleanToCollapsedConverter" />
+
+            <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Width" Value="120" />
+                <Setter Property="Margin" Value="0,2,0,0" />
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border BorderThickness="3" BorderBrush="Red" >
+    <DockPanel Background="AliceBlue" >
+        
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="12,0,12,8" HorizontalAlignment="Right" >
+            <Button ToolTip="Ok" IsDefault="True" Margin="15,0,15,0"
+                    Command="{Binding OkCommand}"
+                    Background="{StaticResource ResourceKey=GreenGlass}"
+                    Content="{Binding YesText}"
+                    Visibility="{Binding YesText, Converter={StaticResource ResourceKey=NullVisibilityConverter}}"
+                    />
+
+            <Button ToolTip="Cancel" IsCancel="True" Margin="10,0,15,0"
+                    Command="{Binding CancelCommand}"
+                    Background="{StaticResource ResourceKey=RedGlass}"
+                    Content="{Binding CancelText}"
+                    Visibility="{Binding YesText, Converter={StaticResource ResourceKey=NullVisibilityConverter}}" />
+
+            <Button ToolTip="{Binding CancelText}" IsDefault="True" Margin="10,0,15,0"
+                    Command="{Binding CancelCommand}"
+                    Content="{Binding CancelText}"
+                    Visibility="{Binding YesText, Converter={StaticResource ResourceKey=OppositeNullVisibilityConverter}}" />
+        </StackPanel>
+
+        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,10" >
+                <TextBlock FontSize="20" TextWrapping="Wrap"
+                       Width="Auto" Height="Auto" Padding="10,5"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Binding Message, FallbackValue='DIALOG MESSAGE'}"  />
+        </DockPanel>
+    </DockPanel>
+    </Border>
+</Window>

@@ -1,0 +1,84 @@
+MDLN=Khan
+SOFTREV=1005.0.8.0
+{ StartupStates
+	# Do not change the names in this section, but you can change the values
+	ControlState=5
+	ProcessState=2
+	TransactionAbort=false
+	TimeoutAll=false
+}
+# Optional - use to define the return values for svid
+{ svid
+	# Must be called ControlState no matter what the tool's manual calls it
+	{ ControlState
+		13
+	}
+	# Must be called ProcessState no matter what the tool's manual calls it
+	{ ProcessState
+		16
+	}
+	{ trace
+		# example: 11=constant11
+		# For SVID 11, always send the string "constant11"
+		11=constant11
+		# For SVID 22, send the current timestamp in YYYYMMDDhhmmsscc
+		22=clock
+		# For SVID 33, send random number between 1 and 10
+		33=random
+		# For SVID 44, send integer incrementing to 10 then decrementing
+		44=slope
+		# For SVID 55, send 00 for 10 iterations, FF for 10
+		55=onoff
+		12=random
+		# For any SVID not in this list, send the string "0" 
+		DEFAULT=0
+
+		17=PPID
+		301=MAINSTATE
+		1001=random
+		1100=slope
+		1201=5%
+		1401=20
+		1500=random
+		1700=random
+		1800=random
+		2200=LotIds
+		2300=LotBarcodes
+		2401=clock
+		2402=random
+		2403=random
+		2404=random
+		2405=random
+		2406=random
+		2600=RunNumber
+	}
+}
+# Optional - use to define the return values for ecid
+{ ecid
+	a=ecidvalue1
+	b=ecidvalue2
+}
+# use to define valid recipes and how long they run
+{ recipes
+	RECIPE10=10
+}
+{ events
+	#Do not change the names of these events no matter what the tools' GEM manual calls them.
+	# Feel free to change the values (CEIDs)
+	ProcessStarted=100
+	ProcessCompleted=101
+	ControlStateOFFLINE=1
+	ControlStateLOCAL=2
+	ControlStateREMOTE=3
+	ProcessStateChange=10
+}
+# Optional - use to define return values for dvid that are used in an event report
+{ dvid
+	DVID1=value1
+	DVID2=value2
+	DVID3=value3
+	220=STEPNAME
+	221=STEPNUMBER
+	222=STEPTYPE
+	DEFAULT=NOT_IN_SIMDATA
+}

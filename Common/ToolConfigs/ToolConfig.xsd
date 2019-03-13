@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://rudolphtech.com/ToolConfigXMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ToolConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ToolType" type="xs:string" />
+        <xs:element name="Toolid" type="xs:string" />
+        <xs:element name="CommunicationTimeout" type="xs:unsignedByte" />
+        <xs:element name="MoveOutValidateData" type="xs:boolean" />
+        <xs:element name="MoveInRequireCertification" type="xs:boolean" />
+        <xs:element name="FactoryName" type="xs:string" />
+        <xs:element name="LoadLock" type="xs:unsignedByte" />
+        <xs:element name="LotsPerPort" type="xs:unsignedByte" />
+        <xs:element name="Loadports">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="LoadPortName" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SlotColumnName" type="xs:string" />
+        <xs:element name="CamstarString" type="xs:string" />
+        <xs:element name="StartTimerSeconds" type="xs:int" />
+        <xs:element name="TimeoutBeforeStartFlag" type="xs:boolean" />
+        <xs:element name="TimeoutBeforeStartSeconds" type="xs:int" />
+        <xs:element name="EnableAllEvents" type="xs:boolean" />
+        <xs:element name="EnableAllAlarms" type="xs:boolean" />
+        <xs:element name="EnableDefinedEventsAtAppStart" type="xs:boolean" />
+        <xs:element name="DefineEventsAtAppStart" type="xs:boolean" />
+        <xs:element name="ControlStateSVID" type="xs:unsignedLong" />
+        <xs:element name="ProcessStateSVID" type="xs:unsignedLong" />
+        <xs:element name="EmailOnAlarmsFlag" type="xs:boolean" />
+        <xs:element name="PrimaryEmailAddressees">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Addressee" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EmailAddresseesForAlarms">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Addressee" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EmailOnAppShutdownFlag" type="xs:boolean" />
+        <xs:element name="EmailAddresseesForAppshutdown">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Addressee" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TraceLogFilesPath" type="xs:string" />
+        <xs:element name="LogFilesPath" type="xs:string" />
+        <xs:element name="OperatorWaferTableFields">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Field">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EngineerWaferTableFields">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Field">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EqConstValList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="EqConst">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="val" type="xs:unsignedLong" />
+                    <xs:element name="name" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EqConstList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="EqConst">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="val" type="xs:unsignedLong" />
+                    <xs:element name="name" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EndOfRunDataCollectionItems">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="item">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                    <xs:element name="id" type="xs:unsignedLong" />
+                    <xs:element name="type" type="xs:string" />
+                    <xs:element name="camstarName" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AlarmList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="alarm">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                    <xs:element name="id" type="xs:unsignedLong" />
+                    <xs:element name="critical" type="xs:boolean" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TraceReports">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Report">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="vids">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="vid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedLong">
+                                  <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dsper" type="xs:unsignedByte" />
+                    <xs:element name="totsmp" type="xs:unsignedLong" />
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="eventReports">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="report">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="vids">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="vid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedLong">
+                                  <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="events">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="ceid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedLong">
+                                  <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:unsignedShort" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Dialogs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ShowConfirmationBox" type="xs:boolean" />
+              <xs:element name="PostStartmessage" type="xs:string" />
+              <xs:element name="ShowEmailBox" type="xs:boolean" />
+              <xs:element name="LoadAnotherPortDialogMessage" type="xs:string" />
+              <xs:element name="StartNextPortMsg" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

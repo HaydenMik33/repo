@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SystemConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="EmailServer" type="xs:string" />
+        <xs:element name="EmailPort" type="xs:unsignedByte" />
+        <xs:element name="FromEmailAddress" type="xs:string" />
+        <xs:element name="CamstarConfig">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DBServerName" type="xs:string" />
+              <xs:element name="DatabaseName" type="xs:string" />
+              <xs:element name="DBUserName" type="xs:string" />
+              <xs:element name="DBPasswordEncrypt" type="xs:string" />
+              <xs:element name="InsiteHost" type="xs:string" />
+              <xs:element name="InsitePort" type="xs:unsignedShort" />
+              <xs:element name="InsiteUser" type="xs:string" />
+              <xs:element name="InsitePwd" type="xs:string" />
+              <xs:element name="strLogPath" type="xs:string" />
+              <xs:element name="stLogrFilePrefix" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CamstarURL" type="xs:string" />
+        <xs:element name="ACINameServerHost" type="xs:string" />
+        <xs:element name="ACINameServerPort" type="xs:unsignedShort" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

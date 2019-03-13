@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SystemConfig>
+  <EmailServer>EmailServer1</EmailServer>
+  <EmailPort>0</EmailPort>
+  <FromEmailAddress>FromEmailAddress1</FromEmailAddress>
+  <CamstarConfig>
+    <DBServerName>DBServerName1</DBServerName>
+    <DatabaseName>DatabaseName1</DatabaseName>
+    <DBUserName>DBUserName1</DBUserName>
+    <DBPasswordEncrypt>DBPasswordEncrypt1</DBPasswordEncrypt>
+    <InsiteHost>InsiteHost1</InsiteHost>
+    <InsitePort>0</InsitePort>
+    <InsiteUser>InsiteUser1</InsiteUser>
+    <InsitePwd>InsitePwd1</InsitePwd>
+    <strLogPath>strLogPath1</strLogPath>
+    <stLogrFilePrefix>stLogrFilePrefix1</stLogrFilePrefix>
+  </CamstarConfig>
+  <CamstarURL>CamstarURL1</CamstarURL>
+  <ACINameServerHost>ACINameServerHost1</ACINameServerHost>
+  <ACINameServerPort>0</ACINameServerPort>
+</SystemConfig>

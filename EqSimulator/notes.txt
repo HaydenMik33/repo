@@ -1,0 +1,125 @@
+Log time on the Jira ticket
+
+DO:
+
+Make sure checkack is off on createbatch
+Simulator test createbatch
+Add length to S2F41 command and parms
+Create simdata.dv; submit to P4
+Modify simulator to send canned reports
+Verify a run start sends correct events and reports
+
+Q: create batch not used in other tools
+Q: use existing start processing command with parms 
+	(port, lotIds, Recipe, Operator)
+	and have Koyo-specific code just ignore the ones it doesn't want?
+Q: add the DELBATCH to Koyo. It is identical to the code in DoToolSpecificStartProcessing
+	except the cpName="BATCHID" and the cpval = the batch ID you created in createbatch
+Q  and see if the other commands are spelled the same way, 
+	such as PAUSE and RESUME....
+Change slotStatus to array
+Modify S2F41 to have fixed data sizes
+
+
+Do ACI initialization in loop
+
+Bound message needs to distinguish between timeout and error and
+raise correct exception!  (Eqsrv timeout coumment=timeout should be checked.)
+
+
+---------------------------------------------------------------
+S1F1,S1F13 with  (ASC) 'Khan'
+                 (ASC) '1005.0.8.0'
+	or return COMMACK != 0 (NO, tool does not do)
+S1F3 if SVID in list, return value else L,0
+
+S2F33,35,37 always return OK
+S5F3 return OK
+S2F23 start or stop trace 
+hcmd RCMD=PP-SELECT: save recipe name, return good or bad ack
+hcmd START: change state, send ProcessStarted event, set timer for stop or abort event
+     PAUSE: change state; cancel timer
+     RESUME: 
+
+commands to query/set flags
+setTimeoutAll(true|false)
+getTimeoutAll
+setTransactionAbort(true|false)
+getTransactionAbort
+setControlState(Off-Line|Local|Remote)
+getControlState
+setProcessState(Off|Setup|Ready|Executing|Wait|Abort)
+getProcessState
+sendEvent(ProcessStarted|ProcessCompleted|ProcessAborted) - if a report linked to the event, sends 
+	the report plus vid with dummy values
+
+Testing
+	to=Evatec01srv do=areyouthere -> 0
+	to=Evatec01srv do=communicate -> 0
+	to=Evatec01gw do=setTimeoutAll true
+	to=Evatec01gw do=getTimeoutAll -> true
+	to=Evatec01srv eq=Evatec01 do=areyouthere -> reply=1 comment=timeout
+	to=Evatec01gw do=setTimeoutAll false
+	to=Evatec01gw do=setTransactionAbort true
+	to=Evatec01gw do=getTransactionAbort -> true
+	to=Evatec01srv do=communicate eq=Evatec01  -> reply=2 comment=transaction aborted
+	to=Evatec01gw do=setTransactionAbort false
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=5
+	to=Evatec01gw do=setControlState state=Off-Line -> 0
+	to=Evatec01gw do=getControlState -> value=Off-line
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=1
+	to=Evatec01gw do=setControlState state-Local -> 0
+	to=Evatec01gw do=getControlState -> value=Local
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=4
+	to=Evatec01gw do=setControlState state=Remote -> 0
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=5
+
+	to=Evatec01srv do=monitor eq=Evatec01 all on
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=16 SVID_TYPE.1=ASC -> SV.1=2
+	to=Evatec01gw do=setProcessState  state=Off -> 0   and should get state change event
+	to=Evatec01gw do=getProcessState -> value=Off and should get state change event
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=0
+	to=Evatec01gw do=setProcessState state=Ready -> 0 and should get state change event
+
+	to=Evatec01srv do=monitor eq=Evatec01 all on
+	to=Evatec01gw do=setControlState state=Off-Line -> 0
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=1
+	to=Evatec01srv do=hcmd rcmd=LOCAL -> 01   (fail and no change)
+	to=Evatec01gw do=setControlState state=Remote -> 0 and should get state change event
+	to=Evatec01srv do=hcmd rcmd=LOCAL -> 00 and should get state change event
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=4
+	to=Evatec01srv do=hcmd rcmd=REMOTE -> 00 and should get state change event
+	to=Evatec01srv do=status eq=Evatec01 SVID.1=13 SVID_TYPE.1=ASC -> SV.1=5
+	
+
+
+
+Done: 
+add tracedata
+add S2F33,35,37 report handling
+update sendEvent to send the dummy data for the DVID or a hard-coded "1"
+TODO:
+Correct the ProcessStateChanged event to change the DVID for Process State to the new value.
+	and do testing
+Add support for SVID that return lists
+add automatic recipe countdown 
+Clean up exception handling
+Add recipe countdown, Recipe V300 - 20 seconds; send process state change too!
+When you send the process state change event, send the report with the new state
+Stop traces at run completion
+Add GoLocal and GoRemote to ISECSHandler
+Add additional fields to PP-SELECT
+Fix PPGNT
+Add the status query to the S1F1 heartbeat
+Ensure that events missing expected reports are handled without error
+	Especially Process Compelte and state change
+Move ACI logs to c:\logs
+Add events 11-21 to toolconfig.xml, with reports
+For all of these, if the report is missing do the status query
+Complete createbatch in Koyo.cs
+Add deletebatch and possibly start to ISECSHandler
+Make Setup State ok to run
+Adjust secs and other log levels/size
+
+
+
