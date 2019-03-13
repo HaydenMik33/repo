@@ -139,11 +139,11 @@
     <Compile Include="View\OperatorToolLotControl.xaml.cs">
       <DependentUpon>OperatorToolLotControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OperatorView.xaml.cs">
+      <DependentUpon>OperatorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WaferGrid.xaml.cs">
       <DependentUpon>WaferGrid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Window2.xaml.cs">
-      <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -193,11 +193,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\WaferGrid.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\OperatorView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Window2.xaml">
+    <Page Include="View\WaferGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
