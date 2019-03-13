@@ -4,25 +4,33 @@ using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Threading;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace FinisarFAS1.View
 {
     /// <summary>
-    /// Interaction logic for WaferGrid.xaml
+    /// Interaction logic for OperatorView.xaml
     /// </summary>
-    public partial class WaferGrid : UserControl
+    public partial class OperatorView : UserControl
     {
-        public WaferGrid()
+        public OperatorView()
         {
             InitializeComponent();
 
             Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
+            Messenger.Default.Register<WafersInGridMessage>(this, WafersInGridHandler);
             Messenger.Default.Register<SelectedWafersInGridMessage>(this, SelectedWafersInGridHandler);
-        }      
+            
+        }
 
         private void SelectedWafersInGridHandler(SelectedWafersInGridMessage msg)
         {
@@ -35,13 +43,17 @@ namespace FinisarFAS1.View
             this.IsConfirmed = msg.Confirmed;
         }
 
+        private void WafersInGridHandler(WafersInGridMessage msg)
+        {
+            this.NumberOfWafers = msg.NumberOfWafers.GetValueOrDefault();
+        }
 
         private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             var box = sender as TextBox;
             if (box != null)
                 box.SelectAll();
-        }      
+        }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
@@ -49,6 +61,8 @@ namespace FinisarFAS1.View
         }
 
         public bool IsConfirmed { get; set; }
+        public int NumberOfWafers { get; set; }
+
 
         public WaferGridViewModel gridViewModel
         {
@@ -70,9 +84,5 @@ namespace FinisarFAS1.View
             gridViewModel.SelectedWafers = selectedObjects;
         }
 
-        private void Control_Loaded(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Send(new InitializeWafersMessage(true));
-        }
     }
 }

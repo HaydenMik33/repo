@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoShellMessaging;
- 
 
 namespace Common
 {
@@ -64,6 +63,7 @@ namespace Common
 
         public static AshlServerLite AshlServer = null;
         public static TraceDataCollector TheTraceDataCollector = null;
+       
 
         public static void ReadXmlConfigs()
         {

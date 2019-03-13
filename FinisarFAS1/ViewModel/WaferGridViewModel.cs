@@ -33,6 +33,7 @@ namespace FinisarFAS1.ViewModel
         string factoryName = "Wafer";
 
         private int thisPortNo { get; set; }
+        private bool alreadyInitialized { get; set; }
         // TODO: Must be cleaned out when reinitialized
         string[] PortLots = new string[2];
         string Lot1 => PortLots[0]; 
@@ -45,12 +46,27 @@ namespace FinisarFAS1.ViewModel
             dialogService = dialogService1;
             //_mesService = new MESService();
             thisPortNo = portNo;
+            alreadyInitialized = false; 
+
             RegisterForMessages();
         }
 
+        public void SetCurrentTool(SECSHandler<Tool> cTool)
+        {
+            currentTool = cTool; 
+        }
+
+        // Couple of local variables
+        string _operatorID;
+        AuthorizationLevel _authorizationLevel;
+
+
         public void RegisterForMessages()
         {
-            Messenger.Default.Register<InitializeWafersMessage>(this, InitializeWafersHandler);
+            Messenger.Default.Register<InitializeWafersMessage>(this, InitializeWaferGridHandler);
+
+            Messenger.Default.Register<LoadingWafersMessage>(this, loadingWafersMsgHandler);
+
             Messenger.Default.Register<RenumberWafersMessage>(this, RenumberWafersHandler);
             Messenger.Default.Register<MoveWafersMessage>(this, MoveWafersHandler);
 
@@ -60,15 +76,40 @@ namespace FinisarFAS1.ViewModel
             Messenger.Default.Register<EventMessage>(this, EventMessageHandler);
 
             Messenger.Default.Register<SetAllWafersStatusMessage>(this, setAllWafersStatusMsgHandler);
-            //Messenger.Default.Register<RecipeOverridableMsg>(this, RecipeOverridableMsgHandler);
+            Messenger.Default.Register<AddWafersToGridMessage>(this, AddWafersToGridMsgHandler);
 
             Messenger.Default.Register<CurrentOperatorMessage>(this, updateOperatorMsgHandler);
 
             Messenger.Default.Register<MoveInResponseMessage>(this, moveInResponseHandler);
         }
+       
 
-        string _operatorID ; 
-        AuthorizationLevel _authorizationLevel ; 
+        private void InitializeWaferGridHandler(InitializeWafersMessage msg)
+        {
+            // This gets called everytime they switch the tabs
+            if (alreadyInitialized && msg.fromCodeBehind) return; 
+
+            StartTimerSeconds = CurrentToolConfig.StartTimerSeconds;
+            StartTimerLeft = "";
+
+            Port1Wafers = CreateEmptyPortRows();
+            Started = false;
+            IsProcessing = false;
+            MoveInComplete = false;            
+            LoadingWafers = false;
+            IsRecipeOverridable = false;
+            ButtonEnabledIfOnline = true;
+            PortLots = new string[2] { "", "" };
+            RaisePropertyChanged(nameof(AreThereWafers));
+            alreadyInitialized = true; 
+            MyLog.Debug($"Initialized Wafer Grid for PortNo={thisPortNo}.");
+        }
+
+        private void loadingWafersMsgHandler(LoadingWafersMessage msg)
+        {
+            LoadingWafers = msg.LoadingWafers;
+            TimerText = msg.TimerText;
+        }
 
         private void updateOperatorMsgHandler(CurrentOperatorMessage msg)
         {
@@ -89,22 +130,6 @@ namespace FinisarFAS1.ViewModel
         //    IsRecipeOverridable = msg.IsRecipeOverridable;
         //}
 
-        private void InitializeWafersHandler(InitializeWafersMessage msg)
-        {
-            _startTimerSeconds = CurrentToolConfig.StartTimerSeconds;
-
-            RaisePropertyChanged(nameof(AreThereWafers));
-            Port1Wafers = CreateEmptyPortRows();
-            Started = false;
-            IsProcessing = false;
-            MoveInComplete = false;
-            StartTimerSeconds = CurrentToolConfig.StartTimerSeconds;
-            //StartTimerLeft = "";
-            IsRecipeOverridable = false;
-            ButtonEnabledIfOnline = true;
-            PortLots = new string[2] { "", "" };
-        }
-
         //private void WaferStatusMessageHandler(SetWaferStatusMessage msg)
         //{
         //    LotStatusColor = msg.LotStatusColor;
@@ -119,14 +144,12 @@ namespace FinisarFAS1.ViewModel
             Aborted = true;
             IsProcessing = false;
             Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Aborted"));
-            // UpdateWaferStatus("Aborted");
         }
 
         private void ProcessingCompleteMsgHandler(ProcessCompletedMessage msg)
         {
-            // UpdateWaferStatus("Completed");
-            Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Completed"));
-            LotStatusColor = "Complete";
+            Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Complete"));
+            // LotStatusColor = "Complete";
             Completed = true;            
         }
         private void EventMessageHandler(EventMessage msg)
@@ -135,59 +158,28 @@ namespace FinisarFAS1.ViewModel
             {
                 if (msg.Message.Contains("Processing"))
                 {
-                    //UpdateWaferStatus("In Processing");
                     Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Processing"));
-                    LotStatusColor = "Processing";
+                    // LotStatusColor = "Processing";
                 }
             }
         }
-        private void MoveWafersHandler(MoveWafersMessage msg)
-        {
-            bool movedOne = false;
-            int idxToMove = MAXROWS - msg.SlotToMove;
-            Wafer mtWafer = new Wafer();
-            // Remove top 1 if moving up
-            int topIdx = 0;
-            do
-            {
-                if (string.IsNullOrEmpty(Port1Wafers[topIdx].ContainerName))
-                {
-                    Port1Wafers.RemoveAt(topIdx);
-                    movedOne = true;
-                }
-            } while (!movedOne && ++topIdx < idxToMove);
-            if (movedOne)
-            {
-                Port1Wafers.Insert(idxToMove, mtWafer);
-                RenumberWafersHandler(null);
-                RaisePropertyChanged("Port1Wafers");
-            }
-        }
 
-        private ObservableCollection<Wafer> CreateEmptyPortRows(int rowCount = MAXROWS)
-        {
-            ObservableCollection<Wafer> tempList = new ObservableCollection<Wafer>();
-            // rowCount = 1; 
-            for (int i = rowCount; i > 0; --i)
-            {
-                tempList.Add(new Wafer() { Slot = i.ToString() });
-            }
-            return tempList;
-        }
-        private List<Wafer> GetAscendingListOfWafersBySlot(List<Wafer> selectedWafers)
-        {
-            List<Wafer> orderedList;
-            if (selectedWafers?.Count > 1)
-                orderedList = selectedWafers.OrderBy(w => Int32.Parse(w.Slot)).Reverse().ToList();
-            else
-                orderedList = new List<Wafer>(selectedWafers);
-            return orderedList;
-        }
-
+       
         bool doPortCheck = false;
 
         public int StartTimerSeconds { get; set; }
 
+        private bool toolBusy;
+        public bool ToolBusy {
+            get { return toolBusy; }
+            set { toolBusy = value; RaisePropertyChanged(nameof(ToolBusy)); }
+        }
+
+        private string timerText;
+        public string TimerText {
+            get { return timerText; }
+            set { timerText = value; RaisePropertyChanged(nameof(TimerText)); }
+        }
 
 
         #region Icommand+handler
@@ -212,6 +204,49 @@ namespace FinisarFAS1.ViewModel
         public ICommand NextCmd => new RelayCommand(nextCmdHandler);
         public ICommand ReloadCmd => new RelayCommand(reloadCmdHandler);
 
+        #region MOVE UP DOWN HANDLERS
+
+        private void MoveWafersHandler(MoveWafersMessage msg)
+        {
+            bool movedOne = false;
+            int idxToMove = MAXROWS - msg.SlotToMove;
+            Wafer mtWafer = new Wafer();
+            // Remove top 1 if moving up
+            int topIdx = 0;
+            do
+            {
+                if (string.IsNullOrEmpty(Port1Wafers[topIdx].ContainerName))
+                {
+                    Port1Wafers.RemoveAt(topIdx);
+                    movedOne = true;
+                }
+            } while (!movedOne && ++topIdx < idxToMove);
+            if (movedOne)
+            {
+                Port1Wafers.Insert(idxToMove, mtWafer);
+                RenumberWafersHandler(null);
+                RaisePropertyChanged("Port1Wafers");
+            }
+        }
+        private ObservableCollection<Wafer> CreateEmptyPortRows(int rowCount = MAXROWS)
+        {
+            ObservableCollection<Wafer> tempList = new ObservableCollection<Wafer>();
+            // rowCount = 1; 
+            for (int i = rowCount; i > 0; --i)
+            {
+                tempList.Add(new Wafer() { Slot = i.ToString() });
+            }
+            return tempList;
+        }
+        private List<Wafer> GetAscendingListOfWafersBySlot(List<Wafer> selectedWafers)
+        {
+            List<Wafer> orderedList;
+            if (selectedWafers?.Count > 1)
+                orderedList = selectedWafers.OrderBy(w => Int32.Parse(w.Slot)).Reverse().ToList();
+            else
+                orderedList = new List<Wafer>(selectedWafers);
+            return orderedList;
+        }
         private void moveUpCmdHandler()
         {
             int? cnt = SelectedWafers?.Count;
@@ -269,6 +304,9 @@ namespace FinisarFAS1.ViewModel
                 });
             }
         }
+
+        #endregion 
+
         private void cancelPort1CmdHandler()
         {
             var vm = new DialogViewModel("Are you sure you want to Cancel?", "Yes", "No");
@@ -297,6 +335,7 @@ namespace FinisarFAS1.ViewModel
             //HoldWafers("Aborted by: " + OperatorID);
             //UpdateWaferStatus("Aborted");
         }
+
         private void confirmPort1CmdHandler()
         {
             bool? result = true;
@@ -324,6 +363,7 @@ namespace FinisarFAS1.ViewModel
 
             }
         }
+
         private void startTimerExpiredHandler()
         {
             StopTimer();
@@ -377,27 +417,8 @@ namespace FinisarFAS1.ViewModel
             {
 
             }
-#if DEBUG1
-            processingTimer.Tick += new EventHandler(newStageEvent);
-            processingTimer.Interval = new TimeSpan(0, 0, 0, 10, 200);
-            nextStep = 0;
-            processingTimer.Start();
-#endif
         }
-
-        private bool toolBusy;
-        public bool ToolBusy {
-            get { return toolBusy; }
-            set { toolBusy = value; RaisePropertyChanged(nameof(ToolBusy)); }
-        }
-
-        private string timerText;
-        public string TimerText {
-            get { return timerText; }
-            set { timerText = value; RaisePropertyChanged(nameof(TimerText)); }
-        }
-
-
+       
         private void pauseCmdHandler()
         {
             MyLog.Information($"SECS->SendSECSPause()");
@@ -438,12 +459,11 @@ namespace FinisarFAS1.ViewModel
                 MyLog.Information($"SECS->SendSECSAbort()");
                 currentTool.SendSECSAbort();
                 // TODO: Review with Zahir if this os ok
-                //Aborted = true;
-                //Started = false;
-                //IsProcessing = false;
+                Aborted = true;
+                Started = false;
+                IsProcessing = false;
                 // HoldWafers("Aborted by: " + portLotInfo.OperatorID);
-                // UpdateWaferStatus("Aborted");
-                //ReInitializeSystem();
+                Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Aborted"));
             }
             else
             {
@@ -553,7 +573,6 @@ namespace FinisarFAS1.ViewModel
             }
             return success;
         }
-
 
 
         #endregion
@@ -747,6 +766,10 @@ namespace FinisarFAS1.ViewModel
             set {
                 port1Wafers = value;
                 RaisePropertyChanged(nameof(Port1Wafers));
+                if (AreThereWafers)
+                    Messenger.Default.Send(new WafersInGridMessage(port1Wafers?.Count));
+                else
+                    Messenger.Default.Send(new WafersInGridMessage(0));
             }
         }        
      
@@ -1047,7 +1070,7 @@ namespace FinisarFAS1.ViewModel
 
         private async void ReInitializeSystemHandler(ReInitializeSystemMessage msg)
         {
-            Messenger.Default.Send(new LoadingWafersMessage(thisPortNo, true, "Processing..."));
+            // Messenger.Default.Send(new LoadingWafersMessage(thisPortNo, true, "Processing..."));
             //await Task.Run(() =>
             await Task.Delay(2000).ContinueWith(_ =>
             {

@@ -187,8 +187,6 @@
         <TabControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" SelectedIndex="{Binding CurrentTab, Mode=TwoWay}"
                     Background="{Binding TabProcessingColor}" Height="706" >            
             <TabItem x:Name="TabPort1" Width="160" Background="{Binding TabProcessingColor}" >
-                <!--Selector.IsSelected="{inding Engineer, Mode=OneWay}"
-                     Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >-->
                 <TabItem.Header >
                     <TextBlock FontSize="22" FontWeight="SemiBold"
                                Text="{Binding LoadPortNames[0]}"  Background="Transparent" >
@@ -196,7 +194,7 @@
                 </TabItem.Header>
                 <StackPanel>
                     <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                    <view:Window2 Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
+                    <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
                 </StackPanel>
             </TabItem>
 
@@ -207,7 +205,7 @@
                 </TabItem.Header>
                 <StackPanel>
                     <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                    <view:Window2 Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
+                    <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
                 </StackPanel>
             </TabItem>
 

@@ -66,7 +66,6 @@ namespace FinisarFAS1.ViewModel
 
             //Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
             //Messenger.Default.Register<WafersInGridMessage>(this, WafersInGridHandler);
-
         }
 
         private bool CamstarUp = false;
@@ -88,7 +87,8 @@ namespace FinisarFAS1.ViewModel
             string tempStatus = msg.Description;
             string tempColor = "White";
 
-            if (msg.PortNo != thisPortNo) return;
+            // -1 signifies ALL ports
+            if (msg.PortNo!=-1 && msg.PortNo != thisPortNo) return;
 
             // if (Aborted) return;
 
@@ -100,11 +100,22 @@ namespace FinisarFAS1.ViewModel
                     Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, Port1Lot2, "Executing..."));
             }
             else if (msg.ProcessState == ProcessStates.NOTREADY)
+            {
                 tempColor = "Red";
+            }
             else if (msg.ProcessState == ProcessStates.READY)
+            {
                 tempColor = "Azure";
+            }
             else if (msg.ProcessState == ProcessStates.WAIT)
+            {
                 tempColor = "Yellow";
+            }
+            else if (msg.ProcessState == ProcessStates.ABORT)
+            {
+                tempColor = "Red";
+                Messenger.Default.Send(new ProcessAbortMessage(thisPortNo));
+            }
             else if (msg.ProcessState == ProcessStates.NOTTALKING)
             {
                 ProcessState = "NO TOOL";
@@ -153,6 +164,10 @@ namespace FinisarFAS1.ViewModel
                 Messenger.Default.Send(new ReFocusMessage("OperatorField", null));
             else
                 Messenger.Default.Send(new ReFocusMessage(string.Empty, null));
+#if DEBUG
+            OperatorID = "john.mik";
+            ToolID = CurrentToolConfig.Toolid;
+#endif
 
         }
 

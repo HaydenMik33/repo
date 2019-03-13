@@ -35,10 +35,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <!--<UserControl.DataContext>
-        <vm:OperatorToolLotViewModel/>
-    </UserControl.DataContext>-->
-
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />

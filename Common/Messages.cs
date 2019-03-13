@@ -25,9 +25,10 @@ namespace Common
 
     public class InitializeWafersMessage
     {
-        public InitializeWafersMessage()
+        public bool fromCodeBehind { get; set; }
+        public InitializeWafersMessage(bool fcb = false)
         {
-
+            fromCodeBehind = fcb; 
         }
     }
 
@@ -204,7 +205,7 @@ namespace Common
     {
         public int? NumberOfWafers { get; internal set; }
 
-       public WafersInGridMessage(int? numWafers)
+        public WafersInGridMessage(int? numWafers)
         {
             this.NumberOfWafers = numWafers.GetValueOrDefault();
         }
@@ -265,49 +266,56 @@ namespace Common
     }
      public class ProcessStateChangeMessage
     {
+        public int PortNo { get; private set; }
         public Globals.ProcessStates ProcessState { get; private set; }
         public string Description { get; private set; }
 
-        public int PortNo { get; private set; }
-
-        public ProcessStateChangeMessage(Globals.ProcessStates newState, string description, int portNo = 0)
+        public ProcessStateChangeMessage(Globals.ProcessStates newState, string description, int portNo = -1)
         {
+            this.PortNo = portNo;
             this.ProcessState = newState;
             this.Description = description;
-            this.PortNo = portNo; 
         }
     }
     public class ProcessCompletedMessage
     {
+        public int PortNo { get; set; }
         public string Description { get; private set; }
 
-        public ProcessCompletedMessage(string description)
+        public ProcessCompletedMessage(string description, int portNo=-1)
         {
-           this.Description = description;
+            this.PortNo = portNo; 
+            this.Description = description;
         }
     }
 
     public class ProcessWaitMessage
     {
+        public int PortNo { get; set; }
         public string DisplayText { get; set; }
     
-        public ProcessWaitMessage(string displayText)
+        public ProcessWaitMessage(int portNo, string displayText)
         {
+            this.PortNo = portNo; 
             this.DisplayText = displayText;
         }
     }
 
     public class ProcessContinueMessage
     {
-        public ProcessContinueMessage()
+        public int PortNo { get; set; }
+        public ProcessContinueMessage(int portNo)
         {
+            this.PortNo = portNo;
         }
     }
 
     public class ProcessAbortMessage
     {
-        public ProcessAbortMessage()
+        public int PortNo { get; set; }
+        public ProcessAbortMessage(int portNo)
         {
+            this.PortNo = portNo; 
         }
     }
     public class RecipeListAvailableMessage

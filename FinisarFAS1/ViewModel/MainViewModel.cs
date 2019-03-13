@@ -102,11 +102,11 @@ namespace FinisarFAS1.ViewModel
             dialogService1.Register<DialogViewModel, DialogWindow>();
             dialogService = dialogService1;
 
-            PortLotInfo = new OperatorToolLotViewModel(0, UsingMoq);
-            PortLotList.Add(0, PortLotInfo);
+            PortLotInfo = new OperatorToolLotViewModel(1, UsingMoq);
+            PortLotList.Add(1, PortLotInfo);
 
-            WaferGridInfo = new WaferGridViewModel(0);
-            WaferGridList.Add(0, WaferGridInfo);
+            WaferGridInfo = new WaferGridViewModel(1);
+            WaferGridList.Add(1, WaferGridInfo);
             
             if (Globals.UsingMoq)
                 _mesService = new MESService(new MoqMESService());
@@ -122,7 +122,7 @@ namespace FinisarFAS1.ViewModel
         {
             Messenger.Default.Send(new LoadingWafersMessage(thisPortNo, true, "Processing..."));
             //await Task.Run(() =>
-            await Task.Delay(2000).ContinueWith(_ =>
+            await Task.Delay(1000).ContinueWith(_ =>
             {
                 // MoveInComplete = false;            
                 Completed = false;
@@ -161,7 +161,10 @@ namespace FinisarFAS1.ViewModel
             // Set UI bindings
             Started = false;
             IsProcessing = false;
-            Engineer = false; 
+            Engineer = false;
+            PortLotInfo = PortLotList[1];
+            WaferGridInfo = WaferGridList[1];
+            Messenger.Default.Send(new WafersInGridMessage(0));            
         }
 
         private void GetConfigurationValues()
@@ -175,8 +178,11 @@ namespace FinisarFAS1.ViewModel
                 // We already added the first one
                 if (++idx > 1)
                 { 
-                    OperatorToolLotViewModel otlVM = new OperatorToolLotViewModel(idx-1, UsingMoq);                    
-                    PortLotList.Add(idx-1, otlVM);                                   }
+                    OperatorToolLotViewModel otlVM = new OperatorToolLotViewModel(idx, UsingMoq);                    
+                    PortLotList.Add(idx, otlVM);
+                    WaferGridViewModel wgVM = new WaferGridViewModel(idx);
+                    WaferGridList.Add(idx, wgVM);
+                }
             }
             if (LoadPortNames.Count>3)
                 PortDActive = true; 
@@ -273,6 +279,11 @@ namespace FinisarFAS1.ViewModel
                     MyLog.Debug($"SetupEquipment->GetType('ToolService.{CurrentToolConfig.ToolType}')");
 
                     currentTool = new SECSHandler<Tool>((Tool)Activator.CreateInstance(Assembly.Load("ToolService").GetType("ToolService." + CurrentToolConfig.ToolType), true));
+
+                    for (int i=1; i<=WaferGridList.Count; ++i)
+                    {
+                        WaferGridList[i].SetCurrentTool(currentTool);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -305,14 +316,15 @@ namespace FinisarFAS1.ViewModel
             Messenger.Default.Register<CloseAndSendEmailMessage>(this, CloseEmailResponseMsgHandler);
             Messenger.Default.Register<EventMessage>(this, EventMessageHandler);
             Messenger.Default.Register<ProcessCompletedMessage>(this, ProcessingCompleteMsgHandler);
-            Messenger.Default.Register<ProcessWaitMessage>(this, ProcessWaitMsgHandler);
+            // Messenger.Default.Register<ProcessWaitMessage>(this, ProcessWaitMsgHandler);
             Messenger.Default.Register<ProcessContinueMessage>(this, ProcessContinueMsgHandler);
             Messenger.Default.Register<ProcessAbortMessage>(this, ProcessAbortMsgHandler);
             Messenger.Default.Register<PromptToConfirmNextTabMessage>(this, PromptForNextTabMsgHandler);
 
             Messenger.Default.Register<UpdateRecipeAndRunTypeMessage>(this, updateRecipeAndRunTypeMsgHandler);
             Messenger.Default.Register<EngineerViewMessage>(this, engineerViewMsgHandler);
-        }
+        }       
+
 
         private void UpdateCamstarStatusHandler(CamstarStatusMessage msg)
         {
@@ -418,12 +430,12 @@ namespace FinisarFAS1.ViewModel
 
          private void ProcessAbortMsgHandler(ProcessAbortMessage msg)
         {
-            MyLog.Information($"SECS->SendSECSAbort()");
+            MyLog.Information($"SECS->SendSECSAbort(PortNo={msg.PortNo})");
             currentTool.SendSECSAbort();
             Started = false;
             Aborted = true;            
             IsProcessing = false;
-            HoldWafers("Aborted by Factory Automation for " + PortLotInfo.OperatorID);
+            // HoldWafers("Aborted by Factory Automation for " + PortLotInfo.OperatorID);
         }
 
         private void ProcessingCompleteMsgHandler(ProcessCompletedMessage msg)
@@ -438,7 +450,11 @@ namespace FinisarFAS1.ViewModel
             });
         }
 
-        private void ProcessWaitMsgHandler(ProcessWaitMessage msg) => Messenger.Default.Send(new ProcessWaitMessage("Wait"));
+        private void ProcessWaitMsgHandler(ProcessWaitMessage msg)
+        {
+            int i = 0; 
+            // Messenger.Default.Send(new ProcessWaitMessage("Wait"));
+        }
 
         private void ProcessContinueMsgHandler(ProcessContinueMessage msg) => Messenger.Default.Send(new ProcessStateChangeMessage(ProcessStates.READY, "Ready"));
 
@@ -736,18 +752,27 @@ namespace FinisarFAS1.ViewModel
         public int CurrentTab {
             get { return currentTab; }
             set {
-                currentTab = value;   
+                currentTab = value+1;   
                 // in case value (new tab index) is out of range
-                if (PortLotList.Count > value)
+                if (PortLotList.Count >= value)
                 {
-                    PortLotInfo = PortLotList[value];
-                    RaisePropertyChanged(nameof(CurrentTab));
+                    PortLotInfo = PortLotList[currentTab];
                     RaisePropertyChanged(nameof(PortLotInfo));
                 }
                 else
                 {
                     // TODO : Show dialog 
                 }
+                if (WaferGridList.Count >= value)
+                {
+                    WaferGridInfo = WaferGridList[currentTab];
+                    RaisePropertyChanged(nameof(WaferGridList));
+                }
+                else
+                {
+                    // TODO : Show dialog 
+                }
+                RaisePropertyChanged(nameof(CurrentTab));
             }
         }
 
