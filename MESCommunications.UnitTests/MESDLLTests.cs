@@ -178,9 +178,9 @@ namespace MESCommunications.UnitTests
         [Test]
         public void LocalModeBtnDisable_ExpectFalse()
         {
-            MainViewModel mvm = new MainViewModel();
+            WaferGridViewModel mvm = new WaferGridViewModel(0); 
             mvm.GoLocalCmd.Execute(null);
-            Assert.IsFalse(mvm.OnlineBtnEnable);
+            Assert.IsFalse(mvm.ButtonEnabledIfOnline);
         }
     }
 }
