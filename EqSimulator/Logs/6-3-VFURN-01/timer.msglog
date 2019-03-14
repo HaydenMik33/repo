@@ -1,0 +1,57 @@
+03/08/19: 14:57:23.580: to=6-3-VFURN-01gw	msg=do=sendSomeAlarms
+03/08/19: 14:57:25.614: to=6-3-VFURN-01gw	msg=do=sendSomeEvents
+03/08/19: 14:57:25.614: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:57:26.722: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=1303 ALCD=10 ALTX="Heat water"
+03/08/19: 14:57:29.925: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=267 ALCD=80 ALTX="Gas Control Error"
+03/08/19: 14:57:30.948: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:57:35.062: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:57:40.188: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/08/19: 14:59:35.464: to=6-3-VFURN-01gw	msg=do=sendSomeAlarms
+03/08/19: 14:59:37.508: to=6-3-VFURN-01gw	msg=do=sendSomeEvents
+03/08/19: 14:59:37.509: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:59:38.624: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=1303 ALCD=10 ALTX="Heat water"
+03/08/19: 14:59:41.786: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=267 ALCD=80 ALTX="Gas Control Error"
+03/08/19: 14:59:42.818: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:59:47.937: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:59:52.056: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/08/19: 15:12:51.789: to=6-3-VFURN-01gw	msg=do=sendSomeAlarms
+03/08/19: 15:12:53.827: to=6-3-VFURN-01gw	msg=do=sendSomeEvents
+03/08/19: 15:12:53.828: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 15:12:54.955: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=1303 ALCD=10 ALTX="Heat water"
+03/08/19: 15:12:57.131: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=267 ALCD=80 ALTX="Gas Control Error"
+03/08/19: 15:12:58.168: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 15:13:03.284: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 15:13:08.400: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/14/19: 02:08:34.120: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:08:39.279: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:08:44.395: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:09:04.976: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/14/19: 02:33:09.525: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:33:14.638: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:33:19.353: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:33:50.689: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:33:55.996: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:00.152: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:04.385: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/14/19: 02:34:13.201: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:18.351: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:23.511: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:39.611: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:44.726: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:34:49.854: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:42:27.416: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:42:32.562: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:42:37.684: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:42:58.027: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:43:03.070: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:43:08.180: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 02:43:41.372: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/14/19: 11:10:37.711: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:10:42.822: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:10:47.936: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:21:01.765: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:21:06.892: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:21:11.037: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:22:52.252: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:22:57.403: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/14/19: 11:23:02.572: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0

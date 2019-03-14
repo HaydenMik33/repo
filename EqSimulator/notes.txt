@@ -1,27 +1,11 @@
 Log time on the Jira ticket
 
-DO:
-
-Make sure checkack is off on createbatch
-Simulator test createbatch
-Add length to S2F41 command and parms
-Create simdata.dv; submit to P4
-Modify simulator to send canned reports
-Verify a run start sends correct events and reports
-
-Q: create batch not used in other tools
-Q: use existing start processing command with parms 
-	(port, lotIds, Recipe, Operator)
-	and have Koyo-specific code just ignore the ones it doesn't want?
-Q: add the DELBATCH to Koyo. It is identical to the code in DoToolSpecificStartProcessing
-	except the cpName="BATCHID" and the cpval = the batch ID you created in createbatch
-Q  and see if the other commands are spelled the same way, 
-	such as PAUSE and RESUME....
-Change slotStatus to array
-Modify S2F41 to have fixed data sizes
+Fix PPGNT
 
 
 Do ACI initialization in loop
+
+Add lotid behavior to simulator
 
 Bound message needs to distinguish between timeout and error and
 raise correct exception!  (Eqsrv timeout coumment=timeout should be checked.)
@@ -109,17 +93,6 @@ When you send the process state change event, send the report with the new state
 Stop traces at run completion
 Add GoLocal and GoRemote to ISECSHandler
 Add additional fields to PP-SELECT
-Fix PPGNT
-Add the status query to the S1F1 heartbeat
-Ensure that events missing expected reports are handled without error
-	Especially Process Compelte and state change
-Move ACI logs to c:\logs
-Add events 11-21 to toolconfig.xml, with reports
-For all of these, if the report is missing do the status query
-Complete createbatch in Koyo.cs
-Add deletebatch and possibly start to ISECSHandler
-Make Setup State ok to run
-Adjust secs and other log levels/size
 
 
 

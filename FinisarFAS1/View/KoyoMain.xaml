@@ -59,7 +59,6 @@
                     <TextBlock Text="{Binding Path=Description}" />
                 </StackPanel>
             </DataTemplate>
-
             <Style x:Key="TabItemFocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>
@@ -214,6 +213,7 @@
                 <Button x:Name="PortA" Width="180" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"                        
                         ToolTip="Show Port A Status"  Click="Button_Click" 
                         Command="{Binding Path=PortACmd}" >
+
                     <TextBlock Text="Port A" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <!--<Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
@@ -266,7 +266,7 @@
                 <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" />
             </StackPanel>
         </StackPanel>
-       
+
 
         <StackPanel Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="4"
                     Margin="0,0,0,0" 

@@ -1,0 +1,5 @@
+Inseting a Child node
+
+By inseting a child node to another node, the last one will become a path automatically. A generic name and a null value will be assigned and can be modified by editing the new node.
+
+To insert a child node the option under "Edit/Insert Child Item" from the main menu can be used, as well as by right clicking the mouse.

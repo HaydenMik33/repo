@@ -74,6 +74,9 @@ Change control state:
 Change process state:
 	%ASHLHOME%\bin\sendmq 6-6-EVAP-002gw do=setProcessState state=Off
 	%ASHLHOME%\bin\sendmq 6-6-EVAP-002gw do=setProcessState state=Ready
+	
+	%ASHLHOME%\bin\sendmq 6-3-VFURN-01gw do=setProcessState state=Off
+	%ASHLHOME%\bin\sendmq 6-3-VFURN-01gw do=setProcessState state=Ready
 
 	Other process states: Off|Setup|Ready|Executing|Wait|Abort
 
@@ -92,12 +95,7 @@ Tell simulator to send an event:
 There are two formats for this message. If the simdata.dv file contains
 the event IDs for ProcessStarted|ProcessCompleted|ProcessAborted, you
 can use the format below:
-	%ASHLHOME%\bin\sendmq 6-6-EVAP-01gw do=sendEvent event=ProcessStarted
-	
-	%ASHLHOME%\bin\sendmq 6-6-EVAP-01gw do=sendEvent event=ProcessCompleted
-	
-	%ASHLHOME%\bin\sendmq 6-6-EVAP-01gw do=sendEvent event=ProcessAborted
-	
+	%ASHLHOME%\bin\sendmq 6-6-EVAP-002gw do=sendEvent event=ProcessStarted
 
 Or you can send any event ID you like with the format:
 	%ASHLHOME%\bin\sendmq 6-6-EVAP-002gw do=sendEvent event=555
@@ -148,14 +146,6 @@ S10F9|S14F9|S16F11|S16F15
 
 
 
-- - - -
-Certain lot ID endings set up for failure conditions during the run.
-Lot ID ending in...
-	29 CriticalAlarm sent 
-	39 ToolPauses after about 5 seconds
-	49 ToolPausesAndResumes after about 5 seconds
-	59 ToolAborts after a few seconds
-	69 ProcessNeverCompletes  (used for internal testing)
 
 
 

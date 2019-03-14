@@ -1,0 +1,98 @@
+Dynamic Variables (DVs)
+
+Most data stored within an AutoShell server is kept in symbolic string variables. These variables are maintained in a hierarchical structure, much like files on a file system. The variables are accessible from outside the server and within scripts through server shell commands, and from within C++ commands through the use of functions in the C++ Development tools library. Most AutoShell development revolves around manipulating DVs. These variables are sometimes calles DVs or Globals.
+
+Note: Every server and client has a completely separate DV list.
+
+DVs are used extensively by the built-in commands of the server shells (eqsrv, sfcsrv, etc.) to store configuration data and runtime data. DVs represent the state of the server. DVs are only good for the lifetime of the server.
+
+
+Composition of a DV
+
+A DV consists of a name, an optional value, and an optional sublist.
+
+Name: A text string that identifies the variable in references. It can contain no whitespace characters.
+
+Value: A text string that contains data in ASCII form. This string can cotain any ASCII characters except NULL. (For more information on restrictions, refer to the script language paragraph on the Dynamic Variables chapter in the AusoShell Reference Guide.)
+
+Sublist: Each DV may also have a sublist of other DVs, which gives them a hierarchical structure.
+
+
+Terminology
+
+When referring to DVs, the following therms are used.
+
+list: Refers to one or more variables on the same level.
+
+node: Refers to a single variable that may contain a sublist.
+
+structure: Refers to a list or a node and all variables below it in the hierarchical structure.
+
+parent: Refers to a DV that contains a sublist.
+
+path: Contains a series of variable names that specify the parents of a DV.
+
+root: The highest-level list of DVs is calles the root DV list. This is equivalent to the root directory on a hard disk.
+
+
+Notation
+
+The notation used to represent DVs in this an dother dicuments is the same notation used to store DVs when they are sotred to disks. Common commands that alllow a user to view whitin a running server also use this notation.
+
+The following is an example of a DV structure as it would appear in the file or the results of a get command.
+
+equipment=TW29
+operator=135246
+shift=A
+BUSY
+{lots=3
+  pos.1=9876543
+  pos.2=9876542
+  pos.3=0987654
+  {specs
+    recipe=RPADOX
+    delay=345
+  }
+}
+
+Names and values are separated by an equal sign (=). If a variabla has no value, like BUSY above, no equal sign follows the name. Sublists and the variable to which they are attached are encloses in curly braces ({}). In this case, lots is a variable with a sublist. The name of a sublist can also have values, as shown with the lots=3 DV above.
+
+
+Paths
+
+Paths to DVs are represented bu the names of all the parents from the highes level to the lowest, separated bu grater-than signs (>). For example:
+
+>lots>specs>recipe
+
+refers to the DV recipe whose parent is specs. The parent of specsm in turn, is lots.
+
+
+Using DVs
+
+There are several common command that allow manupulations of DVs.
+
+set     - Creates and/pr assigns a value to a DV
+get     - Lists variables or variable structures and their values.
+copy    - Copies a variable or an entire structure from one node to another.
+remove  - Erases a variable or node and everything beneath it.
+store   - Saves an image of a variable strictire from a file into DVs.
+restore - Reads an image of a variable structure from a file into DVs.
+
+These commands are explained in detail in the AutoShell Reference Guide.
+
+The script language also provides capabilities similar to the commands above. For more information, refer to the script language paragraph in this chapter.
+
+It is sometimes necessary to create a DV that has no value, or erase the value of a DV that already exists. This can be dome by assigning the DV an empty string as a value.
+
+From script language:
+let sys>var=
+
+From a start-up file:
+set sys>var=
+
+In a restore DV file:
+{sys
+  var
+}
+
+Note: An empty string value is the same as no value in regard to DVs.

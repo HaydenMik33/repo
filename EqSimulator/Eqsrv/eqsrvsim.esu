@@ -1,0 +1,132 @@
+defcmd name=alarm_send cmd=generic_eqcmd \
+   help="alarm_send eq=%s ALCD=%s ALID=%d ALTX=%s " \
+   explain="Reports a change in or presence of an alarm condition.  One message should be issued when the alarm is set and one message when the alarm is cleared.  Irrecoverable errors and attention flags may not have a corresponding clear message.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	ALCD             - alarm code byte\n\
+	ALID             - alarm identification\n\
+	ALTX             - alarm text\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC5            - one byte acknowledge code for stream 5" 
+
+defcmd name=send_trace cmd=generic_eqcmd \
+   help="send_trace eq=%s TRID=%s SMPLN=%d STIME=%s SV=%s    " \
+   explain="Sends data samples to the host according to the trace setup done by S2F23.  Trace is a time-driven form of equipment status.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TRID             - trace request ID\n\
+	SMPLN            - sample number\n\
+	STIME            - sample time (yymmddhhmmss)\n\
+	SV               - status variable value\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC6            - one byte acknowledge code for stream 6" 
+
+defcmd name=data_send cmd=generic_eqcmd \
+   help="data_send eq=%s DATAID=%s CEID=%s [DSID.<n>=%s [DVNAME.<n>.<n>=%s DVVAL.<n>.<n>=%s] ]  " \
+   explain="Any data report initiated by an event, such as completion of a measurement, is called a discrete variable.  The SF reports such data.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	DATAID           - data ID\n\
+	CEID             - collected event ID\n\
+	DSID             - data set ID\n\
+	DVNAME           - data value name\n\
+	DVVAL            - data value\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC6            - one byte acknowledge code for stream 6" 
+
+defcmd name=multi_ok cmd=generic_eqcmd \
+   help="multi_ok eq=%s DATAID=%s DATALENGTH=%d " \
+   explain="If the discrete data report S6F3, F9, F11, or F13 can involve more than one block, this transaction must precede the transmission.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	DATAID           - data ID\n\
+	DATALENGTH       - total bytes to be sent\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	GRANT6           - permission to send" 
+
+defcmd name=fdata_send cmd=generic_eqcmd \
+   help="fdata_send eq=%s PFCD=%s DATAID=%s CEID=%s [DSID.<n>=%s [DVVAL.<n>.<n>=%s] ]  " \
+   explain="Same as S6F3 except DVNAMEs are supplied in a predefined order known to the host rather than supplying them in the message.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PFCD             - predefined form code\n\
+	DATAID           - data ID\n\
+	CEID             - collected event ID\n\
+	DSID             - data set ID\n\
+	DVVAL            - data value\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC6            - one byte acknowledge code for stream 6" 
+
+defcmd name=event_send cmd=generic_eqcmd \
+   help="event_send eq=%s DATAID=%s CEID=%s [RPTID.<n>=%s [V.<n>.<n>=%s] ]  " \
+   explain="Send a defined, linked, and enabled group of reports to the host upon the occurrence of an event (CEID).\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	DATAID           - data ID\n\
+	CEID             - collected event ID\n\
+	RPTID            - report ID\n\
+	V                - variable data\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC6            - one byte acknowledge code for stream 6" 
+
+defcmd name=t_req cmd=generic_eqcmd \
+   help="t_req eq=%s TID=%s TEXT=%s " \
+   explain="Send a terminal text message to the host.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TID              - terminal number\n\
+	TEXT             - a single line of characters\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC10           - one byte acknowledge code for stream 10" 
+
+defcmd name=no_multi cmd=generic_eqcmd \
+   help="no_multi eq=%s TID=%s " \
+   explain="An error message from a terminal that cannot handle a multi-block message from S10F5.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TID              - terminal number\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID" 
+
+defcmd name=pjalertnotify cmd=generic_eqcmd \
+   help="pjalertnotify eq=%s TIMESTAMP=%s PRJOBID=%s PRJOBMILESTONE=%s  [ERRCODE.<n>=%d ERRTEXT.<n>=%s]  " \
+   explain="\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TIMESTAMP        - time of day (YYYYMMDDhhmmsscc)\n\
+	PRJOBID          - process job identification\n\
+	PRJOBMILESTONE   - notification of processing status\n\
+	ERRCODE          - error code\n\
+	ERRTEXT          - error text\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID" 
+
+restore file=(rel)eqsrvsim.edv
+tclinclude file=(rel)eqsrvsim.tcl
+set positional_suffixes=TRUE
+

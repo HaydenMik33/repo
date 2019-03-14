@@ -1,0 +1,3 @@
+dvEditor is a utility to create and modify Autoshell configuration files.
+
+These files will be stored in DV (Dynamic Variable) format, following the Autoshell server format.

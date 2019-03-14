@@ -1,0 +1,5 @@
+Moving an Item 
+
+A node can be moved up and down within any path, but only to the top most or bottom most location of the current path. If a path is moved, all of it's nodes will be moved also.
+
+To move a node the option under "Edit/Move Up" or "Edit/Move Down" from the main menu can be used, as well as by right clicking the mouse.

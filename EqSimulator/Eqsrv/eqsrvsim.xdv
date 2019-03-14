@@ -1,0 +1,13 @@
+{ sys
+	{ eq
+		{ const
+			sxid
+		}
+		{ eqid
+			{ EQ99
+				sxid=0
+			}
+		}
+	}
+}
+mirror_rbit=on

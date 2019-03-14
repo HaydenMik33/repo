@@ -1,0 +1,7 @@
+Editing a node from the Tree structure.
+
+To modify a name or value of a node, the option under Edit/Edit in the main menu can be used or using a double click on the mouse. Also, a popup menu can be accessed by right clicking the mouse in the desired node.
+
+A parent (identified by a folder icon) can not be edited, to change a parent's name, it has to be deleted and created again (See inserting a child or sibling chapters).
+
+The null and slash masks will be removed and re-aplied for display purposes.
