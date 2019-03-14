@@ -130,6 +130,7 @@ namespace FinisarFAS1.ViewModel
                 TabProcessingColor = "Ready";
                 CurrentRecipe = CurrentRunType = "";
             });
+
         }
 
         private void InitializeSystemHandler(InitializeSystemMessage msg)
@@ -164,7 +165,6 @@ namespace FinisarFAS1.ViewModel
             Engineer = false;
             PortLotInfo = PortLotList[1];
             WaferGridInfo = WaferGridList[1];
-            Messenger.Default.Send(new WafersInGridMessage(0));            
         }
 
         private void GetConfigurationValues()

@@ -64,7 +64,7 @@ namespace FinisarFAS1.ViewModel
         public void RegisterForMessages()
         {
             Messenger.Default.Register<InitializeWafersMessage>(this, InitializeWaferGridHandler);
-
+            Messenger.Default.Register<ReInitializeSystemMessage>(this, ReInitializeSystemHandler);
             Messenger.Default.Register<LoadingWafersMessage>(this, loadingWafersMsgHandler);
 
             Messenger.Default.Register<RenumberWafersMessage>(this, RenumberWafersHandler);
@@ -1069,7 +1069,6 @@ namespace FinisarFAS1.ViewModel
             await Task.Delay(1000).ContinueWith(_ =>
             {
                 WaferList = CreateEmptyPortRows();
-
                 
                 if (dispatcherTimer.IsEnabled)
                     StopTimer();
