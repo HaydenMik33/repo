@@ -42,6 +42,7 @@
                                      To="0" />
                 </Storyboard>
             </Storyboard>
+            
             <Style TargetType="TextBox">
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Height" Value="25" />
@@ -69,6 +70,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
             <Style TargetType="{x:Type TabItem}">
                 <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
                 <Setter Property="Foreground" Value="Black"/>
@@ -187,6 +189,25 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
                     VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Vertical" >
             <StackPanel Orientation="Horizontal" >
+                <Button FontSize="16" Content="Port A">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Style.Triggers>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Width="170" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
                         ToolTip="Show Port A Status" 
                         Command="{Binding Path=PortACmd}"
@@ -208,7 +229,7 @@
                         Content="Port D"  />
             </StackPanel>
             <StackPanel>
-                <view:WaferGrid DataContext="{Binding}" Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
+                <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
                 <view:OperatorView DataContext="{Binding}" Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" />
             </StackPanel>
         </StackPanel>
