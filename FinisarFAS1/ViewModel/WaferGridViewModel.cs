@@ -92,7 +92,7 @@ namespace FinisarFAS1.ViewModel
             StartTimerSeconds = CurrentToolConfig.StartTimerSeconds;
             StartTimerLeft = "";
 
-            Port1Wafers = CreateEmptyPortRows();
+            WaferList = CreateEmptyPortRows();
             Started = false;
             IsProcessing = false;
             MoveInComplete = false;            
@@ -101,7 +101,8 @@ namespace FinisarFAS1.ViewModel
             ButtonEnabledIfOnline = true;
             PortLots = new string[2] { "", "" };
             RaisePropertyChanged(nameof(AreThereWafers));
-            alreadyInitialized = true; 
+            alreadyInitialized = true;
+            LoadingWafers = false; 
             MyLog.Debug($"Initialized Wafer Grid for PortNo={thisPortNo}.");
         }
 
@@ -215,15 +216,15 @@ namespace FinisarFAS1.ViewModel
             int topIdx = 0;
             do
             {
-                if (string.IsNullOrEmpty(Port1Wafers[topIdx].ContainerName))
+                if (string.IsNullOrEmpty(WaferList[topIdx].ContainerName))
                 {
-                    Port1Wafers.RemoveAt(topIdx);
+                    WaferList.RemoveAt(topIdx);
                     movedOne = true;
                 }
             } while (!movedOne && ++topIdx < idxToMove);
             if (movedOne)
             {
-                Port1Wafers.Insert(idxToMove, mtWafer);
+                WaferList.Insert(idxToMove, mtWafer);
                 RenumberWafersHandler(null);
                 RaisePropertyChanged("Port1Wafers");
             }
@@ -259,8 +260,8 @@ namespace FinisarFAS1.ViewModel
             {
                 moveWafers.ForEach(wafer =>
                 {
-                    Port1Wafers.Remove(wafer);
-                    Port1Wafers.Insert(MAXROWS - Int32.Parse(wafer.Slot) - 1, wafer);
+                    WaferList.Remove(wafer);
+                    WaferList.Insert(MAXROWS - Int32.Parse(wafer.Slot) - 1, wafer);
                 });
                 RenumberWafersHandler(null);
                 Messenger.Default.Send(new SelectedWafersInGridMessage(moveWafers));
@@ -279,8 +280,8 @@ namespace FinisarFAS1.ViewModel
             moveWafers.Reverse();
             moveWafers.ForEach(wafer =>
             {
-                Port1Wafers.Remove(wafer);
-                Port1Wafers.Insert(MAXROWS - Int32.Parse(wafer.Slot) + 1, wafer);
+                WaferList.Remove(wafer);
+                WaferList.Insert(MAXROWS - Int32.Parse(wafer.Slot) + 1, wafer);
             });
 
 
@@ -314,13 +315,13 @@ namespace FinisarFAS1.ViewModel
             bool? result = dialogService.ShowDialog(vm);
             if (result.HasValue && result == true)
             {
-                Messenger.Default.Send(new ReInitializeSystemMessage(1));
+                Messenger.Default.Send(new ReInitializeSystemMessage(thisPortNo, 1));
             }
         }
 
         public void completeCmdHandler()
         {
-            Messenger.Default.Send(new ReInitializeSystemMessage(0));
+            Messenger.Default.Send(new ReInitializeSystemMessage(thisPortNo, 0));
         }
 
         private void stopCmdHandler()
@@ -372,7 +373,7 @@ namespace FinisarFAS1.ViewModel
             // HoldWafers("Start Timer ran out by: "+ OperatorID);
 
             //emailViewHandler("Start Timer expired");
-            Messenger.Default.Send(new ReInitializeSystemMessage(0));
+            Messenger.Default.Send(new ReInitializeSystemMessage(thisPortNo, 0));
         }
 
         private void startCmdHandler()
@@ -628,7 +629,7 @@ namespace FinisarFAS1.ViewModel
                 dispatcherTimer.Start();
             }
         }
-        private int _startTimerSeconds;
+        //private int _startTimerSeconds;
         #endregion
 
         #region UI BINDINGS
@@ -733,7 +734,7 @@ namespace FinisarFAS1.ViewModel
         public bool IsStoppable => Started;
         public bool AreThereWafers {
             get {
-                if (Port1Wafers == null || Port1Wafers.Count == 0)
+                if (WaferList == null || WaferList.Count == 0)
                 {
                     return false;
                 }
@@ -741,7 +742,7 @@ namespace FinisarFAS1.ViewModel
                 {
                     for (int i = 0; i < MAXROWS; ++i)
                     {
-                        if (!string.IsNullOrEmpty(port1Wafers[i].WaferNo))
+                        if (!string.IsNullOrEmpty(_waferList[i].WaferNo))
                         {
                             return true;
                         }
@@ -760,19 +761,18 @@ namespace FinisarFAS1.ViewModel
 
         public List<Wafer> SelectedWafers { get; set; }
 
-        private ObservableCollection<Wafer> port1Wafers;
-        public ObservableCollection<Wafer> Port1Wafers {
-            get { return port1Wafers; }
+        private ObservableCollection<Wafer> _waferList;
+        public ObservableCollection<Wafer> WaferList {
+            get { return _waferList; }
             set {
-                port1Wafers = value;
-                RaisePropertyChanged(nameof(Port1Wafers));
-                if (AreThereWafers)
-                    Messenger.Default.Send(new WafersInGridMessage(port1Wafers?.Count));
-                else
-                    Messenger.Default.Send(new WafersInGridMessage(0));
+                _waferList = value;
+                RaisePropertyChanged(nameof(WaferList));
+                //if (AreThereWafers)
+                //    Messenger.Default.Send(new WafersInGridMessage(port1Wafers?.Count));
+                //else
+                //    Messenger.Default.Send(new WafersInGridMessage(0));
             }
-        }        
-     
+        }
 
         private bool _loadingWafers;
         public bool LoadingWafers {
@@ -785,7 +785,7 @@ namespace FinisarFAS1.ViewModel
         //  GRID MANIPULATION
         private void AddWafersToTopGrid(List<Wafer> wafers)
         {
-            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(Port1Wafers);
+            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(WaferList);
             ObservableCollection<Wafer> goodList = new ObservableCollection<Wafer>();
             ObservableCollection<Wafer> bottomList = new ObservableCollection<Wafer>();
             int slotNo = 0;
@@ -820,26 +820,26 @@ namespace FinisarFAS1.ViewModel
                 if (result.HasValue && result.GetValueOrDefault() == true)
                 {
                 }
-                Port1Wafers = currentWafers;
+                WaferList = currentWafers;
                 RenumberWafersHandler(null);
                 Port1Lot2 = "";
                 return;
             }
 
             // Set currentWafers to goodList and
-            Port1Wafers = new ObservableCollection<Wafer>(wafers);
+            WaferList = new ObservableCollection<Wafer>(wafers);
 
             // Add currentwafers to bottom then add in empty then renumber slots
             foreach (var tempwafer in bottomList)
             {
-                Port1Wafers.Add(tempwafer);
+                WaferList.Add(tempwafer);
             }
 
             // Add in empty slots at top
-            slotNo = Port1Wafers.Count;
+            slotNo = WaferList.Count;
             for (int i = MAXROWS - slotNo; i > 0; --i)
             {
-                Port1Wafers.Insert(0, new Wafer());
+                WaferList.Insert(0, new Wafer());
             }
 
             RenumberWafersHandler(null);
@@ -857,23 +857,23 @@ namespace FinisarFAS1.ViewModel
 
             try
             {
-                currentWafers = new ObservableCollection<Wafer>(Port1Wafers);
+                currentWafers = new ObservableCollection<Wafer>(WaferList);
                 var goodList = currentWafers.ToList().Where(w => !string.IsNullOrEmpty(w.WaferNo));
                 currentWafers = new ObservableCollection<Wafer>(goodList);
 
-                Port1Wafers = new ObservableCollection<Wafer>(wafersToBeAdded);
+                WaferList = new ObservableCollection<Wafer>(wafersToBeAdded);
 
                 // Add currentwafers to bottom then add in empty then renumber slots
                 foreach (var tempwafer in currentWafers)
                 {
-                    Port1Wafers.Add(tempwafer);
+                    WaferList.Add(tempwafer);
                 }
 
                 // Add in empty slots at top
-                slotNo = Port1Wafers.Count;
+                slotNo = WaferList.Count;
                 for (int i = MAXROWS - slotNo; i > 0; --i)
                 {
-                    Port1Wafers.Insert(0, new Wafer());
+                    WaferList.Insert(0, new Wafer());
                 }
 
                 RaisePropertyChanged(nameof(AreThereWafers));
@@ -887,13 +887,13 @@ namespace FinisarFAS1.ViewModel
 
         private void RenumberWafersHandler(RenumberWafersMessage msg)
         {
-            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(Port1Wafers);
+            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(WaferList);
             for (int i = MAXROWS - 1, idx = 0; i >= 0; --i, ++idx)
             {
                 string newSlot = (i + 1).ToString();
                 currentWafers[idx].Slot = newSlot;
             }
-            Port1Wafers = new ObservableCollection<Wafer>(currentWafers);
+            WaferList = new ObservableCollection<Wafer>(currentWafers);
         }
 
         private string _port1Lot1;
@@ -919,14 +919,14 @@ namespace FinisarFAS1.ViewModel
         //    if (doPortCheck && msg.Port != thisPortNo) return;
         private void SetAllWafersRecipe(string newRecipe)
         {
-            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(Port1Wafers);
+            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(WaferList);
             for (int i = 0; i < currentWafers.Count; ++i)
             {
                 var cw = currentWafers[i];
                 if (!string.IsNullOrEmpty(cw.ContainerName))
                     cw.Recipe = newRecipe;
             }
-            Port1Wafers = new ObservableCollection<Wafer>(currentWafers);
+            WaferList = new ObservableCollection<Wafer>(currentWafers);
         }
 
         private void setAllWafersStatusMsgHandler(SetAllWafersStatusMessage msg)
@@ -937,7 +937,7 @@ namespace FinisarFAS1.ViewModel
             string lotId = msg.LotId;
             string newWaferStatus = msg.WaferStatus;
 
-            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(Port1Wafers);
+            ObservableCollection<Wafer> currentWafers = new ObservableCollection<Wafer>(WaferList);
             for (int i = 0; i < currentWafers.Count; ++i)
             {
                 var cw = currentWafers[i];
@@ -958,7 +958,7 @@ namespace FinisarFAS1.ViewModel
             {
               //   TabProcessingColor = waferStatus;
             }
-            Port1Wafers = new ObservableCollection<Wafer>(currentWafers);
+            WaferList = new ObservableCollection<Wafer>(currentWafers);
             LotStatusColor = newWaferStatus;
         }
 
@@ -983,8 +983,8 @@ namespace FinisarFAS1.ViewModel
         {
             if (doPortCheck && msg.PortNo != thisPortNo) return;
 
-            var goodLotList = Port1Wafers.Where(w => !string.IsNullOrEmpty(w.ContainerName) && !w.ContainerName.Equals(msg.LotToDelete)).ToList();
-            Port1Wafers = new ObservableCollection<Wafer>();
+            var goodLotList = WaferList.Where(w => !string.IsNullOrEmpty(w.ContainerName) && !w.ContainerName.Equals(msg.LotToDelete)).ToList();
+            WaferList = new ObservableCollection<Wafer>();
             AddWafersToGridMsgHandler(new AddWafersToGridMessage(msg.PortNo, goodLotList.ToList()));
         }
 
@@ -1072,18 +1072,22 @@ namespace FinisarFAS1.ViewModel
         {
             // Messenger.Default.Send(new LoadingWafersMessage(thisPortNo, true, "Processing..."));
             //await Task.Run(() =>
+            if (msg.PortNo!=-1 && msg.PortNo != thisPortNo) return; 
+
             await Task.Delay(2000).ContinueWith(_ =>
             {
-                Port1Wafers = CreateEmptyPortRows();
+                WaferList = CreateEmptyPortRows();
 
-                MoveInComplete = false;
+                
                 if (dispatcherTimer.IsEnabled)
                     StopTimer();
                 StartTimerLeftText = "";
                 Completed = false;
                 Aborted = Paused = Started = false;
+                MoveInComplete = false;
 
                 CurrentRecipe = "";
+                // Reser middle fields on operator view...
 
                 RaisePropertyChanged(nameof(AreThereWafers));
                 LoadingWafers = false;

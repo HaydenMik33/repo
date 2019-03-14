@@ -86,8 +86,8 @@ namespace MESCommunications.UnitTests
             Assert.AreEqual(moveInRes, false);
         }
 
-        string lot89 = "61848-009";
-        string lot913 = "61849-013"; 
+        //string lot89 = "61848-009";
+        //string lot913 = "61849-013"; 
 
         [Test]
         public void MoveIn_Duplicated_ExpectFalse()

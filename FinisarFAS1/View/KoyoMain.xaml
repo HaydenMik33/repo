@@ -152,7 +152,7 @@
 
         <!--STATUS PANEL-->
         <StackPanel Grid.Row="0" Grid.Column="0"  Margin="0,0" 
-                    Background="{DynamicResource ResourceKey=BlueGlass}" Orientation="Vertical"  >
+                    Background="Azure" Orientation="Vertical"  >
             <Grid Margin="10,15" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150" />
@@ -178,47 +178,41 @@
         </StackPanel>
 
         <!--OPERATOR TOOL ENTRY PANEL-->
-        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,0" 
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,0" 
                     Background="Azure" Orientation="Vertical">
             <view:OperatorToolLotControl x:Name="portLotInfoView" DataContext="{Binding}" Visibility="Visible" />
         </StackPanel>
 
         <!-- MAIN TABS-->
-        <TabControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" SelectedIndex="{Binding CurrentTab, Mode=TwoWay}"
-                    Background="{Binding TabProcessingColor}" Height="706" >            
-            <TabItem x:Name="TabPort1" Width="160" Background="{Binding TabProcessingColor}" >
-                <TabItem.Header >
-                    <TextBlock FontSize="22" FontWeight="SemiBold"
-                               Text="{Binding LoadPortNames[0]}"  Background="Transparent" >
-                    </TextBlock>
-                </TabItem.Header>
-                <StackPanel>
-                    <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                    <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
-                </StackPanel>
-            </TabItem>
-
-            <TabItem x:Name="TabPort2" Width="160" Background="{Binding TabProcessingColor2}" >
-                <TabItem.Header >
-                    <TextBlock FontSize="22" FontWeight="SemiBold" 
-                               Text="{Binding LoadPortNames[1]}" Background="Transparent" />
-                </TabItem.Header>
-                <StackPanel>
-                    <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                    <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" Margin="0,-6,0,6.4" />
-                </StackPanel>
-            </TabItem>
-
-            <!--<TabItem  Height="30" Width="120" Background="LightGray" Visibility="{Binding PortBActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
-            </TabItem>-->
-            <TabItem Header="{Binding LoadPortNames[2]}" Visibility="{Binding PortCActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
-                <Label Content="Load port 3 table" />
-            </TabItem>
-            <TabItem Header="{Binding LoadPortNames[3]}" Visibility="{Binding PortDActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
-                <Label Content="Load port 4 table" />
-            </TabItem>
-
-        </TabControl>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Vertical" >
+            <StackPanel Orientation="Horizontal" >
+                <Button Width="170" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
+                        ToolTip="Show Port A Status" 
+                        Command="{Binding Path=PortACmd}"
+                        Content="Port A"  />
+                <Button Width="170" Height="55" Margin="10,2" Background="{Binding TabProcessingColor2}"
+                        ToolTip="Show Port B Status" 
+                        Command="{Binding Path=PortBCmd}"
+                        Visibility="{Binding PortBActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                        Content="Port B"  />
+                <Button Width="170" Height="55" Margin="10,2" Background="Gray"
+                        ToolTip="Show Port C Status" 
+                        Command="{Binding Path=PortCCmd}"
+                        Visibility="{Binding PortCActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                        Content="Port C"  />
+                <Button Width="170" Height="55" Margin="10,2" Background="Gray"
+                        ToolTip="Show Port D Status" 
+                        Command="{Binding Path=PortDCmd}"
+                        Visibility="{Binding PortDActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
+                        Content="Port D"  />
+            </StackPanel>
+            <StackPanel>
+                <view:WaferGrid DataContext="{Binding}" Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
+                <view:OperatorView DataContext="{Binding}" Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" />
+            </StackPanel>
+        </StackPanel>
+       
 
         <StackPanel Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="4"
                     Margin="0,0,0,0" 

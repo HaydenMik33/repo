@@ -458,7 +458,6 @@ namespace FinisarFAS1.ViewModel
 
         private void ProcessContinueMsgHandler(ProcessContinueMessage msg) => Messenger.Default.Send(new ProcessStateChangeMessage(ProcessStates.READY, "Ready"));
 
-       
 
         int numCannotCommunicateMES = 0; 
 
@@ -968,7 +967,7 @@ namespace FinisarFAS1.ViewModel
         {
             bool bRet = false;
             if (lot == null) return false;
-            var p1l1Wafers = WaferGridInfo.Port1Wafers.Where(w => w.ContainerName == lot);
+            var p1l1Wafers = WaferGridInfo.WaferList.Where(w => w.ContainerName == lot);
             if (p1l1Wafers == null || p1l1Wafers.Count() == 0)
                 return true;
             foreach (Wafer w in p1l1Wafers)
@@ -985,7 +984,7 @@ namespace FinisarFAS1.ViewModel
             // Sometimes as an edge test, this call comes in in the middle of a manual run..so we did not start it! 
             // So we have no lots, so bad things happen! 
             // So let's check! And just return true t okeep on flowing. 
-            if (WaferGridInfo.Port1Wafers == null || WaferGridInfo.Port1Wafers.Count == 0)
+            if (WaferGridInfo.WaferList == null || WaferGridInfo.WaferList.Count == 0)
                 return true;
 
             string errMessage = "";
@@ -1136,7 +1135,7 @@ namespace FinisarFAS1.ViewModel
             // Sometimes as an edge test, this call comes in in the middle of a manual run..so we did not start it! 
             // So we have no lots, so bad things happen! 
             // So let's check! And just return true t okeep on flowing. 
-            if (WaferGridInfo.Port1Wafers == null || WaferGridInfo.Port1Wafers.Count == 0)
+            if (WaferGridInfo.WaferList == null || WaferGridInfo.WaferList.Count == 0)
                 return true;
 
             bool goodUpload = true;
@@ -1180,6 +1179,11 @@ namespace FinisarFAS1.ViewModel
 
         #endregion
 
+        public ICommand PortACmd => new RelayCommand(showPortACmdHandler);
+        public ICommand PortBCmd => new RelayCommand(showPortBCmdHandler);
+        public ICommand PortCCmd => new RelayCommand(showPortCCmdHandler);
+        public ICommand PortDCmd => new RelayCommand(showPortDCmdHandler);
+
         public ICommand CloseAlarmCmd => new RelayCommand(closeAlarmCmdHandler);
         public ICommand AlarmListingCmd => new RelayCommand(alarmListingCmdHandler);
         public ICommand LogListingCmd => new RelayCommand(logListingCmdHandler);
@@ -1188,13 +1192,43 @@ namespace FinisarFAS1.ViewModel
         public ICommand ResetHostCmd => new RelayCommand(resetHostCmdHandler);
         public ICommand ExitHostCmd => new RelayCommand(exitHostCmdHandler);
         
+        private void showPortACmdHandler()
+        {
+            PortLotInfo = PortLotList[1];
+            RaisePropertyChanged(nameof(PortLotInfo));
+            WaferGridInfo = WaferGridList[1];
+            RaisePropertyChanged(nameof(WaferGridList));
+        }
+
+        private void showPortBCmdHandler()
+        {
+            PortLotInfo = PortLotList[2];
+            RaisePropertyChanged(nameof(PortLotInfo));
+            WaferGridInfo = WaferGridList[2];
+            RaisePropertyChanged(nameof(WaferGridList));
+        }
+
+        private void showPortCCmdHandler()
+        {
+            PortLotInfo = PortLotList[3];
+            RaisePropertyChanged(nameof(PortLotInfo));
+            WaferGridInfo = WaferGridList[3];
+            RaisePropertyChanged(nameof(WaferGridList));
+        }
+
+        private void showPortDCmdHandler()
+        {
+            PortLotInfo = PortLotList[4];
+            RaisePropertyChanged(nameof(PortLotInfo));
+            WaferGridInfo = WaferGridList[4];
+            RaisePropertyChanged(nameof(WaferGridList));
+        }
+
         public void closeAlarmCmdHandler()
         {
             Messenger.Default.Send(new CloseAlarmMessage());
             CurrentAlarm = "";            
         }
-      
-     
 
         private void alarmListingCmdHandler()
         {
@@ -1217,7 +1251,7 @@ namespace FinisarFAS1.ViewModel
                 //if (AreThereWafers)
                 //    HoldWafers("ResetHost by Factory Automation for " + PortLotInfo.OperatorID);
                 emailViewHandler("Resetting Host");
-                Messenger.Default.Send(new ReInitializeSystemMessage(0));
+                Messenger.Default.Send(new ReInitializeSystemMessage(-1, 0));
             }
             else
             {

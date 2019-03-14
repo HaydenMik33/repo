@@ -81,7 +81,7 @@
             <Label FontSize="18" Content="Tool:" VerticalAlignment="Center" />
             <TextBox x:Name="ToolField" Width="180" KeyboardNavigation.TabIndex="1" 
                              Text="{Binding PortLotInfo.ToolID, UpdateSourceTrigger=LostFocus}" 
-                             IsEnabled="{Binding DisabledAfterStart}"
+                             IsEnabled="{Binding DisabledAfterStart}" CharacterCasing="Upper"
                              GotKeyboardFocus="TextBox_GotKeyboardFocus"
                              VerticalAlignment="Center" 
                              />

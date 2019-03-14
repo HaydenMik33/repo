@@ -13,12 +13,14 @@ namespace Common
 
     public class ReInitializeSystemMessage
     {
+        public int PortNo { get; set; }
         // Using int for now to keep options open
         // 0 is fullReset
         // 1 is Cancel Only
         public int fullReset { get; set; }
-        public ReInitializeSystemMessage(int level)
+        public ReInitializeSystemMessage(int portNo, int level)
         {
+            this.PortNo = portNo; 
             fullReset = level ; 
         }
     }

@@ -31,10 +31,6 @@ namespace FinisarFAS1
 
             SplashScreen screen = new SplashScreen("Images/FINISAR_splash.png"); screen.Show(true);
 
-            // Initialize DI objects
-            
-            
-
             try
             {
                 string q = e.Args[0].ToUpper();

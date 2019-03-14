@@ -65,7 +65,6 @@ namespace FinisarFAS1.ViewModel
             Messenger.Default.Register<OperatorResponseMessage>(this, updateOperatorMsgHandler);
 
             //Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
-            //Messenger.Default.Register<WafersInGridMessage>(this, WafersInGridHandler);
         }
 
         private bool CamstarUp = false;
@@ -123,6 +122,13 @@ namespace FinisarFAS1.ViewModel
             }
 
             ProcessStateReady = msg.ProcessState == ProcessStates.READY;
+#if DEBUG
+            if (msg.Description == "Run")
+            {
+                tempColor = "Azure";
+                ProcessStateReady = true; 
+            }
+#endif
             ProcessState = msg.Description;
             ProcessStateColor = tempColor;
         }
@@ -873,7 +879,7 @@ namespace FinisarFAS1.ViewModel
         #region CMD HANDLERS
 
         public ICommand ConfirmPort1Cmd => new RelayCommand(confirmPort1CmdHandler);
-        public ICommand CancelPort1Cmd => new RelayCommand(cancelPort1CmdHandler);
+        public ICommand CancelPort1Cmd => new RelayCommand(cancelPortCmdHandler);
 
         public ICommand DeleteLot1Cmd => new RelayCommand(deleteLot1CmdHandler);
         public ICommand DeleteLot2Cmd => new RelayCommand(deleteLot2CmdHandler);
@@ -969,7 +975,7 @@ namespace FinisarFAS1.ViewModel
             }
         }
 
-        private void cancelPort1CmdHandler()
+        private void cancelPortCmdHandler()
         {
             if (string.IsNullOrEmpty(Port1Lot1) && string.IsNullOrEmpty(Port1Lot2)) return; 
 
@@ -978,7 +984,7 @@ namespace FinisarFAS1.ViewModel
             bool? result = dialogService.ShowDialog(vm);
             if (result.HasValue && result == true)
             {                 
-                Messenger.Default.Send(new ReInitializeSystemMessage(1));
+                Messenger.Default.Send(new ReInitializeSystemMessage(thisPortNo, 1));
             }
         }
 
