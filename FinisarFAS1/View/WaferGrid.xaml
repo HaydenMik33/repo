@@ -123,6 +123,7 @@
                     <StackPanel Margin="0,10,0,0" Orientation="Vertical" VerticalAlignment="Bottom" >                        
 
                         <StackPanel Orientation="Vertical"  Visibility="{Binding MoveInComplete, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >
+                            
                             <!--BUTTONS TO MOVE ROWS-->
                             <StackPanel Margin="80,60,0,0" Orientation="Vertical"
                                 Visibility="{Binding AreThereWafers, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >                                
@@ -229,7 +230,7 @@
                                     Background="{StaticResource ResourceKey=LimeGlass}" Foreground="White"
                                     Command="{Binding Path=StartCmd}"
                                     IsEnabled="{Binding ButtonEnabledIfOnline}"
-                                    Visibility="{Binding ShowStartButton, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}">
+                                    Visibility="{Binding ShowStartButton, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}">
                                 <StackPanel Margin="0,-6,0,0" Orientation="Horizontal">
                                     <Label FontSize="28" >Start</Label>
                                     <Label FontSize="13" Margin="-8,13,0,0" Content="{Binding StartTimerLeftText}"

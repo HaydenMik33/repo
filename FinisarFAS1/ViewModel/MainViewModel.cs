@@ -851,7 +851,7 @@ namespace FinisarFAS1.ViewModel
             bool movedIn2 = false;
             bool requiredCertification = CurrentToolConfig.MoveInRequireCertification;
 
-            int portNo = 0; // TOOD: msg.PortNo;
+            int portNo = 1; // TOOD: msg.PortNo;
 
             // Thread.Sleep(3000);
             // Try to movein lot1

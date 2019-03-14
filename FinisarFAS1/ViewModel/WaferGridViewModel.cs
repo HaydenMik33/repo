@@ -326,18 +326,15 @@ namespace FinisarFAS1.ViewModel
             if (msg.PortNo != -1 && msg.PortNo != thisPortNo) return;
             // If the lots moved in, then let's start this
             // TODO: 
+            MyLog.Debug("WaferGridViewModel->moveInReponseMsgHandler...");
             MoveInComplete = msg.Result;
-            StartTimers(StartTimerSeconds);
-        }       
-
-        //public bool MoveInComplete {
-        //    get { return _timeToProcess; }
-        //    set {
-        //        _timeToProcess = value;
-        //        RaisePropertyChanged(nameof(MoveInComplete));
-        //        Messenger.Default.Send(new WafersConfirmedMessage(value && AreThereWafers));
-        //    }
-        //}
+            if (MoveInComplete)
+            {
+                ShowStartButton = true; 
+                StartTimers(StartTimerSeconds);
+            }
+        }
+       
 
         private void startTimerExpiredHandler()
         {
@@ -609,6 +606,18 @@ namespace FinisarFAS1.ViewModel
         }
 
         //private int _startTimerSeconds;
+
+        private bool showStartButton;
+
+        public bool ShowStartButton {
+            get { return showStartButton; }
+            set {
+                showStartButton = value;
+                RaisePropertyChanged(nameof(ShowStartButton));
+            }
+        }
+
+
         #endregion
 
         #region UI BINDINGS
@@ -760,6 +769,74 @@ namespace FinisarFAS1.ViewModel
         }
         #endregion
 
+        #region OPERATOR VIEW BINDINGS
+        private string _operation;
+        public string CurrentOperation {
+            get { return _operation; }
+            set { _operation = value; RaisePropertyChanged(nameof(CurrentOperation)); }
+        }
+
+        private string _currentRecipe;
+        public string CurrentRecipe {
+            get { return _currentRecipe; }
+            set {
+                if (_currentRecipe != value)
+                {
+                    // Change recipe no matter what
+                    _currentRecipe = value;
+                    // TODO: Is this correct?
+                    // Only change wafer recipes if the length is > 3
+                    if (!string.IsNullOrEmpty(value) && value.Length > 3)
+                    {
+                        SetAllWafersRecipe(value);
+                    }
+                    else
+                    {
+                        // TODO: Bad recipe dialog?
+                    }
+                }
+                RaisePropertyChanged("CurrentRecipe");
+            }
+        }
+
+        private string _recipe;
+        public string Recipe {
+            get { return _recipe; }
+            set { _recipe = value; RaisePropertyChanged(nameof(Recipe)); }
+        }
+
+        private string _product;
+        public string Product {
+            get { return _product; }
+            set { _product = value; RaisePropertyChanged(nameof(Product)); }
+        }
+
+        private string _comment;
+        public string Comments {
+            get { return _comment; }
+            set { _comment = value; RaisePropertyChanged(nameof(Comments)); }
+        }
+
+        private string _step;
+        public string Step {
+            get { return _step; }
+            set { _step = value; RaisePropertyChanged(nameof(Step)); }
+        }
+
+        private string _spec;
+        public string Spec {
+            get { return _spec; }
+            set { _spec = value; RaisePropertyChanged(nameof(Spec)); }
+        }
+
+        private string _field6;
+        public string Field6 {
+            get { return _field6; }
+            set { _field6 = value; RaisePropertyChanged(nameof(Field6)); }
+        }
+
+        #endregion
+
         #region GRID MANIPULATION
         //  GRID MANIPULATION
         private void AddWafersToTopGrid(List<Wafer> wafers)
@@ -823,8 +900,6 @@ namespace FinisarFAS1.ViewModel
 
             RenumberWafersHandler(null);
         }
-
-        
 
         private void AddWafersToGridMsgHandler(AddWafersToGridMessage msg)
         {
@@ -983,74 +1058,7 @@ namespace FinisarFAS1.ViewModel
                 RaisePropertyChanged(nameof(LotStatusColor));
             }
         }
-
-        #region OPERATOR VIEW 
-        private string _operation;
-        public string CurrentOperation {
-            get { return _operation; }
-            set { _operation = value; RaisePropertyChanged(nameof(CurrentOperation)); }
-        }
-
-        private string _currentRecipe;
-        public string CurrentRecipe {
-            get { return _currentRecipe; }
-            set {
-                if (_currentRecipe != value)
-                {
-                    // Change recipe no matter what
-                    _currentRecipe = value;
-                    // TODO: Is this correct?
-                    // Only change wafer recipes if the length is > 3
-                    if (!string.IsNullOrEmpty(value) && value.Length > 3)
-                    {
-                        SetAllWafersRecipe(value);
-                    }
-                    else
-                    {
-                        // TODO: Bad recipe dialog?
-                    }
-                }
-                RaisePropertyChanged("CurrentRecipe");
-            }
-        }
-
-        private string _recipe;
-        public string Recipe {
-            get { return _recipe; }
-            set { _recipe = value; RaisePropertyChanged(nameof(Recipe)); }
-        }
-
-        private string _product;
-        public string Product {
-            get { return _product; }
-            set { _product = value; RaisePropertyChanged(nameof(Product)); }
-        }
-
-        private string _comment;
-        public string Comments {
-            get { return _comment; }
-            set { _comment = value; RaisePropertyChanged(nameof(Comments)); }
-        }
-
-        private string _step;
-        public string Step {
-            get { return _step; }
-            set { _step = value; RaisePropertyChanged(nameof(Step)); }
-        }
-
-        private string _spec;
-        public string Spec {
-            get { return _spec; }
-            set { _spec = value; RaisePropertyChanged(nameof(Spec)); }
-        }
-
-        private string _field6;
-        public string Field6 {
-            get { return _field6; }
-            set { _field6 = value; RaisePropertyChanged(nameof(Field6)); }
-        }
-
-        #endregion
+ 
 
         private async void ReInitializeSystemHandler(ReInitializeSystemMessage msg)
         {
@@ -1058,7 +1066,7 @@ namespace FinisarFAS1.ViewModel
             //await Task.Run(() =>
             if (msg.PortNo!=-1 && msg.PortNo != thisPortNo) return; 
 
-            await Task.Delay(2000).ContinueWith(_ =>
+            await Task.Delay(1000).ContinueWith(_ =>
             {
                 WaferList = CreateEmptyPortRows();
 
@@ -1069,9 +1077,10 @@ namespace FinisarFAS1.ViewModel
                 Completed = false;
                 Aborted = Paused = Started = false;
                 MoveInComplete = false;
+                ShowStartButton = false; 
 
                 CurrentRecipe = "";
-                // Reser middle fields on operator view...
+                // Reset middle fields on operator view...
 
                 RaisePropertyChanged(nameof(AreThereWafers));
                 LoadingWafers = false;
