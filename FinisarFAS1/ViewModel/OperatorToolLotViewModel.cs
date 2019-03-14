@@ -65,6 +65,8 @@ namespace FinisarFAS1.ViewModel
             Messenger.Default.Register<OperatorResponseMessage>(this, updateOperatorMsgHandler);
 
             //Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
+            if (CurrentToolConfig.LotsPerPort == 1)
+                Lot2Active = false; 
         }
 
         private bool CamstarUp = false;
@@ -207,6 +209,12 @@ namespace FinisarFAS1.ViewModel
             set { _busyOp = value; RaisePropertyChanged(nameof(BusyOp)); }
         }
 
+        private bool _lot2Active;
+        public bool Lot2Active {
+            get { return _lot2Active; }
+            set { _lot2Active = value; RaisePropertyChanged(nameof(Lot2Active)); }
+        }
+
         #region OPERATOR TOOL LOT CONFIRM CANCEL RECIPE PROCESSTSTATE
 
         private void updateOperatorMsgHandler(OperatorResponseMessage msg)
@@ -283,7 +291,7 @@ namespace FinisarFAS1.ViewModel
                             //    _operatorID = string.Empty;
                             //}
                             Messenger.Default.Send(new OperatorResponseMessage(thisPortNo, authLevel));
-                            RaisePropertyChanged(nameof(OperatorID));
+                            //RaisePropertyChanged(nameof(OperatorID));
                             RaisePropertyChanged(nameof(OperatorColor));
                             RaisePropertyChanged(nameof(IsRecipeOverridable));
 

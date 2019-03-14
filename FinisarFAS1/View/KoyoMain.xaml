@@ -187,25 +187,55 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
                     VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Vertical" >
             <StackPanel Orientation="Horizontal" >
-                <Button Width="170" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
+                <Button Width="180" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
                         ToolTip="Show Port A Status" 
-                        Command="{Binding Path=PortACmd}"
-                        Content="Port A"  />
-                <Button Width="170" Height="55" Margin="10,2" Background="{Binding TabProcessingColor2}"
+                        Command="{Binding Path=PortACmd}" >
+                    <TextBlock Text="Port A" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Button.IsFocused" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="Gray" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Width="180" Height="55" Margin="10,2" Background="{Binding TabProcessingColor2}"
                         ToolTip="Show Port B Status" 
                         Command="{Binding Path=PortBCmd}"
-                        Visibility="{Binding PortBActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
-                        Content="Port B"  />
-                <Button Width="170" Height="55" Margin="10,2" Background="Gray"
+                        Visibility="{Binding PortBActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
+                    <TextBlock Text="Port B" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Button.IsFocused" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="Gray" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Width="180" Height="55" Margin="10,2" Background="Gray"
                         ToolTip="Show Port C Status" 
                         Command="{Binding Path=PortCCmd}"
-                        Visibility="{Binding PortCActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
-                        Content="Port C"  />
-                <Button Width="170" Height="55" Margin="10,2" Background="Gray"
+                        Visibility="{Binding PortCActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
+                    <TextBlock Text="Port C" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+                <Button Width="180" Height="55" Margin="10,2" Background="Gray"
                         ToolTip="Show Port D Status" 
                         Command="{Binding Path=PortDCmd}"
-                        Visibility="{Binding PortDActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
-                        Content="Port D"  />
+                        Visibility="{Binding PortDActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
+                    <TextBlock Text="Port D" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
             </StackPanel>
             <StackPanel>
                 <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
