@@ -61,6 +61,15 @@
                 </StackPanel>
             </DataTemplate>
 
+            <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Content" Value="Unchecked"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Background"  Value="Red"/>
+                        <Setter Property="Content"  Value="Clicked"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <Style x:Key="TabItemFocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>
@@ -189,25 +198,9 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
                     VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Vertical" >
             <StackPanel Orientation="Horizontal" >
-                <Button FontSize="16" Content="Port A">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Style.Triggers>
-                                <Trigger Property="IsPressed" Value="true">
-                                    <Setter Property="Background" Value="Red"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <ToggleButton Style="{DynamicResource ToggleButtonStyle}" Content="port A" Width="140"/>
+                <ToggleButton x:Name="portA_btn" Click="PortA_Button_Click" IsChecked="false" Width="130"  Content="port A" />
+                <ToggleButton x:Name="portB_btn" Click="PortB_Button_Click" IsChecked="false" Width="130"  Content="port B" />
                 <Button Width="170" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
                         ToolTip="Show Port A Status" 
                         Command="{Binding Path=PortACmd}"

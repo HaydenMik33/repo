@@ -151,5 +151,17 @@ namespace FinisarFAS1.View
         private void TextBox_PreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {           
         }
+
+        private void PortA_Button_Click(object sender, RoutedEventArgs e)
+        {
+            portA_btn.IsChecked = true;
+            portB_btn.IsChecked = false;
+        }
+
+        private void PortB_Button_Click(object sender, RoutedEventArgs e)
+        {
+            portA_btn.IsChecked = false;
+            portB_btn.IsChecked = true;
+        }
     }
 }
