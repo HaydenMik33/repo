@@ -189,7 +189,7 @@
                 <Button Width="180" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
                         ToolTip="Show Port A Status" 
                         Command="{Binding Path=PortACmd}" >
-                    <TextBlock Text="Port A" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock Text="Port A" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="51,0,51,8.2" />
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
@@ -241,7 +241,7 @@
                 <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" />
             </StackPanel>
         </StackPanel>
-       
+
 
         <StackPanel Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="4"
                     Margin="0,0,0,0" 
