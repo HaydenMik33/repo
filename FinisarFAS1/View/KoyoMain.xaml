@@ -59,7 +59,6 @@
                     <TextBlock Text="{Binding Path=Description}" />
                 </StackPanel>
             </DataTemplate>
-
             <Style x:Key="TabItemFocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>
