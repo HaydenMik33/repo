@@ -27,9 +27,11 @@ namespace Common
 
     public class InitializeWafersMessage
     {
+        public int PortNo { get; set; }
         public bool fromCodeBehind { get; set; }
-        public InitializeWafersMessage(bool fcb = false)
+        public InitializeWafersMessage(int portNo, bool fcb = false)
         {
+            this.PortNo = portNo; 
             fromCodeBehind = fcb; 
         }
     }
@@ -66,16 +68,21 @@ namespace Common
         public bool SendEmail;
         public bool CriticalAlarm;
 
-        public EventMessage(DateTime dt, string msgType, string message)
+        public int PortNo { get; set; }
+
+        public EventMessage(DateTime dt, string msgType, string message, int portNo=-1)
         {
             MsgDateTime = dt;
             MsgType = msgType;
             Message = message;
             SendEmail = false;
             CriticalAlarm = false;
+            this.PortNo = portNo; 
         }
+
         public EventMessage(DateTime dt, string msgType, string message, bool alarmIsCritical) : this(dt, msgType, message)
         {
+            this.PortNo = -1; 
             CriticalAlarm = alarmIsCritical;
         }
 
@@ -90,8 +97,9 @@ namespace Common
 
     public class OperatorResponseMessage
     {
-        public AuthorizationLevel authLevel { get; set; }
         public int PortNo { get; set; }
+
+        public AuthorizationLevel authLevel { get; set; }
 
         public OperatorResponseMessage(int portNo, AuthorizationLevel al)
         {
@@ -102,10 +110,12 @@ namespace Common
 
     public class CurrentOperatorMessage
     {
+        public int PortNo { get; set; }
         public string OperatorID { get; set; }
         public AuthorizationLevel AuthLevel { get; set; }
-        public CurrentOperatorMessage(string opId, AuthorizationLevel authorizationLevel)
+        public CurrentOperatorMessage(int portNo, string opId, AuthorizationLevel authorizationLevel)
         {
+            this.PortNo = portNo; 
             OperatorID = opId;
             AuthLevel = authorizationLevel; 
         }
@@ -415,13 +425,13 @@ namespace Common
 
     public class LoadingWafersMessage
     {
-        public int Port { get; set; }
+        public int PortNo { get; set; }
         public bool LoadingWafers { get; set; }
         public string TimerText { get; set; }
 
         public LoadingWafersMessage(int portNo, bool loadingWafers, string timerText)
         {
-            this.Port = portNo;
+            this.PortNo = portNo;
             this.LoadingWafers = loadingWafers;
             this.TimerText = timerText;
         }

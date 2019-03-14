@@ -208,8 +208,8 @@
                         Content="Port D"  />
             </StackPanel>
             <StackPanel>
-                <view:WaferGrid DataContext="{Binding}" Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
-                <view:OperatorView DataContext="{Binding}" Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" />
+                <view:WaferGrid Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" />
+                <view:OperatorView Visibility="{Binding Engineer, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" />
             </StackPanel>
         </StackPanel>
        

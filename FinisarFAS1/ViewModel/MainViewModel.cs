@@ -323,6 +323,7 @@ namespace FinisarFAS1.ViewModel
 
             Messenger.Default.Register<UpdateRecipeAndRunTypeMessage>(this, updateRecipeAndRunTypeMsgHandler);
             Messenger.Default.Register<EngineerViewMessage>(this, engineerViewMsgHandler);
+            Messenger.Default.Register<MoveInWafersMessage>(this, moveInWafersMsgHandler);
         }       
 
 
@@ -413,7 +414,7 @@ namespace FinisarFAS1.ViewModel
 
         private void engineerViewMsgHandler(EngineerViewMessage msg)
         {
-            Engineer = msg.IsEngineer;
+               Engineer = msg.IsEngineer;
         }
 
         
@@ -577,21 +578,7 @@ namespace FinisarFAS1.ViewModel
 
         #endregion GRID MANIP
 
-        #region FLOW STATUSES
-        // Flow statuses
-        // PORT 1
-
-        //private bool _timeToProcess;
-        //public bool MoveInComplete
-        //{
-        //    get { return _timeToProcess; }
-        //    set
-        //    {
-        //        _timeToProcess = value;
-        //        RaisePropertyChanged(nameof(MoveInComplete));
-        //        Messenger.Default.Send(new WafersConfirmedMessage(value && AreThereWafers));
-        //    }
-        //}
+        #region FLOW STATUSES     
 
         private bool _started;
         public bool Started
@@ -959,7 +946,7 @@ namespace FinisarFAS1.ViewModel
                 MyLog.Information($"MES->MoveIn Lot2 is empty, so it was bypassed");
             // If no error up to this point, then return true
             // return true;
-            
+            MyLog.Debug("Exiting MainViewModel.MoveInWaferMsgHandler()->Sending:MoveInResposeMessage w/true...");
             Messenger.Default.Send(new MoveInResponseMessage(portNo, true));
         }
 
