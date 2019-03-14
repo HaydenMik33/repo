@@ -65,6 +65,8 @@ namespace FinisarFAS1.ViewModel
             Messenger.Default.Register<OperatorResponseMessage>(this, updateOperatorMsgHandler);
 
             //Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
+            if (CurrentToolConfig.LotsPerPort == 1)
+                Lot2Active = false; 
         }
 
         private bool CamstarUp = false;
@@ -207,6 +209,12 @@ namespace FinisarFAS1.ViewModel
             set { _busyOp = value; RaisePropertyChanged(nameof(BusyOp)); }
         }
 
+        private bool _lot2Active;
+        public bool Lot2Active {
+            get { return _lot2Active; }
+            set { _lot2Active = value; RaisePropertyChanged(nameof(Lot2Active)); }
+        }
+
         #region OPERATOR TOOL LOT CONFIRM CANCEL RECIPE PROCESSTSTATE
 
         private void updateOperatorMsgHandler(OperatorResponseMessage msg)
@@ -247,7 +255,7 @@ namespace FinisarFAS1.ViewModel
 
             if (authLevel!=AuthorizationLevel.InvalidUser)
             {
-                Messenger.Default.Send(new CurrentOperatorMessage(OperatorID, authLevel)); 
+                Messenger.Default.Send(new CurrentOperatorMessage(thisPortNo, OperatorID, authLevel)); 
             }
 
             OperatorLevel = authLevel.ToString();
@@ -278,12 +286,12 @@ namespace FinisarFAS1.ViewModel
 	                    {
                             authLevel = _mesService.ValidateEmployee(_operatorID);
                             MyLog.Information($"MES->ValidateEmployee returned ({authLevel.ToString()})");
-                            if(authLevel == AuthorizationLevel.InvalidUser)
-                            {
-                                _operatorID = string.Empty;
-                            }
+                            //if(authLevel == AuthorizationLevel.InvalidUser)
+                            //{
+                            //    _operatorID = string.Empty;
+                            //}
                             Messenger.Default.Send(new OperatorResponseMessage(thisPortNo, authLevel));
-                            RaisePropertyChanged(nameof(OperatorID));
+                            //RaisePropertyChanged(nameof(OperatorID));
                             RaisePropertyChanged(nameof(OperatorColor));
                             RaisePropertyChanged(nameof(IsRecipeOverridable));
 
@@ -932,6 +940,7 @@ namespace FinisarFAS1.ViewModel
                 {
                     Messenger.Default.Send(new LoadingWafersMessage(thisPortNo, true, "Moving in wafers in Camstar..."));
                     // TimerText = "Moving in wafers in Camstar...";
+                    MyLog.Debug("ConfirmButtonPressed->"); 
                     MoveInAfterConfirmAsync();
                 }
             }
@@ -939,7 +948,10 @@ namespace FinisarFAS1.ViewModel
 
         private async void MoveInAfterConfirmAsync()
         {
-            try {
+            MyLog.Debug("MoveInAfterConfirmAsync->");
+
+            try
+            {
                 await Task.Run(() => {
                     Messenger.Default.Send(new MoveInWafersMessage(thisPortNo));
                 });               
@@ -957,10 +969,8 @@ namespace FinisarFAS1.ViewModel
 
                 if (msg.Result == true)
                 {
-                    //MoveInComplete = true;
+                    MyLog.Debug("In OTL VM moveInResponseMsgHandler() w/ true. Setting MoveInComplete=true and Confirmed=true...");
                     Confirmed = true;
-                    //StartTimers(StartTimerSeconds);
-                    //Messenger.Default.Send(new StartLoadingWafersMessage(thisPortNo, false, ""));
                 }
                 else
                     Confirmed = false; 
@@ -1017,30 +1027,6 @@ namespace FinisarFAS1.ViewModel
         }
 
         #endregion
-
-        public void ReInitailize(int level = 0)
-        {
-//            if (level == 0)
-//            {
-//                OperatorID = "";
-//                ToolID = "";
-//            }
-//#if DEBUG
-//            // OperatorID = "Mike"; // "zahir.haque";
-//            // ToolID = CurrentToolConfig.Toolid;
-//#endif
-
-            Port1Lot1 = Port1Lot2 = "";
-            Port1Lot1Color = "White";
-            Port1Lot2Color = "White";
-            Confirmed = false;
-            Lot1Enabled = Lot2Enabled = true;
-
-            if (level == 0)
-                Messenger.Default.Send(new ReFocusMessage("Reinit", null));
-            else
-                Messenger.Default.Send(new ReFocusMessage("OperatorField", null));
-        }
 
     }
 }

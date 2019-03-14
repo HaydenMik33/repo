@@ -41,25 +41,25 @@ namespace FinisarFAS1.View
             var box = sender as TextBox;
             if (box != null)
             {
-                if (!string.IsNullOrWhiteSpace(_currentFocusElementName))
-                {
-                    var b = FindName(_currentFocusElementName);
-                    if (b != null)
-                    {
-                        TextBox box1 = b as TextBox;
-                        if (box1 != null)
-                        {
-                            var elm = FocusManager.GetFocusedElement(this);
-                            if (box1 != box && box1 != elm && !box1.IsFocused)
-                            {
-                                e.Handled = true;
-                                box1.Focus();
-                                return;
-                            }
-                        }
-                    }
-                }
-                else
+                //if (!string.IsNullOrWhiteSpace(_currentFocusElementName))
+                //{
+                //    var b = FindName(_currentFocusElementName);
+                //    if (b != null)
+                //    {
+                //        TextBox box1 = b as TextBox;
+                //        if (box1 != null)
+                //        {
+                //            var elm = FocusManager.GetFocusedElement(this);
+                //            if (box1 != box && box1 != elm && !box1.IsFocused)
+                //            {
+                //                e.Handled = true;
+                //                box1.Focus();
+                //                return;
+                //            }
+                //        }
+                //    }
+                //}
+                //else
                 {
                     box.SelectAll();
                 }
@@ -73,15 +73,15 @@ namespace FinisarFAS1.View
             if (field != "Reinit")
             {
                 _currentFocusElementName = sender.ToString();
-                if (!string.IsNullOrEmpty(_currentFocusElementName))
-                {
-                    Application.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        FrameworkElement elem = FindName(_currentFocusElementName) as FrameworkElement;
-                        if(elem!=null)
-                            elem.Focus();
-                    });
-                }
+                //if (!string.IsNullOrEmpty(_currentFocusElementName))
+                //{
+                //    Application.Current.Dispatcher.Invoke((Action)delegate
+                //    {
+                //        FrameworkElement elem = FindName(_currentFocusElementName) as FrameworkElement;
+                //        if(elem!=null)
+                //            elem.Focus();
+                //    });
+                //}
             }
             else
             {
@@ -99,14 +99,14 @@ namespace FinisarFAS1.View
             e.Handled = true;
             if (e.OriginalSource.GetType().Name == "TextBox")
             {
-                if (!string.IsNullOrWhiteSpace(_currentFocusElementName))
-                {
-                    Application.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        TextBox box = FindName(_currentFocusElementName) as TextBox;
-                        box.Focus();
-                    });
-                }
+                //if (!string.IsNullOrWhiteSpace(_currentFocusElementName))
+                //{
+                //    Application.Current.Dispatcher.Invoke((Action)delegate
+                //    {
+                //        TextBox box = FindName(_currentFocusElementName) as TextBox;
+                //        box.Focus();
+                //    });
+                //}
             }
         }
 

@@ -20,7 +20,7 @@ namespace FinisarFAS1.View
         {
             InitializeComponent();
 
-            Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
+            //Messenger.Default.Register<WafersConfirmedMessage>(this, WafersConfirmedHandler);
             Messenger.Default.Register<SelectedWafersInGridMessage>(this, SelectedWafersInGridHandler);
         }      
 
@@ -30,10 +30,10 @@ namespace FinisarFAS1.View
                 msg.wafers.ForEach(wafer => LoadPort1Grid.SelectedItems.Add(wafer));
         }
 
-        private void WafersConfirmedHandler(WafersConfirmedMessage msg)
-        {
-            this.IsConfirmed = msg.Confirmed;
-        }
+        //private void WafersConfirmedHandler(WafersConfirmedMessage msg)
+        //{
+        //    this.IsConfirmed = msg.Confirmed;
+        //}
 
 
         private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -48,7 +48,7 @@ namespace FinisarFAS1.View
 
         }
 
-        public bool IsConfirmed { get; set; }
+        //public bool IsConfirmed { get; set; }
 
         public WaferGridViewModel gridViewModel
         {
@@ -72,7 +72,7 @@ namespace FinisarFAS1.View
 
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Send(new InitializeWafersMessage(true));
+            Messenger.Default.Send(new InitializeWafersMessage(-1, true));
         }
     }
 }
