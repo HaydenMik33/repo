@@ -87,9 +87,13 @@ namespace FinisarFAS1.ViewModel
         Dictionary<int, WaferGridViewModel> WaferGridList = new Dictionary<int, WaferGridViewModel>();
         /// TODO: This is for testing
         /// 
-        bool doPortCheck = false; 
-
-
+        bool doPortCheck = false;
+        //processing state const
+        private readonly string MOVEDIN = "MovedIn";
+        private readonly string READY = "Ready";
+        private readonly string PROCESSING = "Processing";
+        private readonly string CRITICAL_ERROR = "CRITICAL ERROR";
+        private readonly string COMPLETE = "Complete";
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -120,14 +124,14 @@ namespace FinisarFAS1.ViewModel
 
         private async void ReInitializeSystemHandler(ReInitializeSystemMessage msg)
         {
-            Messenger.Default.Send(new LoadingWafersMessage(thisPortNo, true, "Processing..."));
+            Messenger.Default.Send(new LoadingWafersMessage(msg.PortNo, true, "Processing..."));
             //await Task.Run(() =>
             await Task.Delay(1000).ContinueWith(_ =>
             {
                 // MoveInComplete = false;            
                 Completed = false;
-                Aborted = Started = false;                
-                TabProcessingColor = "Ready";
+                Aborted = Started = false;    
+                TabProcessingColorChanges(READY);
                 CurrentRecipe = CurrentRunType = "";
             });
 
@@ -442,7 +446,7 @@ namespace FinisarFAS1.ViewModel
         private void ProcessingCompleteMsgHandler(ProcessCompletedMessage msg)
         {
             if (Aborted) return;    // Do not Complete Aborted wafers... this happened in Simbut prob not real life
-            TabProcessingColor = "Complete";
+            TabProcessingColorChanges(COMPLETE);
             Completed = true;
             Application.Current.Dispatcher.Invoke((Action)delegate
             {
@@ -476,10 +480,10 @@ namespace FinisarFAS1.ViewModel
             }
             else if (msg.MsgType == "PM")
             {
-                if (msg.Message.Contains("Processing"))
+                if (msg.Message.Contains(PROCESSING))
                 {
                     // UpdateWaferStatus("In Processing");
-                    TabProcessingColor = "Processing";
+                    TabProcessingColorChanges(PROCESSING);
                 }
             }
             else if (msg.MsgType == "E")
@@ -488,8 +492,7 @@ namespace FinisarFAS1.ViewModel
                 var vm = new DialogViewModel(s, "", "Ok");
 
                 Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Critical Error"));
-
-                TabProcessingColor = "CRITICAL ERROR";
+                TabProcessingColorChanges(CRITICAL_ERROR);
                 if (msg.Message.Contains("Unable to start AutoShell comm"))
                 {
                     // Only show cannot comm with Camstar at beginning then every 10 times
@@ -783,7 +786,14 @@ namespace FinisarFAS1.ViewModel
                 RaisePropertyChanged(nameof(TabProcessingColor2));
             }
         }
-
+        public void TabProcessingColorChanges(string color)
+        {
+            if (PortLotInfo == PortLotList[1])
+            {
+                TabProcessingColor = color;
+            }
+            else { TabProcessingColor2 = color; }
+        }
         private ObservableCollection<string> _loadPortNames;
         public ObservableCollection<string> LoadPortNames
         {
@@ -897,11 +907,7 @@ namespace FinisarFAS1.ViewModel
                 else
                 {
                     Messenger.Default.Send(new SetAllWafersStatusMessage(portNo, PortLotInfo.Port1Lot1, WaferStatus.MovedIn.ToString()));
-                    if(PortLotInfo == PortLotList[1])
-                    {
-                    TabProcessingColor = "MovedIn";
-                    }
-                    else { TabProcessingColor2 = "MovedIn"; }
+                    TabProcessingColorChanges(MOVEDIN);
                 }
             }
             else
@@ -943,7 +949,7 @@ namespace FinisarFAS1.ViewModel
                 else
                 {
                     Messenger.Default.Send(new SetAllWafersStatusMessage(portNo, PortLotInfo.Port1Lot2, WaferStatus.MovedIn.ToString()));
-                    TabProcessingColor = "MovedIn";
+                    TabProcessingColorChanges(MOVEDIN);
                 }
             }
             else
