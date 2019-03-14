@@ -897,7 +897,11 @@ namespace FinisarFAS1.ViewModel
                 else
                 {
                     Messenger.Default.Send(new SetAllWafersStatusMessage(portNo, PortLotInfo.Port1Lot1, WaferStatus.MovedIn.ToString()));
+                    if(PortLotInfo == PortLotList[1])
+                    {
                     TabProcessingColor = "MovedIn";
+                    }
+                    else { TabProcessingColor2 = "MovedIn"; }
                 }
             }
             else
