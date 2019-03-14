@@ -1,0 +1,24 @@
+03/08/19: 14:57:23.580: to=6-3-VFURN-01gw	msg=do=sendSomeAlarms
+03/08/19: 14:57:25.614: to=6-3-VFURN-01gw	msg=do=sendSomeEvents
+03/08/19: 14:57:25.614: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:57:26.722: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=1303 ALCD=10 ALTX="Heat water"
+03/08/19: 14:57:29.925: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=267 ALCD=80 ALTX="Gas Control Error"
+03/08/19: 14:57:30.948: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:57:35.062: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:57:40.188: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/08/19: 14:59:35.464: to=6-3-VFURN-01gw	msg=do=sendSomeAlarms
+03/08/19: 14:59:37.508: to=6-3-VFURN-01gw	msg=do=sendSomeEvents
+03/08/19: 14:59:37.509: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:59:38.624: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=1303 ALCD=10 ALTX="Heat water"
+03/08/19: 14:59:41.786: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=267 ALCD=80 ALTX="Gas Control Error"
+03/08/19: 14:59:42.818: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:59:47.937: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 14:59:52.056: to=6-3-VFURN-01gw	msg=do=processingComplete
+03/08/19: 15:12:51.789: to=6-3-VFURN-01gw	msg=do=sendSomeAlarms
+03/08/19: 15:12:53.827: to=6-3-VFURN-01gw	msg=do=sendSomeEvents
+03/08/19: 15:12:53.828: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 15:12:54.955: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=1303 ALCD=10 ALTX="Heat water"
+03/08/19: 15:12:57.131: to=6-3-VFURN-01gw	msg=do=sendAlarm ALID=267 ALCD=80 ALTX="Gas Control Error"
+03/08/19: 15:12:58.168: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 15:13:03.284: to=6-3-VFURN-01gw	msg=do=sendTraceData trid=0
+03/08/19: 15:13:08.400: to=6-3-VFURN-01gw	msg=do=processingComplete

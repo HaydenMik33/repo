@@ -1,0 +1,193 @@
+02/22/19: 13:30:35.574: Getting protocol.
+02/22/19: 13:30:35.575: Checking mtype DVs for mtype 1.
+02/22/19: 13:30:35.575: 	Checking mtype 999998.
+02/22/19: 13:30:35.575: 	Checking mtype 999996.
+02/22/19: 13:30:35.575: Looking for sxdecode.
+02/22/19: 13:30:35.575: Executing "sxdecode" to decode message.
+02/22/19: 13:30:35.576: Optimized decode turned on (anchor is >sys>msg)
+02/22/19: 13:30:35.576: reply=0 command=sxdecode comment="decoded SECS message"
+02/22/19: 13:30:35.576: Executing generic_handler to handle message.
+02/22/19: 13:30:35.576:  Hook command 'S1F13_prereply' being executed.
+02/22/19: 13:30:35.578: Executing Tcl script for "S1F13_prereply" command
+02/22/19: 13:30:35.579: Executing: an_S1F13_prereply {prereply currenv=generic_handler } generic_handler
+02/22/19: 13:30:35.579: starting AnObjInterpProc
+02/22/19: 13:30:35.579: Invoking procedure
+02/22/19: 13:30:35.579: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting "
+02/22/19: 13:30:35.579: SX_evalstr() returned 100
+02/22/19: 13:30:35.580: Executing: do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting 
+02/22/19: 13:30:35.580: reply=0 command=lg comment="Success" data=.
+02/22/19: 13:30:35.580: Checking: "restore file=%s [variable=%s] [parse [level=%d]] [trailing_newline=%s]" against: "do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0"
+02/22/19: 13:30:35.580: SX_evalstr() returned 100
+02/22/19: 13:30:35.581: an_cmd executing: do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0
+02/22/19: 13:30:35.581: reply=1 command=restore comment="Unable to open file" data=file=../../6-6-EVAP-04/simdata.dv
+.
+02/22/19: 13:30:35.581: Procedure returned 1
+02/22/19: 13:30:35.581: leaving AnObjInterpProc
+02/22/19: 13:30:35.581: Done executing Tcl command
+02/22/19: 13:30:35.582: Error in TCL Script for S1F13_prereply:
+file=../../6-6-EVAP-04/simdata.dv
+
+file=../../6-6-EVAP-04/simdata.dv
+
+    while executing
+"an_cmd restore file=$configDir/simdata.dv variable=simdata"
+    (procedure "an_S1F13_prereply" line 7)
+    invoked from within
+"an_S1F13_prereply {prereply currenv=generic_handler } generic_handler"
+02/22/19: 13:30:35.582:  generic_handler executing sxreply
+02/22/19: 13:30:35.582: Sending SECS message.
+02/22/19: 13:30:35.583:  generic_handler executing distribute
+02/22/19: 13:30:35.583: 	No servers monitoring at present
+02/22/19: 13:30:35.583: generic_handler returned 0
+02/22/19: 13:30:35.584: Message ignored.
+02/22/19: 13:30:35.584: Checking queue.
+*********************************************
+02/22/19: 13:30:45.611: type=1 size=12
+02/22/19: 13:30:45.611: Non-AutoShell format message received.
+02/22/19: 13:30:45.612: Getting protocol.
+02/22/19: 13:30:45.612: Checking mtype DVs for mtype 1.
+02/22/19: 13:30:45.612: 	Checking mtype 999998.
+02/22/19: 13:30:45.613: 	Checking mtype 999996.
+02/22/19: 13:30:45.613: Looking for sxdecode.
+02/22/19: 13:30:45.613: Executing "sxdecode" to decode message.
+02/22/19: 13:30:45.614: Optimized decode turned on (anchor is >sys>msg)
+02/22/19: 13:30:45.614: reply=0 command=sxdecode comment="decoded SECS message"
+02/22/19: 13:30:45.614: Executing generic_handler to handle message.
+02/22/19: 13:30:45.615:  Hook command 'S1F13_prereply' being executed.
+02/22/19: 13:30:45.615: Executing Tcl script for "S1F13_prereply" command
+02/22/19: 13:30:45.615: Executing: an_S1F13_prereply {prereply currenv=generic_handler } generic_handler
+02/22/19: 13:30:45.615: starting AnObjInterpProc
+02/22/19: 13:30:45.615: Invoking procedure
+02/22/19: 13:30:45.616: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting "
+02/22/19: 13:30:45.616: SX_evalstr() returned 100
+02/22/19: 13:30:45.617: Executing: do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting 
+02/22/19: 13:30:45.617: reply=0 command=lg comment="Success" data=.
+02/22/19: 13:30:45.617: Checking: "restore file=%s [variable=%s] [parse [level=%d]] [trailing_newline=%s]" against: "do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0"
+02/22/19: 13:30:45.618: SX_evalstr() returned 100
+02/22/19: 13:30:45.618: an_cmd executing: do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0
+02/22/19: 13:30:45.618: reply=1 command=restore comment="Unable to open file" data=file=../../6-6-EVAP-04/simdata.dv
+.
+02/22/19: 13:30:45.618: Procedure returned 1
+02/22/19: 13:30:45.619: leaving AnObjInterpProc
+02/22/19: 13:30:45.619: Done executing Tcl command
+02/22/19: 13:30:45.619: Error in TCL Script for S1F13_prereply:
+file=../../6-6-EVAP-04/simdata.dv
+
+file=../../6-6-EVAP-04/simdata.dv
+
+    while executing
+"an_cmd restore file=$configDir/simdata.dv variable=simdata"
+    (procedure "an_S1F13_prereply" line 7)
+    invoked from within
+"an_S1F13_prereply {prereply currenv=generic_handler } generic_handler"
+02/22/19: 13:30:45.619:  generic_handler executing sxreply
+02/22/19: 13:30:45.620: Sending SECS message.
+02/22/19: 13:30:45.622:  generic_handler executing distribute
+02/22/19: 13:30:45.623: 	No servers monitoring at present
+02/22/19: 13:30:45.623: generic_handler returned 0
+02/22/19: 13:30:45.623: Message ignored.
+02/22/19: 13:30:45.624: Checking queue.
+*********************************************
+02/22/19: 13:30:55.640: type=1 size=12
+02/22/19: 13:30:55.641: Non-AutoShell format message received.
+02/22/19: 13:30:55.641: Getting protocol.
+02/22/19: 13:30:55.642: Checking mtype DVs for mtype 1.
+02/22/19: 13:30:55.642: 	Checking mtype 999998.
+02/22/19: 13:30:55.642: 	Checking mtype 999996.
+02/22/19: 13:30:55.642: Looking for sxdecode.
+02/22/19: 13:30:55.643: Executing "sxdecode" to decode message.
+02/22/19: 13:30:55.643: Optimized decode turned on (anchor is >sys>msg)
+02/22/19: 13:30:55.644: reply=0 command=sxdecode comment="decoded SECS message"
+02/22/19: 13:30:55.644: Executing generic_handler to handle message.
+02/22/19: 13:30:55.644:  Hook command 'S1F13_prereply' being executed.
+02/22/19: 13:30:55.644: Executing Tcl script for "S1F13_prereply" command
+02/22/19: 13:30:55.645: Executing: an_S1F13_prereply {prereply currenv=generic_handler } generic_handler
+02/22/19: 13:30:55.645: starting AnObjInterpProc
+02/22/19: 13:30:55.645: Invoking procedure
+02/22/19: 13:30:55.645: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting "
+02/22/19: 13:30:55.645: SX_evalstr() returned 100
+02/22/19: 13:30:55.646: Executing: do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting 
+02/22/19: 13:30:55.646: reply=0 command=lg comment="Success" data=.
+02/22/19: 13:30:55.646: Checking: "restore file=%s [variable=%s] [parse [level=%d]] [trailing_newline=%s]" against: "do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0"
+02/22/19: 13:30:55.646: SX_evalstr() returned 100
+02/22/19: 13:30:55.646: an_cmd executing: do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0
+02/22/19: 13:30:55.647: reply=1 command=restore comment="Unable to open file" data=file=../../6-6-EVAP-04/simdata.dv
+.
+02/22/19: 13:30:55.647: Procedure returned 1
+02/22/19: 13:30:55.647: leaving AnObjInterpProc
+02/22/19: 13:30:55.647: Done executing Tcl command
+02/22/19: 13:30:55.647: Error in TCL Script for S1F13_prereply:
+file=../../6-6-EVAP-04/simdata.dv
+
+file=../../6-6-EVAP-04/simdata.dv
+
+    while executing
+"an_cmd restore file=$configDir/simdata.dv variable=simdata"
+    (procedure "an_S1F13_prereply" line 7)
+    invoked from within
+"an_S1F13_prereply {prereply currenv=generic_handler } generic_handler"
+02/22/19: 13:30:55.648:  generic_handler executing sxreply
+02/22/19: 13:30:55.648: Sending SECS message.
+02/22/19: 13:30:55.651:  generic_handler executing distribute
+02/22/19: 13:30:55.651: 	No servers monitoring at present
+02/22/19: 13:30:55.652: generic_handler returned 0
+02/22/19: 13:30:55.652: Message ignored.
+02/22/19: 13:30:55.652: Checking queue.
+*********************************************
+02/22/19: 13:31:05.666: type=1 size=12
+02/22/19: 13:31:05.666: Non-AutoShell format message received.
+02/22/19: 13:31:05.666: Getting protocol.
+02/22/19: 13:31:05.667: Checking mtype DVs for mtype 1.
+02/22/19: 13:31:05.667: 	Checking mtype 999998.
+02/22/19: 13:31:05.667: 	Checking mtype 999996.
+02/22/19: 13:31:05.668: Looking for sxdecode.
+02/22/19: 13:31:05.668: Executing "sxdecode" to decode message.
+02/22/19: 13:31:05.668: Optimized decode turned on (anchor is >sys>msg)
+02/22/19: 13:31:05.669: reply=0 command=sxdecode comment="decoded SECS message"
+02/22/19: 13:31:05.669: Executing generic_handler to handle message.
+02/22/19: 13:31:05.669:  Hook command 'S1F13_prereply' being executed.
+02/22/19: 13:31:05.669: Executing Tcl script for "S1F13_prereply" command
+02/22/19: 13:31:05.670: Executing: an_S1F13_prereply {prereply currenv=generic_handler } generic_handler
+02/22/19: 13:31:05.670: starting AnObjInterpProc
+02/22/19: 13:31:05.670: Invoking procedure
+02/22/19: 13:31:05.670: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting "
+02/22/19: 13:31:05.670: SX_evalstr() returned 100
+02/22/19: 13:31:05.670: Executing: do=lg name=6-6-EVAP-04gw_log an_S1F13_prereply: starting 
+02/22/19: 13:31:05.671: reply=0 command=lg comment="Success" data=.
+02/22/19: 13:31:05.671: Checking: "restore file=%s [variable=%s] [parse [level=%d]] [trailing_newline=%s]" against: "do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0"
+02/22/19: 13:31:05.671: SX_evalstr() returned 100
+02/22/19: 13:31:05.671: an_cmd executing: do=restore file=../../6-6-EVAP-04/simdata.dv variable=simdata currenv=0
+02/22/19: 13:31:05.672: reply=1 command=restore comment="Unable to open file" data=file=../../6-6-EVAP-04/simdata.dv
+.
+02/22/19: 13:31:05.672: Procedure returned 1
+02/22/19: 13:31:05.672: leaving AnObjInterpProc
+02/22/19: 13:31:05.672: Done executing Tcl command
+02/22/19: 13:31:05.673: Error in TCL Script for S1F13_prereply:
+file=../../6-6-EVAP-04/simdata.dv
+
+file=../../6-6-EVAP-04/simdata.dv
+
+    while executing
+"an_cmd restore file=$configDir/simdata.dv variable=simdata"
+    (procedure "an_S1F13_prereply" line 7)
+    invoked from within
+"an_S1F13_prereply {prereply currenv=generic_handler } generic_handler"
+02/22/19: 13:31:05.673:  generic_handler executing sxreply
+02/22/19: 13:31:05.673: Sending SECS message.
+02/22/19: 13:31:05.675:  generic_handler executing distribute
+02/22/19: 13:31:05.675: 	No servers monitoring at present
+02/22/19: 13:31:05.675: generic_handler returned 0
+02/22/19: 13:31:05.675: Message ignored.
+02/22/19: 13:31:05.676: Checking queue.
+*********************************************
+02/22/19: 13:41:43.462: type=32000 size=36
+02/22/19: 13:41:43.462: 
+02/22/19: 13:41:43.462: Parsing Message.
+02/22/19: 13:41:43.462: Checking Command Message Syntax
+02/22/19: 13:41:43.463: Executing "exit" command.
+02/22/19: 13:41:43.463: User invoked exit command.
+02/22/19: 13:41:43.463: Sending reply to sendmq.
+02/22/19: 13:41:43.463: reply=0 command=exit comment="Process terminating."
+02/22/19: 13:41:43.464: Server is terminating.
+02/22/19: 13:41:43.464: Not removing message queue, localexitflag=0
+02/22/19: 13:41:43.468: Exiting server.

@@ -1,0 +1,615 @@
+defcmd name=areyouthere cmd=generic_eqcmd \
+   help="areyouthere eq=%s " \
+   explain="Establishes if the host or equipment is on-line.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	MDLN             - equipment model type\n\
+	SOFTREV          - software revision code" 
+
+defcmd name=status cmd=generic_eqcmd \
+   help="status eq=%s [SVID.<n>=%s SVID_TYPE.<n>=%s]  " \
+   explain="Request equipment to report selected values of its status.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	SVID             - status variable ID\n\
+	SVID_TYPE        - added for specifiying data type of SVID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID" 
+
+defcmd name=svidlist cmd=generic_eqcmd \
+   help="svidlist eq=%s [SVID.<n>=%s]  " \
+   explain="Requests identification of status variables from the equipment.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	SVID             - status variable ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	SVID             - status variable ID\n\
+	SVNAME           - status variable name\n\
+	UNITS            - units identifier" 
+
+defcmd name=communicate cmd=generic_eqcmd \
+   help="communicate eq=%s " \
+   explain="Sends a message to the equipment to determine if it is online.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	COMMACK          - establish communications ack code\n\
+	MDLN             - equipment model type\n\
+	SOFTREV          - software revision code" 
+
+defcmd name=gooffline cmd=generic_eqcmd \
+   help="gooffline eq=%s " \
+   explain="The host requests that the equipment transition to the OFFLINE state.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	OFLACK           - acknowledge code for OFF-LINE request" 
+
+defcmd name=goonline cmd=generic_eqcmd \
+   help="goonline eq=%s " \
+   explain="The host requests that the equipment transition to the ONLINE state.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ONLACK           - acknowledge code for ON-LINE request" 
+
+defcmd name=eqconstreq cmd=generic_eqcmd \
+   help="eqconstreq eq=%s [ECID.<n>=%s]  " \
+   explain="Constants such as for calibration, servo gain, alarm limits, data collection mode and other values that are changed infrequently can be obtained using this message.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	ECID             - equipment constant ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ECV              - equipment constant value" 
+
+defcmd name=eqconstset cmd=generic_eqcmd \
+   help="eqconstset eq=%s [ECID.<n>=%s ECV.<n>=%s]  " \
+   explain="Change one or more equipment constants.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	ECID             - equipment constant ID\n\
+	ECV              - equipment constant value\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	EAC              - equipment acknowledgement code" 
+
+defcmd name=dtreq cmd=generic_eqcmd \
+   help="dtreq eq=%s " \
+   explain="Requests the date and time from the host/equipment.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	TIME             - time of day (yymmddhhmmss)" 
+
+defcmd name=rcmd cmd=generic_eqcmd \
+   help="rcmd eq=%s  " \
+   explain="Causes an equipment activity to commence or cease, similar to pressing a button on the front panel.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	CMDA             - command acknowledge code" 
+
+defcmd name=traceset cmd=generic_eqcmd \
+   help="traceset eq=%s     [SVID.<n>=%s SVID_TYPE.<n>=%s]  " \
+   explain="Sample a subset of equipment status variables as a function of time.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	SVID             - status variable ID\n\
+	SVID_TYPE        - added for specifiying data type of SVID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	TIAACK           - equipment acknowledgement code" 
+
+defcmd name=startprocess cmd=generic_eqcmd \
+   help="startprocess eq=%s   [MID.<n>=%s MID_TYPE.<n>=%s]  [LOC=%s LOC_TYPE=%s] [PPID=%s PPID_TYPE=%s]" \
+   explain="Requests equipment to initiate processing of identified material at the specified location in the machine using the specified process program.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	MID              - material ID\n\
+	MID_TYPE         - added for specifiying data type of MID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	CMDA             - command acknowledge code" 
+
+defcmd name=ecidlist cmd=generic_eqcmd \
+   help="ecidlist eq=%s [ECID.<n>=%s]  " \
+   explain="Retrieve basic information about what equipment constants are available in the equipment.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	ECID             - equipment constant ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ECID             - equipment constant ID\n\
+	ECNAME           - equipment constant name\n\
+	ECMIN            - equipment constant minimum value\n\
+	ECMAX            - equipment constant maximum value\n\
+	ECDEF            - equipment constant default value\n\
+	UNITS            - units identifier" 
+
+defcmd name=dtset cmd=generic_eqcmd \
+   help="dtset eq=%s TIME=%s " \
+   explain="Synchronize the equipment time with the host time.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TIME             - time of day (yymmddhhmmss)\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	TIACK            - time acknowledge code" 
+
+defcmd name=reportdef cmd=generic_eqcmd \
+   help="reportdef eq=%s  [RPTID.<n>=%s RPTID_TYPE.<n>=%s [VID.<n>.<n>=%s VID_TYPE.<n>.<n>=%s] ]  [DATAID=%s DATAID_TYPE=%s]" \
+   explain="Define a group of reports made up of Equipment variable IDs for the equipment.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	RPTID            - report ID\n\
+	RPTID_TYPE       - added for specifiying data type of RPTID\n\
+	VID              - variable ID\n\
+	VID_TYPE         - added for specifiying data type of VID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	DRACK            - define report acknowledgement code" 
+
+defcmd name=reportlink cmd=generic_eqcmd \
+   help="reportlink eq=%s  [CEID.<n>=%s CEID_TYPE.<n>=%s [RPTID.<n>.<n>=%s RPTID_TYPE.<n>.<n>=%s] ]  [DATAID=%s DATAID_TYPE=%s]" \
+   explain="Link (n) reports to an event (CEID).  These linked event reports will default to 'disabled' upon linking.  See S2F37 for enabling reports.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	CEID             - collected event ID\n\
+	CEID_TYPE        - added for specifiying data type of CEID\n\
+	RPTID            - report ID\n\
+	RPTID_TYPE       - added for specifiying data type of RPTID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	LRACK            - link report acknowledge code" 
+
+defcmd name=reportset cmd=generic_eqcmd \
+   help="reportset eq=%s  [CEID.<n>=%s CEID_TYPE.<n>=%s]  [CEED=%s CEED_TYPE=%s]" \
+   explain="Enable or disable the reporting for a group of events (CEIDs).\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	CEID             - collected event ID\n\
+	CEID_TYPE        - added for specifiying data type of CEID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ERACK            - enable/disable event report" 
+
+defcmd name=hcmd cmd=generic_eqcmd \
+   help="hcmd eq=%s  [CPNAME.<n>=%s CPNAME_TYPE.<n>=%s CPVAL.<n>=%s CPVAL_TYPE.<n>=%s]  [RCMD=%s RCMD_TYPE=%s]" \
+   explain="Request the equipment to perform the specified remote command with the associated parameters.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	CPNAME           - command parameter name\n\
+	CPNAME_TYPE      - added for specifiying data type of CPNAME\n\
+	CPVAL            - command parameter value\n\
+	CPVAL_TYPE       - added for specifiying data type of CPVAL\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	HCACK            - host command parameter acknowledge code\n\
+	CPNAME           - command parameter name\n\
+	CPACK            - command parameter acknowledge code" 
+
+defcmd name=resetspoolingstrfun cmd=generic_eqcmd \
+   help="resetspoolingstrfun eq=%s [STRID.<n>=%d [FCNID.<n>.<n>=%d] ]  " \
+   explain="Allows the host to select specific streams and functions to be spooled when spooling is active.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	STRID            - stream identification\n\
+	FCNID            - function identification\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	RSPACK           - reset spooling acknowledge\n\
+	STRID            - stream identification\n\
+	STRACK           - spool stream acknowledge\n\
+	FCNID            - function identification" 
+
+defcmd name=enhancedhcmd cmd=generic_eqcmd \
+   help="enhancedhcmd eq=%s     [DATAID=%s DATAID_TYPE=%s] [OBJSPEC=%s OBJSPEC_TYPE=%s] [RCMD=%s RCMD_TYPE=%s]" \
+   explain="Host requests an object to perform the specified remote command with its associated parameters. If multi-block, it shall be preceded by the S2,F39/S2,F40 Multi-Block Inquire/Grant transaction.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+	(label DEFAULT tags)\n\
+	CPNAME           - command parameter name\n\
+	CEPVAL           - command enhanced parameter value\n\
+\n\
+	(label PP-SELECT tags)\n\
+	PORTID           - (undefined)\n\
+	PORTID_TYPE      - added for specifiying data type of PORTID\n\
+	RECIPEID         - (undefined)\n\
+	RECIPEID_TYPE    - added for specifiying data type of RECIPEID\n\
+	SLOTID           - (undefined)\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	HCACK            - host command parameter acknowledge code\n\
+	CPNAME           - command parameter name\n\
+	CEPACK           - command enhanced parameter acknowledge" 
+
+defcmd name=carrieraction cmd=generic_eqcmd \
+   help="carrieraction eq=%s     [CATTRID.<n>=%s CATTRID_TYPE.<n>=%s CATTRDATA.<n>=%s CATTRDATA_TYPE.<n>=%s]  [DATAID=%s DATAID_TYPE=%s] [CARRIERACTION=%s CARRIERACTION_TYPE=%s] [CARRIERSPEC=%s CARRIERSPEC_TYPE=%s] [PTN=%s PTN_TYPE=%s]" \
+   explain="Request an action to be performed for a specified carrier.\n\
+\n\
+An example of this would be:\n\
+  DATAID=0 CARRIERACTION=BIND CARRIERSPEC=CARRIERXYZ PTN=1\n\
+  CATTRID.1=ContentMap\n\
+  CATTRDATA.1=\"lot123,wafer001 lot123,wafer002\"\n\
+  CATTRID.2=SlotMap\n\
+  CATTRDATA.2=\"3 3 3 3 3 3 ... 3 3\"\n\
+  CATTRID.3=Usage\n\
+  CATTRDATA.3=PRODUCT\n\
+\n\
+Note that some special programming is needed when CATTRDATA is\n\
+a LIST rather than a single data item, as with the ContentMap.\n\
+\n\
+Another example:\n\
+  DATAID=0\n\
+  CARRIERACTION=PROCEEDWITHCARRIER\n\
+  CARRIERSPEC=CARRIERXYZ\n\
+  PTN=1\n\
+  CATTRID.1=ContentMap ...\n\
+  CATTRID.2=Usage\n\
+  CATTRDATA.2=PRODUCT\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	CATTRID          - (undefined)\n\
+	CATTRID_TYPE     - added for specifiying data type of CATTRID\n\
+	CATTRDATA        - (undefined)\n\
+	CATTRDATA_TYPE   - added for specifiying data type of CATTRDATA\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	CAACK            - (undefined)\n\
+	ERRCODE          - error code\n\
+	ERRTEXT          - error text" 
+
+defcmd name=alarmset cmd=generic_eqcmd \
+   help="alarmset eq=%s   " \
+   explain="Enables or disables alarm reporting to the host.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC5            - one byte acknowledge code for stream 5" 
+
+defcmd name=alarmlist cmd=generic_eqcmd \
+   help="alarmlist eq=%s [ALID.<n>=%d]  " \
+   explain="Requests the equipment to provide alarm definitions.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	ALID             - alarm identification\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ALCD             - alarm code byte\n\
+	ALID             - alarm identification\n\
+	ALTX             - alarm text" 
+
+defcmd name=alarmenabled cmd=generic_eqcmd \
+   help="alarmenabled eq=%s " \
+   explain="List alarms which are enabled.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ALCD             - alarm code byte\n\
+	ALID             - alarm identification\n\
+	ALTX             - alarm text" 
+
+defcmd name=pplinquire cmd=generic_eqcmd \
+   help="pplinquire eq=%s PPID=%s LENGTH=%d " \
+   explain="Requests permission to transfer a process program down to the equipment via S7F3 (unformatted) or S7F23 (formatted) process program download.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+	LENGTH           - length of the service program or process program in bytes\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	PPGNT            - process program grant status" 
+
+defcmd name=ppdownload cmd=generic_eqcmd \
+   help="ppdownload eq=%s PPID=%s PPBODY=%s " \
+   explain="Sends the named process program to the equipment.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+	PPBODY           - process program body\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC7            - one byte acknowledge code for stream 7" 
+
+defcmd name=ppupload cmd=generic_eqcmd \
+   help="ppupload eq=%s PPID=%s " \
+   explain="Requests transfer of a process program from the equipment to the host.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+	PPBODY           - process program body" 
+
+defcmd name=eppdrequest cmd=generic_eqcmd \
+   help="eppdrequest eq=%s " \
+   explain="\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID" 
+
+defcmd name=fppdownload cmd=generic_eqcmd \
+   help="fppdownload eq=%s PPID=%s MDLN=%s SOFTREV=%s [CCODE.<n>=%d [PPARM.<n>.<n>=%s] ]  " \
+   explain="Download a formatted process program to the equipment from the host.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+	MDLN             - equipment model type\n\
+	SOFTREV          - software revision code\n\
+	CCODE            - command code\n\
+	PPARM            - process parameter\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC7            - one byte acknowledge code for stream 7" 
+
+defcmd name=fppupload cmd=generic_eqcmd \
+   help="fppupload eq=%s PPID=%s " \
+   explain="Requests transfer of a process program from the equipment to the host.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	PPID             - process program ID\n\
+	MDLN             - equipment model type\n\
+	SOFTREV          - software revision code\n\
+	CCODE            - command code\n\
+	PPARM            - process parameter" 
+
+defcmd name=display1 cmd=generic_eqcmd \
+   help="display1 eq=%s TID=%s TEXT=%s " \
+   explain="Display a single line of text on the equipment terminal.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TID              - terminal number\n\
+	TEXT             - a single line of characters\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC10           - one byte acknowledge code for stream 10" 
+
+defcmd name=displayn cmd=generic_eqcmd \
+   help="displayn eq=%s TID=%s [TEXT.<n>=%s]  " \
+   explain="Display <n> lines of text on the equipment terminal.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TID              - terminal number\n\
+	TEXT             - a single line of characters\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC10           - one byte acknowledge code for stream 10" 
+
+defcmd name=displayall cmd=generic_eqcmd \
+   help="displayall eq=%s TEXT=%s " \
+   explain="Display a single line of text on ALL terminals in the equipment.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	TEXT             - a single line of characters\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	ACKC10           - one byte acknowledge code for stream 10" 
+
+defcmd name=createobj cmd=generic_eqcmd \
+   help="createobj eq=%s    [OBJSPEC=%s OBJSPEC_TYPE=%s] [OBJTYPE=%s OBJTYPE_TYPE=%s]" \
+   explain="Request an object owner to create an object instance.  OBJSPEC specifies the object owner.\n\
+\n\
+An example:\n\
+   OBJSPEC=MYCONTROLJOB\n\
+   OBJTYPE=CONTROLJOB\n\
+   ATTRID.1=CarrierInputSpec\n\
+   ATTRDATA.1=CARRIERXYZ\n\
+   ATTRID.2=MtrlOutSpec\n\
+   ATTRID.3=ProcessingCtrlSpec\n\
+   ATTRDATA.3=PROCESSJOB1\n\
+   ATTRID.4=StartMethod\n\
+   ATTRDATA.4=AUTOSTART\n\
+\n\
+Note that some special programming is required to convert\n\
+some command line arguments to the correct SECS-II data\n\
+item format such as AUTOSTART to BOOLEAN 0x01.  It is also\n\
+necessary to convert many of the input ATTRDATA arguments\n\
+into LISTS as required by the vendor implementation of the\n\
+standard.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+\n\
+	(label CONTROLJOB tags)\n\
+	ObjID            - (undefined)\n\
+	ObjID_TYPE       - added for specifiying data type of ObjID\n\
+	DataCollectionPlan - (undefined)\n\
+	DataCollectionPlan_TYPE - added for specifiying data type of DataCollectionPlan\n\
+	CarrierInputSpec - (undefined)\n\
+	CarrierInputSpec_TYPE - added for specifiying data type of CarrierInputSpec\n\
+	MtrlOutSpec      - (undefined)\n\
+	MtrlOutSpec_TYPE - added for specifiying data type of MtrlOutSpec\n\
+	MtrlOutByStatus  - (undefined)\n\
+	MtrlOutByStatus_TYPE - added for specifiying data type of MtrlOutByStatus\n\
+	PauseEvent       - (undefined)\n\
+	PauseEvent_TYPE  - added for specifiying data type of PauseEvent\n\
+	ProcessingCtrlSpec - (undefined)\n\
+	ProcessingCtrlSpec_TYPE - added for specifiying data type of ProcessingCtrlSpec\n\
+	ProcessOrderMgmt - (undefined)\n\
+	ProcessOrderMgmt_TYPE - added for specifiying data type of ProcessOrderMgmt\n\
+	StartMethod      - (undefined)\n\
+	StartMethod_TYPE - added for specifiying data type of StartMethod\n\
+\n\
+	(label GENERIC tags)\n\
+	ATTRID           - object attribute identifier\n\
+	ATTRID_TYPE      - added for specifiying data type of ATTRID\n\
+	ATTRDATA         - object attribute value\n\
+	ATTRDATA_TYPE    - added for specifiying data type of ATTRDATA\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	OBJSPEC          - specific object instance reference\n\
+	ATTRID           - object attribute identifier\n\
+	ATTRDATA         - object attribute value\n\
+	OBJACK           - acknowledgement code for completion of requested data\n\
+	ERRCODE          - error code\n\
+	ERRTEXT          - error text" 
+
+defcmd name=pjcreateenh cmd=generic_eqcmd \
+   help="pjcreateenh eq=%s DATAID=%s PRJOBID=%s MF=%s  PRRECIPEMETHOD=%s RCPSPEC=%s [RCPPARNM.<n>=%s RCPPARVAL.<n>=%s]  PRPROCESSSTART=%s PRPAUSEEVENT=%s { CARRIERID.n=%s [SLOTID.n.m=%d], MID.n=%s }" \
+   explain="Request equipment to create a process job with the given PRJOBID.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	DATAID           - data ID\n\
+	PRJOBID          - process job identification\n\
+	MF               - material format code\n\
+	PRRECIPEMETHOD   - (undefined)\n\
+	RCPSPEC          - recipe object specifier\n\
+	RCPPARNM         - recipe variable parameter name\n\
+	RCPPARVAL        - recipe variable parameter initial setting\n\
+	PRPROCESSSTART   - (undefined)\n\
+	PRPAUSEEVENT     - (undefined)\n\
+\n\
+	(label MF_MID tags)\n\
+	MID              - material ID\n\
+\n\
+	(label MF_CARRIER tags)\n\
+	CARRIERID        - (undefined)\n\
+	SLOTID           - (undefined)\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	PRJOBID          - process job identification\n\
+	ACKA             - acknowledge code; success=TRUE, else FALSE\n\
+	ERRCODE          - error code\n\
+	ERRTEXT          - error text" 
+
+defcmd name=pjcreatemulti cmd=generic_eqcmd \
+   help="pjcreatemulti eq=%s  [PRJOBID.<n>=%s PRJOBID_TYPE.<n>=%s MF.<n>=%s MF_TYPE.<n>=%s  PRRECIPEMETHOD.<n>=%s PRRECIPEMETHOD_TYPE.<n>=%s RCPSPEC.<n>=%s RCPSPEC_TYPE.<n>=%s [RCPPARNM.<n>.<n>=%s RCPPARNM_TYPE.<n>.<n>=%s RCPPARVAL.<n>.<n>=%s RCPPARVAL_TYPE.<n>.<n>=%s]  PRPROCESSSTART.<n>=%s PRPROCESSSTART_TYPE.<n>=%s PRPAUSEEVENT.<n>=%s PRPAUSEEVENT_TYPE.<n>=%s]  [DATAID=%s DATAID_TYPE=%s]" \
+   explain="Create mulitple process jobs, each of which may be unique in its association of material to process recipe.\n\
+\n\
+An example:\n\
+  DATAID=0 PRJOBID.1=PJ1 MF.1=CARRIER\n\
+  CARRIERID.1.1=CARRIERXYZ SLOTID.1.1.1=1 SLOTID.1.1.2=2\n\
+  ... SLOTID.1.2.25=25\n\
+  PRRECIPEMETHOD.1=STANDARD\n\
+  RCPSPEC.1=RECIPE1\n\
+  PRPROCESSSTART.1=AUTOSTART\n\
+\n\
+Note that some special programming is required to convert\n\
+some command line identifiers to valid SECS-II data items\n\
+such as CARRIER to BINARY 0x02 or AUTOSTART to BOOLEAN 1, etc.\n\
+\n\
+INPUT TAGS:\n\
+	eq               - equipment ID\n\
+	PRJOBID          - process job identification\n\
+	PRJOBID_TYPE     - added for specifiying data type of PRJOBID\n\
+	MF               - material format code\n\
+	MF_TYPE          - added for specifiying data type of MF\n\
+	PRRECIPEMETHOD   - (undefined)\n\
+	PRRECIPEMETHOD_TYPE - added for specifiying data type of PRRECIPEMETHOD\n\
+	RCPSPEC          - recipe object specifier\n\
+	RCPSPEC_TYPE     - added for specifiying data type of RCPSPEC\n\
+	RCPPARNM         - recipe variable parameter name\n\
+	RCPPARNM_TYPE    - added for specifiying data type of RCPPARNM\n\
+	RCPPARVAL        - recipe variable parameter initial setting\n\
+	RCPPARVAL_TYPE   - added for specifiying data type of RCPPARVAL\n\
+	PRPROCESSSTART   - (undefined)\n\
+	PRPROCESSSTART_TYPE - added for specifiying data type of PRPROCESSSTART\n\
+	PRPAUSEEVENT     - (undefined)\n\
+	PRPAUSEEVENT_TYPE - added for specifiying data type of PRPAUSEEVENT\n\
+\n\
+	(label MF_MID tags)\n\
+	MID              - material ID\n\
+	MID_TYPE         - added for specifiying data type of MID\n\
+\n\
+	(label MF_CARRIER tags)\n\
+\n\
+REPLY TAGS:\n\
+	eq               - equipment ID\n\
+	PRJOBID          - process job identification\n\
+	ACKA             - acknowledge code; success=TRUE, else FALSE\n\
+	ERRCODE          - error code\n\
+	ERRTEXT          - error text" 
+
+restore file=(rel)eqsrv.edv
+
+
+tclinclude file=(rel)eqsrv.tcl
+
+set positional_suffixes=TRUE

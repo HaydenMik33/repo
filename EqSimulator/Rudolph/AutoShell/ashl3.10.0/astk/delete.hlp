@@ -1,0 +1,5 @@
+Deleting an Item 
+
+A node can be deleted from any path, but if a path is deleted, all of it's nodes will be deleted too.
+
+To delete a node the option under "Edit/Delete" from the main menu can be used, as well as by right clicking the mouse.

@@ -1,0 +1,2912 @@
+{ server
+	sucmds
+	timeout=30
+	{ he
+		{ S1
+			{ F1=Are You There Request (R)
+				{ H
+					def=HEADER-ONLY
+					cmd=areyouthere
+					{ exp=Establishes if the host or equipment is on-line.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F3=Selected Equipment Status Request (SSR)
+				{ H
+					{ def
+						{ .L,n
+							.SVID=97||command 
+						}
+					}
+					cmd=status
+					{ exp=Request equipment to report selected values of its status.
+						ioparams=1
+					}
+					exsyn=
+					{ postreceive_cmd=S1F3_postreceive
+						type=tcl
+					}
+				}
+			}
+			{ F11=Status Variable NameList Request (SVNR)
+				{ H
+					{ def
+						{ .L,n
+							.SVID=20
+						}
+					}
+					cmd=svidlist
+					{ exp=Requests identification of status variables from the equipment.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F13=Establish Communication Request (CR)
+				{ H
+					{ def
+						.L,0
+					}
+					cmd=communicate
+					{ exp=Sends a message to the equipment to determine if it is online.
+						ioparams=1
+					}
+					exsyn=
+				}
+				{ E
+					{ def
+						{ .L,2
+							.MDLN=20
+							.SOFTREV=20
+						}
+					}
+					cmd=communicate
+					exp=Sends a message to the host to determine if it is online.
+					check=ack=COMMACK
+				}
+			}
+			{ F15=Request Offline (ROFL)
+				{ H
+					def=HEADER-ONLY
+					cmd=gooffline
+					{ exp=The host requests that the equipment transition to the OFFLINE state.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F17=Request Online (RONL)
+				{ H
+					def=HEADER-ONLY
+					cmd=goonline
+					{ exp=The host requests that the equipment transition to the ONLINE state.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+		}
+		{ S2
+			{ F13=Equipment Constant Request (ECR)
+				{ H
+					{ def
+						{ .L,n
+							.ECID=20
+						}
+					}
+					cmd=eqconstreq
+					{ exp=Constants such as for calibration, servo gain, alarm limits, data collection mode and other values that are changed infrequently can be obtained using this message.
+						ioparams=1
+					}
+					exsyn=
+					{ postreceive_cmd=S2F13_postreceive
+						type=tcl
+					}
+				}
+			}
+			{ F15=New Equipment Constant Send (ECS)
+				{ H
+					{ def
+						{ .L,n
+							{ .L,2
+								.ECID=20
+								.ECV=10
+							}
+						}
+					}
+					cmd=eqconstset
+					{ exp=Change one or more equipment constants.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F17=Date and Time Request (DTR)
+				{ B
+					def=HEADER-ONLY
+					cmd=dtreq
+					exp=Requests the date and time from the host/equipment.
+				}
+			}
+			{ F21=Remote Command Send (RCS)
+				{ H
+					{ def
+						.RCMD=20||built 
+					}
+					cmd=rcmd
+					{ exp=Causes an equipment activity to commence or cease, similar to pressing a button on the front panel.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F23=Trace Initialize Send (TIS)
+				{ H
+					{ def
+						{ .L,5
+							.TRID=98||built 
+							.DSPER=98||built 
+							.TOTSMP=98||built 
+							.REPGSZ=98||built 
+							{ .L,n
+								.SVID=97||command 
+							}
+						}
+					}
+					cmd=traceset
+					{ exp=Sample a subset of equipment status variables as a function of time.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F27=Initiate Processing Request (IPR)
+				{ H
+					{ def
+						{ .L,3
+							.LOC=98||built 
+							.PPID=98||built 
+							{ .L,n
+								.MID=97||command 
+							}
+						}
+					}
+					cmd=startprocess
+					{ exp=Requests equipment to initiate processing of identified material at the specified location in the machine using the specified process program.
+						ioparams=1
+					}
+					exsyn=[LOC=%s LOC_TYPE=%s] [PPID=%s PPID_TYPE=%s]
+				}
+			}
+			{ F29=Equipment Constant Namelist Request (ECNR)
+				{ H
+					{ def
+						{ .L,n
+							.ECID=20
+						}
+					}
+					cmd=ecidlist
+					{ exp=Retrieve basic information about what equipment constants are available in the equipment.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F31=Date and Time Set Request (DTS)
+				{ H
+					{ def
+						.TIME=20
+					}
+					cmd=dtset
+					{ exp=Synchronize the equipment time with the host time.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F33=Define Report (DR)
+				{ H
+					{ def
+						{ .L,2
+							.DATAID=98||built 
+							{ .L,n
+								{ .L,2
+									.RPTID=97||command 
+									{ .L,n
+										.VID=97||command 
+									}
+								}
+							}
+						}
+					}
+					cmd=reportdef
+					{ exp=Define a group of reports made up of Equipment variable IDs for the equipment.
+						ioparams=1
+					}
+					exsyn=[DATAID=%s DATAID_TYPE=%s]
+				}
+			}
+			{ F35=Link Event Report (LER)
+				{ H
+					{ def
+						{ .L,2
+							.DATAID=98||built 
+							{ .L,n
+								{ .L,2
+									.CEID=97||command 
+									{ .L,n
+										.RPTID=97||command 
+									}
+								}
+							}
+						}
+					}
+					cmd=reportlink
+					{ exp=Link (n) reports to an event (CEID).  These linked event reports will default to 'disabled' upon linking.  See S2F37 for enabling reports.
+						ioparams=1
+					}
+					exsyn=[DATAID=%s DATAID_TYPE=%s]
+				}
+			}
+			{ F37=Enable/Disable Event Report (EDER)
+				{ H
+					{ def
+						{ .L,2
+							.CEED=98||built 
+							{ .L,n
+								.CEID=97||command 
+							}
+						}
+					}
+					cmd=reportset
+					{ exp=Enable or disable the reporting for a group of events (CEIDs).
+						ioparams=1
+					}
+					exsyn=[CEED=%s CEED_TYPE=%s]
+				}
+			}
+			{ F41=Host Command Send (HCS)
+				{ H
+					{ def
+						{ .L,2
+							.RCMD=98||built 
+							{ .L,n
+								{ .L,2
+									.CPNAME=97||command 
+									.CPVAL=97||command 
+								}
+							}
+						}
+					}
+					cmd=hcmd
+					{ exp=Request the equipment to perform the specified remote command with the associated parameters.
+						ioparams=1
+					}
+					exsyn=[RCMD=%s RCMD_TYPE=%s]
+				}
+			}
+			{ F43=Reset Spooling Streams and Functions (RSSF)
+				{ H
+					{ def
+						{ .L,n
+							{ .L,2
+								.STRID=51
+								{ .L,n
+									.FCNID=51
+								}
+							}
+						}
+					}
+					cmd=resetspoolingstrfun
+					{ exp=Allows the host to select specific streams and functions to be spooled when spooling is active.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F49=Enhanced Remote Command
+				{ H
+					{ def
+						{ .L,4
+							.DATAID=98||built 
+							.OBJSPEC=98||built 
+							.RCMD=98||built 
+							.L,n
+						}
+					}
+					cmd=enhancedhcmd
+					{ exp=Host requests an object to perform the specified remote command with its associated parameters. If multi-block, it shall be preceded by the S2,F39/S2,F40 Multi-Block Inquire/Grant transaction.
+						ioparams=1
+					}
+					exsyn=[DATAID=%s DATAID_TYPE=%s] [OBJSPEC=%s OBJSPEC_TYPE=%s] [RCMD=%s RCMD_TYPE=%s]
+					{ labels
+						{ DEFAULT=(!= (* RCMD) PP-SELECT)
+							{ .L,4
+								.---=20
+								.---=20
+								.---=20
+								{ .L,n
+									{ .L,2
+										.CPNAME=20
+										.CEPVAL=20
+									}
+								}
+							}
+						}
+						{ PP-SELECT=(= (* RCMD) PP-SELECT)
+							{ .L,4
+								.---=20
+								.---=20
+								.---=20
+								{ .L,2
+									{ .L,2
+										.UNNAMED=20||const PORTID
+										.PORTID=97||command 
+									}
+									{ .L,2
+										.UNNAMED=20||const RECIPES
+										{ .L,n
+											{ .L,2
+												{ .L,2
+													.UNNAMED=20||const RECIPEID
+													.RECIPEID=97||command 
+												}
+												{ .L,2
+													.UNNAMED=20||const SLOTMAP
+													{ .L,n
+														.SLOTID=98||command 
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					work
+				}
+			}
+		}
+		{ S3
+			{ F17
+				{ H
+					{ def
+						{ .L,5
+							.DATAID=98||built 
+							.CARRIERACTION=98||built 
+							.CARRIERSPEC=98||built 
+							.PTN=98||built 
+							{ .L,n
+								{ .L,2
+									.CATTRID=97||command 
+									.CATTRDATA=97||command 
+								}
+							}
+						}
+					}
+					cmd=carrieraction
+					{ exp=Request an action to be performed for a specified carrier.\
+\
+An example of this would be:\
+  DATAID=0 CARRIERACTION=BIND CARRIERSPEC=CARRIERXYZ PTN=1\
+  CATTRID.1=ContentMap\
+  CATTRDATA.1="lot123,wafer001 lot123,wafer002"\
+  CATTRID.2=SlotMap\
+  CATTRDATA.2="3 3 3 3 3 3 ... 3 3"\
+  CATTRID.3=Usage\
+  CATTRDATA.3=PRODUCT\
+\
+Note that some special programming is needed when CATTRDATA is\
+a LIST rather than a single data item, as with the ContentMap.\
+\
+Another example:\
+  DATAID=0\
+  CARRIERACTION=PROCEEDWITHCARRIER\
+  CARRIERSPEC=CARRIERXYZ\
+  PTN=1\
+  CATTRID.1=ContentMap ...\
+  CATTRID.2=Usage\
+  CATTRDATA.2=PRODUCT
+						ioparams=1
+					}
+					exsyn=[DATAID=%s DATAID_TYPE=%s] [CARRIERACTION=%s CARRIERACTION_TYPE=%s] [CARRIERSPEC=%s CARRIERSPEC_TYPE=%s] [PTN=%s PTN_TYPE=%s]
+				}
+			}
+		}
+		{ S5
+			{ F2=Alarm Report Acknowledge (ARA)
+				{ H
+					{ def
+						.ACKC5=10||const||const 00
+					}
+				}
+			}
+			{ F3=Enable/Disable Alarm Send (EAS)
+				{ H
+					{ def
+						{ .L,2
+							.ALED=98||built 
+							.ALID=98||built 
+						}
+					}
+					cmd=alarmset
+					{ exp=Enables or disables alarm reporting to the host.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F5=List Alarms Request (LAR)
+				{ H
+					{ def
+						{ .L,n
+							.ALID=31
+						}
+					}
+					cmd=alarmlist
+					{ exp=Requests the equipment to provide alarm definitions.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F7=List Enabled Alarm Request (LEAR)
+				{ H
+					def=HEADER-ONLY
+					cmd=alarmenabled
+					{ exp=List alarms which are enabled.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+		}
+		{ S6
+			{ F2=Trace Data Acknowledge (TDA)
+				{ H
+					{ def
+						.ACKC6=10||const||const 00
+					}
+				}
+			}
+			{ F4=Discrete Variable Data Acknowledge (DVA)
+				{ H
+					{ def
+						.ACKC6=10||const||const 00
+					}
+				}
+			}
+			{ F6=Multi-block Grant (MBG)
+				{ H
+					{ def
+						.GRANT6=10||const||const 00
+					}
+				}
+			}
+			{ F10=Formatted Variable Acknowledge (FVA)
+				{ H
+					{ def
+						.ACKC6=10||const||const 00
+					}
+				}
+			}
+			{ F12=Event Report Acknowledge (ERA)
+				{ H
+					{ def
+						.ACKC6=10||const||const 00
+					}
+				}
+			}
+		}
+		{ S7
+			{ F1=Process Program Load Inquire (PPI)
+				{ H
+					{ def
+						{ .L,2
+							.PPID=10
+							.LENGTH=32
+						}
+					}
+					cmd=pplinquire
+					{ exp=Requests permission to transfer a process program down to the equipment via S7F3 (unformatted) or S7F23 (formatted) process program download.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F3=Process Program Send (PPS)
+				{ H
+					{ def
+						{ .L,2
+							.PPID=10
+							.PPBODY=10
+						}
+					}
+					cmd=ppdownload
+					{ exp=Sends the named process program to the equipment.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F5=Process Program Request (PPR)
+				{ H
+					{ def
+						.PPID=10
+					}
+					cmd=ppupload
+					{ exp=Requests transfer of a process program from the equipment to the host.
+						ioparams=1
+					}
+					nodata
+					exsyn=
+				}
+			}
+			{ F19
+				{ H
+					def=HEADER-ONLY
+					cmd=eppdrequest
+					{ exp=
+						ioparams=1
+					}
+					exsyn=
+					{ postreceive_cmd=S7F19_postreceive
+						type=tcl
+					}
+				}
+			}
+			{ F23=Formatted Process Program Send (FPS)
+				{ H
+					{ def
+						{ .L,4
+							.PPID=10
+							.MDLN=20
+							.SOFTREV=20
+							{ .L,n
+								{ .L,2
+									.CCODE=32
+									{ .L,n
+										.PPARM=11
+									}
+								}
+							}
+						}
+					}
+					cmd=fppdownload
+					{ exp=Download a formatted process program to the equipment from the host.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F25=Formatted Process Program Request (FPR)
+				{ H
+					{ def
+						.PPID=10
+					}
+					cmd=fppupload
+					{ exp=Requests transfer of a process program from the equipment to the host.
+						ioparams=1
+					}
+					nodata
+					exsyn=
+				}
+			}
+		}
+		{ S10
+			{ F2=Terminal Request Acknowledge (TRA)
+				{ H
+					{ def
+						.ACKC10=10||const||const 00
+					}
+				}
+			}
+			{ F3=Terminal Display, Single (VTN)
+				{ H
+					{ def
+						{ .L,2
+							.TID=10
+							.TEXT=10
+						}
+					}
+					cmd=display1
+					{ exp=Display a single line of text on the equipment terminal.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F5=Terminal Display, Multi-block (VMN)
+				{ H
+					{ def
+						{ .L,2
+							.TID=10
+							{ .L,n
+								.TEXT=10
+							}
+						}
+					}
+					cmd=displayn
+					{ exp=Display <n> lines of text on the equipment terminal.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F8
+				{ B
+					def=HEADER-ONLY
+				}
+			}
+			{ F9=Broadcast (BCN)
+				{ H
+					{ def
+						.TEXT=10
+					}
+					cmd=displayall
+					{ exp=Display a single line of text on ALL terminals in the equipment.
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+		}
+		{ S14
+			{ F9
+				{ H
+					{ def
+						{ .L,3
+							.OBJSPEC=98||built 
+							.OBJTYPE=98||built 
+							.L,n
+						}
+					}
+					cmd=createobj
+					{ exp=Request an object owner to create an object instance.  OBJSPEC specifies the object owner.\
+\
+An example:\
+   OBJSPEC=MYCONTROLJOB\
+   OBJTYPE=CONTROLJOB\
+   ATTRID.1=CarrierInputSpec\
+   ATTRDATA.1=CARRIERXYZ\
+   ATTRID.2=MtrlOutSpec\
+   ATTRID.3=ProcessingCtrlSpec\
+   ATTRDATA.3=PROCESSJOB1\
+   ATTRID.4=StartMethod\
+   ATTRDATA.4=AUTOSTART\
+\
+Note that some special programming is required to convert\
+some command line arguments to the correct SECS-II data\
+item format such as AUTOSTART to BOOLEAN 0x01.  It is also\
+necessary to convert many of the input ATTRDATA arguments\
+into LISTS as required by the vendor implementation of the\
+standard.
+						ioparams=1
+					}
+					exsyn=[OBJSPEC=%s OBJSPEC_TYPE=%s] [OBJTYPE=%s OBJTYPE_TYPE=%s]
+					work
+					{ labels
+						{ CONTROLJOB=(= (* OBJTYPE) ControlJob)
+							{ .L,3
+								.---=20||command 
+								.---=20||command 
+								{ .L,9
+									{ .L,2
+										.UNNAMED=20||const ObjID
+										.ObjID=97||command 
+									}
+									{ .L,2
+										.UNNAMED=20||const DataCollectionPlan
+										.DataCollectionPlan=97||command 
+									}
+									{ .L,2
+										.UNNAMED=20||const CarrierInputSpec
+										{ .L,n
+											.CarrierInputSpec=97||command 
+										}
+									}
+									{ .L,2
+										.UNNAMED=20||const MtrlOutSpec
+										{ .L,n
+											.MtrlOutSpec=97||command 
+										}
+									}
+									{ .L,2
+										.UNNAMED=20||const MtrlOutByStatus
+										{ .L,n
+											.MtrlOutByStatus=97||command 
+										}
+									}
+									{ .L,2
+										.UNNAMED=20||const PauseEvent
+										{ .L,n
+											.PauseEvent=97||command 
+										}
+									}
+									{ .L,2
+										.UNNAMED=20||const ProcessingCtrlSpec
+										{ .L,n
+											{ .L,n
+												.ProcessingCtrlSpec=97||command 
+											}
+										}
+									}
+									{ .L,2
+										.UNNAMED=20||const ProcessOrderMgmt
+										.ProcessOrderMgmt=97||command 
+									}
+									{ .L,2
+										.UNNAMED=20||const StartMethod
+										.StartMethod=97||command 
+									}
+								}
+							}
+						}
+						{ GENERIC=(!= (* OBJTYPE) ControlJob)
+							{ .L,3
+								.---=20||command 
+								.---=20||command 
+								{ .L,n
+									{ .L,2
+										.ATTRID=97||command 
+										.ATTRDATA=97||command 
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S16
+			{ F8
+				{ H
+					def=HEADER-ONLY
+				}
+			}
+			{ F11
+				{ H
+					{ def
+						{ .L,7
+							.DATAID=20||command 
+							.PRJOBID=20||command 
+							.MF=20||command 
+							.L,n
+							{ .L,3
+								.PRRECIPEMETHOD=20||command 
+								.RCPSPEC=20||command 
+								{ .L,n
+									{ .L,2
+										.RCPPARNM=20||command 
+										.RCPPARVAL=20||command 
+									}
+								}
+							}
+							.PRPROCESSSTART=20||command 
+							.PRPAUSEEVENT=20||command 
+						}
+					}
+					cmd=pjcreateenh
+					{ labels
+						{ MF_MID=(= (* MF) MID)
+							{ .L,7
+								.---=20||command 
+								.---=20||command 
+								.---=20||command 
+								{ .L,n
+									.MID=20||command 
+								}
+								{ .L,3
+									.---=20||command 
+									.---=20||command 
+									{ .L,n
+										{ .L,2
+											.---=20||command 
+											.---=20||command 
+										}
+									}
+								}
+								.---=20||command 
+								.---=20||command 
+							}
+						}
+						{ MF_CARRIER=(= (* MF) CARRIER)
+							{ .L,7
+								.---=20||command 
+								.---=20||command 
+								.---=20||command 
+								{ .L,n
+									{ .L,2
+										.CARRIERID=20||command 
+										{ .L,n
+											.SLOTID=51||command 
+										}
+									}
+								}
+								{ .L,3
+									.---=20||command 
+									.---=20||command 
+									{ .L,n
+										{ .L,2
+											.---=20||command 
+											.---=20||command 
+										}
+									}
+								}
+								.---=20||command 
+								.---=20||command 
+							}
+						}
+					}
+					work
+					{ exp=Request equipment to create a process job with the given PRJOBID.
+						ioparams=1
+					}
+					exsyn={ CARRIERID.n=%s [SLOTID.n.m=%d], MID.n=%s }
+				}
+			}
+			{ F15
+				{ H
+					{ def
+						{ .L,2
+							.DATAID=98||built 
+							{ .L,n
+								{ .L,6
+									.PRJOBID=97||command 
+									.MF=97||command 
+									.L,n
+									{ .L,3
+										.PRRECIPEMETHOD=97||command 
+										.RCPSPEC=97||command 
+										{ .L,n
+											{ .L,2
+												.RCPPARNM=97||command 
+												.RCPPARVAL=97||command 
+											}
+										}
+									}
+									.PRPROCESSSTART=97||command 
+									.PRPAUSEEVENT=97||command 
+								}
+							}
+						}
+					}
+					cmd=pjcreatemulti
+					{ exp=Create mulitple process jobs, each of which may be unique in its association of material to process recipe.\
+\
+An example:\
+  DATAID=0 PRJOBID.1=PJ1 MF.1=CARRIER\
+  CARRIERID.1.1=CARRIERXYZ SLOTID.1.1.1=1 SLOTID.1.1.2=2\
+  ... SLOTID.1.2.25=25\
+  PRRECIPEMETHOD.1=STANDARD\
+  RCPSPEC.1=RECIPE1\
+  PRPROCESSSTART.1=AUTOSTART\
+\
+Note that some special programming is required to convert\
+some command line identifiers to valid SECS-II data items\
+such as CARRIER to BINARY 0x02 or AUTOSTART to BOOLEAN 1, etc.
+						ioparams=1
+					}
+					exsyn=[DATAID=%s DATAID_TYPE=%s]
+					{ labels
+						{ MF_MID=(= (* MF>1) MID)
+							{ .L,2
+								.---=20||command 
+								{ .L,n
+									{ .L,6
+										.---=20||command 
+										.---=20||command 
+										{ .L,n
+											.MID=97||command 
+										}
+										{ .L,3
+											.---=20||command 
+											.---=20||command 
+											{ .L,n
+												{ .L,2
+													.---=20||command 
+													.---=20||command 
+												}
+											}
+										}
+										.---=20||command 
+										.---=20||command 
+									}
+								}
+							}
+						}
+						{ MF_CARRIER=(= (* MF>1) CARRIER)
+							{ .L,2
+								.---=20||command 
+								{ .L,n
+									{ .L,6
+										.---=20||command 
+										.---=20||command 
+										{ .L,n
+											{ .L,2
+												.CARRIERID=98||built 
+												{ .L,n
+													.SLOTID=98||built 
+												}
+											}
+										}
+										{ .L,3
+											.---=20||command 
+											.---=20||command 
+											{ .L,n
+												{ .L,2
+													.---=20||command 
+													.---=20||command 
+												}
+											}
+										}
+										.---=20||command 
+										.---=20||command 
+									}
+								}
+							}
+						}
+					}
+					work
+				}
+			}
+		}
+	}
+	{ eh
+		{ S1
+			{ F2=On Line Data (D)
+				{ E
+					{ def
+						{ .L,2
+							.MDLN
+							.SOFTREV
+						}
+					}
+				}
+				{ H
+					{ def
+						.L,0
+					}
+				}
+			}
+			{ F4=Selected Equipment Status Data (SSD)
+				{ E
+					{ def
+						.L,*=SV.,SV_SIZE.
+					}
+				}
+			}
+			{ F12=Status Variable Namelist Reply (SVNRR)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,3
+								.SVID
+								.SVNAME
+								.UNITS
+							}
+						}
+					}
+				}
+			}
+			{ F14=Establish Communication Response (CRA)
+				{ E
+					{ def
+						{ .L,2
+							.COMMACK
+							{ .L,2
+								.MDLN
+								.SOFTREV
+							}
+						}
+					}
+				}
+				{ H
+					{ def
+						{ .L,2
+							.COMMACK
+							.L,0
+						}
+					}
+				}
+			}
+			{ F16=Off Line Acknowledge (OFLA)
+				{ E
+					{ def
+						.OFLACK
+					}
+				}
+			}
+			{ F18=Online Acknowledge (ONLA)
+				{ E
+					{ def
+						.ONLACK
+					}
+				}
+			}
+		}
+		{ S2
+			{ F14=Equipment Constant Data (ECD)
+				{ E
+					{ def
+						{ .L,n
+							.ECV
+						}
+					}
+				}
+			}
+			{ F16=New Equipment Constant Acknowledge (ECA)
+				{ E
+					{ def
+						.EAC
+					}
+				}
+			}
+			{ F18=Date and Time Data (DTD)
+				{ B
+					{ def
+						.TIME
+					}
+				}
+			}
+			{ F22=Remote Command Acknowledge (RCA)
+				{ E
+					{ def
+						.CMDA
+					}
+				}
+			}
+			{ F24=Trace Initialize Acknowledge (TIA)
+				{ E
+					{ def
+						.TIAACK
+					}
+				}
+			}
+			{ F28=Initiate Processing Acknowledge (IPA)
+				{ E
+					{ def
+						.CMDA
+					}
+				}
+			}
+			{ F30=Equipment Constant Namelist (ECN)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,6
+								.ECID
+								.ECNAME
+								.ECMIN
+								.ECMAX
+								.ECDEF
+								.UNITS
+							}
+						}
+					}
+				}
+			}
+			{ F32=Date and Time Set Acknowledge (DTA)
+				{ E
+					{ def
+						.TIACK
+					}
+				}
+			}
+			{ F34=Define Report Acknowledge (DRA)
+				{ E
+					{ def
+						.DRACK
+					}
+				}
+			}
+			{ F36=Link Event Report Acknowledge (LERA)
+				{ E
+					{ def
+						.LRACK
+					}
+				}
+			}
+			{ F38=Enable/Disable Event Report Acknowledge (EERA)
+				{ E
+					{ def
+						.ERACK
+					}
+				}
+			}
+			{ F42=Host Command Acknowledge (HCA)
+				{ E
+					{ def
+						{ .L,2
+							.HCACK
+							{ .L,n
+								{ .L,2
+									.CPNAME
+									.CPACK
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F44=Reset Spooling Acknowledge (RSA)
+				{ E
+					{ def
+						{ .L,2
+							.RSPACK
+							{ .L,n
+								{ .L,3
+									.STRID
+									.STRACK
+									{ .L,n
+										.FCNID
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F50=Enhanced Remote Command Acknowledge
+				{ E
+					{ def
+						{ .L,2
+							.HCACK
+							{ .L,n
+								{ .L,2
+									.CPNAME
+									.CEPACK
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S3
+			{ F18
+				{ E
+					{ def=HEADER-ONLY
+						{ .L,2
+							.CAACK
+							{ .L,n=ERRCT
+								{ .L,2
+									.ERRCODE
+									.ERRTEXT
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S5
+			{ F1=Alarm Report Send (ARS)
+				{ E
+					{ def
+						{ .L,3
+							.ALCD
+							.ALID
+							.ALTX
+						}
+					}
+					cmd=alarm_send
+					exp=Reports a change in or presence of an alarm condition.  One message should be issued when the alarm is set and one message when the alarm is cleared.  Irrecoverable errors and attention flags may not have a corresponding clear message.
+					check=ack=ACKC5
+				}
+			}
+			{ F4=Enable/Disable Alarm Acknowledge (EAA)
+				{ E
+					{ def
+						.ACKC5
+					}
+				}
+			}
+			{ F6=List Alarm Data (LAD)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,3
+								.ALCD
+								.ALID
+								.ALTX
+							}
+						}
+					}
+				}
+			}
+			{ F8=List Enabled Alarm Data (LEAD)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,3
+								.ALCD
+								.ALID
+								.ALTX
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S6
+			{ F1=Trace Data Send (TDS)
+				{ E
+					{ def
+						{ .L,4
+							.TRID
+							.SMPLN
+							.STIME
+							.L,*=SV.,SV_SIZE.
+						}
+					}
+					cmd=send_trace
+					exp=Sends data samples to the host according to the trace setup done by S2F23.  Trace is a time-driven form of equipment status.
+					check=ack=ACKC6
+					{ prereply_cmd=S6F1_prereply
+						type=tcl
+					}
+					{ dataitems
+						SV_TYPE
+						SV_TYPE.
+					}
+				}
+			}
+			{ F3=Discrete Variable Data Send (DVS)
+				{ E
+					{ def
+						{ .L,3
+							.DATAID
+							.CEID
+							{ .L,n
+								{ .L,2
+									.DSID
+									{ .L,n
+										{ .L,2
+											.DVNAME
+											.DVVAL
+										}
+									}
+								}
+							}
+						}
+					}
+					cmd=data_send
+					exp=Any data report initiated by an event, such as completion of a measurement, is called a discrete variable.  The SF reports such data.
+					check=ack=ACKC6
+					{ prereply_cmd=S6F3_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F5=Multi-block Data Send Inquire (MBI)
+				{ E
+					{ def
+						{ .L,2
+							.DATAID
+							.DATALENGTH
+						}
+					}
+					cmd=multi_ok
+					exp=If the discrete data report S6F3, F9, F11, or F13 can involve more than one block, this transaction must precede the transmission.
+					check=ack=GRANT6
+				}
+			}
+			{ F9=Formatted Variable Send (FVS)
+				{ E
+					{ def
+						{ .L,4
+							.PFCD
+							.DATAID
+							.CEID
+							{ .L,n
+								{ .L,2
+									.DSID
+									{ .L,n
+										.DVVAL
+									}
+								}
+							}
+						}
+					}
+					cmd=fdata_send
+					exp=Same as S6F3 except DVNAMEs are supplied in a predefined order known to the host rather than supplying them in the message.
+					check=ack=ACKC6
+					{ prereply_cmd=S6F9_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F11=Event Report Send (ERS)
+				{ E
+					{ def
+						{ .L,3
+							.DATAID
+							.CEID
+							{ .L,n
+								{ .L,2
+									.RPTID
+									{ .L,n
+										.V
+									}
+								}
+							}
+						}
+					}
+					cmd=event_send
+					exp=Send a defined, linked, and enabled group of reports to the host upon the occurrence of an event (CEID).
+					check=ack=ACKC6
+					{ prereply_cmd=S6F11_prereply
+						type=tcl
+					}
+					{ dataitems
+						V_TYPE
+						V_TYPE.
+					}
+				}
+			}
+		}
+		{ S7
+			{ F2=Process Program Load Grant (PPG)
+				{ B
+					{ def
+						.PPGNT
+					}
+				}
+			}
+			{ F4=Process Program Acknowledge (PPA)
+				{ B
+					{ def
+						.ACKC7
+					}
+				}
+			}
+			{ F6=Process Program Data (PPD)
+				{ B
+					{ def
+						{ .L,2
+							.PPID
+							.PPBODY
+						}
+					}
+				}
+			}
+			{ F20
+				{ E
+					{ def=HEADER-ONLY
+						{ .L,n
+							.PPID
+						}
+					}
+				}
+			}
+			{ F24=Formatted Process Program Acknowledge (FPA)
+				{ B
+					{ def
+						.ACKC7
+					}
+				}
+			}
+			{ F26=Formatted Process Program Data (FPD)
+				{ E
+					{ def
+						{ .L,4
+							.PPID
+							.MDLN
+							.SOFTREV
+							{ .L,n
+								{ .L,2
+									.CCODE
+									{ .L,n
+										.PPARM
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S10
+			{ F1=Terminal Request (TRN)
+				{ E
+					{ def
+						{ .L,2
+							.TID
+							.TEXT
+						}
+					}
+					cmd=t_req
+					exp=Send a terminal text message to the host.
+					check=ack=ACKC10
+				}
+			}
+			{ F4=Terminal Display, Single Acknowledge (VTA)
+				{ E
+					{ def
+						.ACKC10
+					}
+				}
+			}
+			{ F6=Terminal Display, Multi-block Acknowledge (VMA)
+				{ E
+					{ def
+						.ACKC10
+					}
+				}
+			}
+			{ F7=Multi-block not allowed (MNN)
+				{ E
+					{ def
+						.TID
+					}
+					cmd=no_multi
+					exp=An error message from a terminal that cannot handle a multi-block message from S10F5.
+				}
+			}
+			{ F10=Broadcast Acknowledge (BCA)
+				{ B
+					{ def
+						.ACKC10
+					}
+				}
+			}
+		}
+		{ S14
+			{ F10
+				{ E
+					{ def=HEADER-ONLY
+						{ .L,3
+							.OBJSPEC
+							{ .L,n=ATTRCT
+								{ .L,2
+									.ATTRID
+									.ATTRDATA
+								}
+							}
+							{ .L,2
+								.OBJACK
+								{ .L,n=ERRCT
+									{ .L,2
+										.ERRCODE
+										.ERRTEXT
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S16
+			{ F7
+				{ E
+					{ def=HEADER-ONLY
+						{ .L,4
+							.TIMESTAMP
+							.PRJOBID
+							.PRJOBMILESTONE
+							{ .L,2
+								.ACK
+								{ .L,n=ERRCT
+									{ .L,2
+										.ERRCODE
+										.ERRTEXT
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F12
+				{ E
+					{ def=HEADER-ONLY
+						{ .L,2
+							.PRJOBID
+							{ .L,2
+								.ACKA
+								{ .L,n=ERRCT
+									{ .L,2
+										.ERRCODE
+										.ERRTEXT
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F16
+				{ E
+					{ def=HEADER-ONLY
+						{ .L,2
+							{ .L,n=PRJOBCT
+								.PRJOBID
+							}
+							{ .L,2
+								.ACKA
+								{ .L,n=ERRCT
+									{ .L,2
+										.ERRCODE
+										.ERRTEXT
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+{ sim
+	{ he
+		{ S1
+			{ F1=Are You There Request (R)
+				{ H
+					def=HEADER-ONLY
+					cmd=areyouthere
+					exp=Establishes if the host or equipment is on-line.
+					{ prereply_cmd=S1F1_prereply
+						type=tcl
+					}
+					usedvs
+				}
+			}
+			{ F3=Selected Equipment Status Request (SSR)
+				{ H
+					{ def
+						{ .L,n
+							.SVID
+						}
+					}
+					cmd=status
+					exp=Request equipment to report selected values of its status.
+					{ prereply_cmd=S1F3_prereply
+						type=tcl
+					}
+					usedvs
+				}
+			}
+			{ F11=Status Variable NameList Request (SVNR)
+				{ H
+					{ def
+						{ .L,n
+							.SVID
+						}
+					}
+					cmd=svidlist
+					exp=Requests identification of status variables from the equipment.
+					usedvs
+				}
+			}
+			{ F13=Establish Communication Request (CR)
+				{ H
+					{ def
+						.L,0
+					}
+					cmd=communicate
+					exp=Sends a message to the equipment to determine if it is online.
+					check=ack=COMMACK
+					{ prereply_cmd=S1F13_prereply
+						type=tcl
+					}
+					usedvs
+				}
+				{ E
+					{ def
+						{ .L,2
+							.MDLN
+							.SOFTREV
+						}
+					}
+					cmd=communicate
+					exp=Sends a message to the host to determine if it is online.
+					check=ack=COMMACK
+				}
+			}
+			{ F15=Request Offline (ROFL)
+				{ H
+					def=HEADER-ONLY
+					cmd=gooffline
+					exp=The host requests that the equipment transition to the OFFLINE state.
+					check=ack=OFLACK
+					usedvs
+					{ prereply_cmd=S1F15_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F17=Request Online (RONL)
+				{ H
+					def=HEADER-ONLY
+					cmd=goonline
+					exp=The host requests that the equipment transition to the ONLINE state.
+					check=ack=ONLACK
+					usedvs
+					{ prereply_cmd=S1F17_prereply
+						type=tcl
+					}
+				}
+			}
+		}
+		{ S2
+			{ F13=Equipment Constant Request (ECR)
+				{ H
+					{ def
+						{ .L,n
+							.ECID
+						}
+					}
+					cmd=eqconstreq
+					exp=Constants such as for calibration, servo gain, alarm limits, data collection mode and other values that are changed infrequently can be obtained using this message.
+					usedvs
+					{ prereply_cmd=S2F13_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F15=New Equipment Constant Send (ECS)
+				{ H
+					{ def
+						{ .L,n
+							{ .L,2
+								.ECID
+								.ECV
+							}
+						}
+					}
+					cmd=eqconstset
+					exp=Change one or more equipment constants.
+					check=ack=EAC
+					usedvs
+					{ prereply_cmd=S2F15_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F17=Date and Time Request (DTR)
+				{ B
+					def=HEADER-ONLY
+					cmd=dtreq
+					exp=Requests the date and time from the host/equipment.
+				}
+			}
+			{ F21=Remote Command Send (RCS)
+				{ H
+					{ def
+						.RCMD
+					}
+					cmd=rcmd
+					exp=Causes an equipment activity to commence or cease, similar to pressing a button on the front panel.
+					check=ack=CMDA
+					usedvs
+					{ prereply_cmd=S2F21_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F23=Trace Initialize Send (TIS)
+				{ H
+					{ def
+						{ .L,5
+							.TRID
+							.DSPER
+							.TOTSMP
+							.REPGSZ
+							{ .L,n
+								.SVID
+							}
+						}
+					}
+					cmd=traceset
+					exp=Sample a subset of equipment status variables as a function of time.
+					check=ack=TIAACK
+					usedvs
+					{ postreply_cmd=S2F23_postreply
+						type=tcl
+					}
+					{ prereply_cmd=S2F23_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F27=Initiate Processing Request (IPR)
+				{ H
+					{ def
+						{ .L,3
+							.LOC
+							.PPID
+							{ .L,n
+								.MID
+							}
+						}
+					}
+					cmd=startprocess
+					exp=Requests equipment to initiate processing of identified material at the specified location in the machine using the specified process program.
+					check=ack=CMDA
+					usedvs
+					{ prereply_cmd=S2F27_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F29=Equipment Constant Namelist Request (ECNR)
+				{ H
+					{ def
+						{ .L,n
+							.ECID
+						}
+					}
+					cmd=ecidlist
+					exp=Retrieve basic information about what equipment constants are available in the equipment.
+					usedvs
+				}
+			}
+			{ F31=Date and Time Set Request (DTS)
+				{ H
+					{ def
+						.TIME
+					}
+					cmd=dtset
+					exp=Synchronize the equipment time with the host time.
+					check=ack=TIACK
+					usedvs
+					{ prereply_cmd=S2F31_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F33=Define Report (DR)
+				{ H
+					{ def
+						{ .L,2
+							.DATAID
+							{ .L,n
+								{ .L,2
+									.RPTID
+									{ .L,n
+										.VID
+									}
+								}
+							}
+						}
+					}
+					cmd=reportdef
+					exp=Define a group of reports made up of Equipment variable IDs for the equipment.
+					check=ack=DRACK
+					usedvs
+					{ prereply_cmd=S2F33_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F35=Link Event Report (LER)
+				{ H
+					{ def
+						{ .L,2
+							.DATAID
+							{ .L,n
+								{ .L,2
+									.CEID
+									{ .L,n
+										.RPTID
+									}
+								}
+							}
+						}
+					}
+					cmd=reportlink
+					exp=Link (n) reports to an event (CEID).  These linked event reports will default to 'disabled' upon linking.  See S2F37 for enabling reports.
+					check=ack=LRACK
+					usedvs
+					{ prereply_cmd=S2F35_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F37=Enable/Disable Event Report (EDER)
+				{ H
+					{ def
+						{ .L,2
+							.CEED
+							{ .L,n
+								.CEID
+							}
+						}
+					}
+					cmd=reportset
+					exp=Enable or disable the reporting for a group of events (CEIDs).
+					usedvs
+					{ prereply_cmd=S2F37_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F41=Host Command Send (HCS)
+				{ H
+					{ def
+						{ .L,2
+							.RCMD
+							{ .L,n
+								{ .L,2
+									.CPNAME
+									.CPVAL
+								}
+							}
+						}
+					}
+					cmd=hcmd
+					exp=Request the equipment to perform the specified remote command with the associated parameters.
+					check=ack=HCACK
+					usedvs
+					{ prereply_cmd=S2F41_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F43=Reset Spooling Streams and Functions (RSSF)
+				{ H
+					{ def
+						{ .L,n
+							{ .L,2
+								.STRID
+								{ .L,n
+									.FCNID
+								}
+							}
+						}
+					}
+					cmd=resetspoolingstrfun
+					exp=Allows the host to select specific streams and functions to be spooled when spooling is active.
+					check=ack=RSPACK
+					usedvs
+					{ prereply_cmd=S2F43_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F49=Enhanced Remote Command
+				{ H
+					{ def
+						{ .L,4
+							.DATAID
+							.OBJSPEC
+							.RCMD
+							{ .L,n
+								{ .L,2
+									.CPNAME
+									.CEPVAL
+								}
+							}
+						}
+					}
+					cmd=enhancedhcmd
+					exp=Host requests an object to perform the specified remote command with its associated parameters. If multi-block, it shall be preceded by the S2,F39/S2,F40 Multi-Block Inquire/Grant transaction.
+					check=ack=HCACK
+					usedvs
+					{ prereply_cmd=S2F49_prereply
+						type=tcl
+					}
+				}
+			}
+		}
+		{ S3
+			{ F17
+				{ H
+					{ def=HEADER-ONLY
+						{ .L,5
+							.DATAID
+							.CARRIERACTION
+							.CARRIERSPEC
+							.PTN
+							{ .L,n=CATTRCT
+								{ .L,2
+									.CATTRID
+									.CATTRDATA
+								}
+							}
+						}
+					}
+					usedvs
+					{ prereply_cmd=S3F17_prereply
+						type=tcl
+					}
+				}
+			}
+		}
+		{ S5
+			{ F2=Alarm Report Acknowledge (ARA)
+				{ H
+					{ def
+						.ACKC5
+					}
+				}
+			}
+			{ F3=Enable/Disable Alarm Send (EAS)
+				{ H
+					{ def
+						{ .L,2
+							.ALED
+							.ALID
+						}
+					}
+					cmd=alarmset
+					exp=Enables or disables alarm reporting to the host.
+					check=ack=ACKC5
+					usedvs
+					{ prereply_cmd=S5F3_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F5=List Alarms Request (LAR)
+				{ H
+					{ def
+						{ .L,n
+							.ALID
+						}
+					}
+					cmd=alarmlist
+					exp=Requests the equipment to provide alarm definitions.
+					usedvs
+				}
+			}
+			{ F7=List Enabled Alarm Request (LEAR)
+				{ H
+					def=HEADER-ONLY
+					cmd=alarmenabled
+					exp=List alarms which are enabled.
+					usedvs
+				}
+			}
+		}
+		{ S6
+			{ F2=Trace Data Acknowledge (TDA)
+				{ H
+					{ def
+						.ACKC6
+					}
+				}
+			}
+			{ F4=Discrete Variable Data Acknowledge (DVA)
+				{ H
+					{ def
+						.ACKC6
+					}
+				}
+			}
+			{ F6=Multi-block Grant (MBG)
+				{ H
+					{ def
+						.GRANT6
+					}
+				}
+			}
+			{ F10=Formatted Variable Acknowledge (FVA)
+				{ H
+					{ def
+						.ACKC6
+					}
+				}
+			}
+			{ F12=Event Report Acknowledge (ERA)
+				{ H
+					{ def
+						.ACKC6
+					}
+				}
+			}
+		}
+		{ S7
+			{ F1=Process Program Load Inquire (PPI)
+				{ H
+					{ def
+						{ .L,2
+							.PPID
+							.LENGTH
+						}
+					}
+					cmd=pplinquire
+					exp=Requests permission to transfer a process program down to the equipment via S7F3 (unformatted) or S7F23 (formatted) process program download.
+					check=ack=PPGNT
+					usedvs
+					{ prereply_cmd=S7F1_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F3=Process Program Send (PPS)
+				{ H
+					{ def
+						{ .L,2
+							.PPID
+							.PPBODY
+						}
+					}
+					cmd=ppdownload
+					exp=Sends the named process program to the equipment.
+					check=ack=ACKC7
+					usedvs
+					{ prereply_cmd=S7F3_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F5=Process Program Request (PPR)
+				{ H
+					{ def
+						.PPID
+					}
+					cmd=ppupload
+					exp=Requests transfer of a process program from the equipment to the host.
+					nodata
+					usedvs
+				}
+			}
+			{ F19
+				{ H
+					def=HEADER-ONLY
+					usedvs
+				}
+			}
+			{ F23=Formatted Process Program Send (FPS)
+				{ H
+					{ def
+						{ .L,4
+							.PPID
+							.MDLN
+							.SOFTREV
+							{ .L,n
+								{ .L,2
+									.CCODE
+									{ .L,n
+										.PPARM
+									}
+								}
+							}
+						}
+					}
+					cmd=fppdownload
+					exp=Download a formatted process program to the equipment from the host.
+					check=ack=ACKC7
+					usedvs
+					{ prereply_cmd=S7F23_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F25=Formatted Process Program Request (FPR)
+				{ H
+					{ def
+						.PPID
+					}
+					cmd=fppupload
+					exp=Requests transfer of a process program from the equipment to the host.
+					nodata
+					usedvs
+				}
+			}
+		}
+		{ S10
+			{ F2=Terminal Request Acknowledge (TRA)
+				{ H
+					{ def
+						.ACKC10
+					}
+				}
+			}
+			{ F3=Terminal Display, Single (VTN)
+				{ H
+					{ def
+						{ .L,2
+							.TID
+							.TEXT
+						}
+					}
+					cmd=display1
+					exp=Display a single line of text on the equipment terminal.
+					check=ack=ACKC10
+					usedvs
+					{ prereply_cmd=S10F3_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F5=Terminal Display, Multi-block (VMN)
+				{ H
+					{ def
+						{ .L,2
+							.TID
+							{ .L,n
+								.TEXT
+							}
+						}
+					}
+					cmd=displayn
+					exp=Display <n> lines of text on the equipment terminal.
+					check=ack=ACKC10
+					usedvs
+					{ prereply_cmd=S10F5_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F8
+				{ B
+					def=HEADER-ONLY
+				}
+			}
+			{ F9=Broadcast (BCN)
+				{ H
+					{ def
+						.TEXT
+					}
+					cmd=displayall
+					exp=Display a single line of text on ALL terminals in the equipment.
+					check=ack=ACKC10
+					usedvs
+					{ prereply_cmd=S10F9_prereply
+						type=tcl
+					}
+				}
+			}
+		}
+		{ S14
+			{ F9
+				{ H
+					{ def=HEADER-ONLY
+						{ .L,3
+							.OBJSPEC
+							.OBJTYPE
+							{ .L,n=ATTRCT
+								{ .L,2
+									.ATTRID
+									.ATTRDATA
+								}
+							}
+						}
+					}
+					usedvs
+					{ prereply_cmd=S14F9_prereply
+						type=tcl
+					}
+				}
+			}
+		}
+		{ S16
+			{ F8
+				{ H
+					def=HEADER-ONLY
+				}
+			}
+			{ F11
+				{ H
+					{ def=HEADER-ONLY
+						{ .L,7
+							.DATAID
+							.PRJOBID
+							.MF
+							.L,n
+							{ .L,3
+								.PRRECIPEMETHOD
+								.RCPSPEC
+								{ .L,n=RCPPARCT
+									{ .L,2
+										.RCPPARNM
+										.RCPPARVAL
+									}
+								}
+							}
+							.PRPROCESSSTART
+							.PRPAUSEEVENT
+						}
+					}
+					{ labels
+						{ MF_CARRIER=(= (* MF) CARRIER)
+							{ .L,4
+								.---
+								.---
+								.---
+								{ .L,n=CARRIERCT
+									{ .L,2
+										.CARRIERID
+										{ .L,n=SLOTIDCT
+											.SLOTID
+										}
+									}
+								}
+							}
+						}
+						{ MF_MID=(= (* MF) MID)
+							{ .L,4
+								.---
+								.---
+								.---
+								{ .L,n=MIDCT
+									.MID
+								}
+							}
+						}
+					}
+					work
+					usedvs
+					{ prereply_cmd=S16F11_prereply
+						type=tcl
+					}
+				}
+			}
+			{ F15
+				{ H
+					{ def=HEADER-ONLY
+						{ .L,2
+							.DATAID
+							{ .L,n=PRJOBCT
+								{ .L,6
+									.PRJOBID
+									.MF
+									.L,n
+									{ .L,3
+										.PRRECIPEMETHOD
+										.RCPSPEC
+										{ .L,n=RCPPARCT
+											{ .L,2
+												.RCPPARNM
+												.RCPPARVAL
+											}
+										}
+									}
+									.PRPROCESSSTART
+									.PRPAUSEEVENT
+								}
+							}
+						}
+					}
+					{ labels
+						{ MF_CARRIER=(= (* MF) CARRIER)
+							{ .L,2
+								.---=20||command 
+								{ .L,n
+									{ .L,3
+										.---=20||command 
+										.---=20||command 
+										{ .L,n=CARRIERCT
+											{ .L,2
+												.CARRIERID=20||command 
+												{ .L,n=SLOTIDCT
+													.SLOTID=51||command 
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						{ MF_MID=(= (* MF) MID)
+							{ .L,2
+								.---=20||command 
+								{ .L,n
+									{ .L,3
+										.---=20||command 
+										.---=20||command 
+										{ .L,n=MIDCT
+											.MID=20||command 
+										}
+									}
+								}
+							}
+						}
+					}
+					work
+					usedvs
+					{ prereply_cmd=S16F15_prereply
+						type=tcl
+					}
+				}
+			}
+		}
+	}
+	{ eh
+		{ S1
+			{ F2=On Line Data (D)
+				{ E
+					{ def
+						{ .L,2
+							.MDLN=20||built TEXT
+							.SOFTREV=20||built TEXT
+						}
+					}
+				}
+				{ H
+					{ def
+						.L,0
+					}
+				}
+			}
+			{ F4=Selected Equipment Status Data (SSD)
+				{ E
+					{ def
+						{ .L,n
+							.SV=20||built 
+						}
+					}
+				}
+			}
+			{ F12=Status Variable Namelist Reply (SVNRR)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,3
+								.SVID=20||const||const TEXT
+								.SVNAME=20||const||const TEXT
+								.UNITS=20||const||const TEXT
+							}
+						}
+					}
+				}
+			}
+			{ F14=Establish Communication Response (CRA)
+				{ E
+					{ def
+						{ .L,2
+							.COMMACK=10||built 00
+							{ .L,2
+								.MDLN=20||built TEXT
+								.SOFTREV=20||built TEXT
+							}
+						}
+					}
+				}
+				{ H
+					{ def
+						{ .L,2
+							.COMMACK=10
+							.L,0
+						}
+					}
+				}
+			}
+			{ F16=Off Line Acknowledge (OFLA)
+				{ E
+					{ def
+						.OFLACK=10||built 00
+					}
+				}
+			}
+			{ F18=Online Acknowledge (ONLA)
+				{ E
+					{ def
+						.ONLACK=10||built 00
+					}
+				}
+			}
+		}
+		{ S2
+			{ F14=Equipment Constant Data (ECD)
+				{ E
+					{ def
+						{ .L,n
+							.ECV=10||const||const 00
+						}
+					}
+				}
+			}
+			{ F16=New Equipment Constant Acknowledge (ECA)
+				{ E
+					{ def
+						.EAC=10||built 00
+					}
+				}
+			}
+			{ F18=Date and Time Data (DTD)
+				{ B
+					{ def
+						.TIME=20||const||const TEXT
+					}
+				}
+			}
+			{ F22=Remote Command Acknowledge (RCA)
+				{ E
+					{ def
+						.CMDA=31||built 0
+					}
+				}
+			}
+			{ F24=Trace Initialize Acknowledge (TIA)
+				{ E
+					{ def
+						.TIAACK=10||built 00
+					}
+				}
+			}
+			{ F28=Initiate Processing Acknowledge (IPA)
+				{ E
+					{ def
+						.CMDA=31||built 0
+					}
+				}
+			}
+			{ F30=Equipment Constant Namelist (ECN)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,6
+								.ECID=20||const||const TEXT
+								.ECNAME=20||const||const TEXT
+								.ECMIN=10||const||const 00
+								.ECMAX=10||const||const 00
+								.ECDEF=10||const||const 00
+								.UNITS=20||const||const TEXT
+							}
+						}
+					}
+				}
+			}
+			{ F32=Date and Time Set Acknowledge (DTA)
+				{ E
+					{ def
+						.TIACK=10||built 00
+					}
+				}
+			}
+			{ F34=Define Report Acknowledge (DRA)
+				{ E
+					{ def
+						.DRACK=10||built 00
+					}
+				}
+			}
+			{ F36=Link Event Report Acknowledge (LERA)
+				{ E
+					{ def
+						.LRACK=10||built 00
+					}
+				}
+			}
+			{ F38=Enable/Disable Event Report Acknowledge (EERA)
+				{ E
+					{ def
+						.ERACK=10||built 00
+					}
+				}
+			}
+			{ F42=Host Command Acknowledge (HCA)
+				{ E
+					{ def
+						{ .L,2
+							.HCACK=20||built 00
+							{ .L,n
+								{ .L,2
+									.CPNAME=20||const||const TEXT
+									.CPACK=10||const||const 00
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F44=Reset Spooling Acknowledge (RSA)
+				{ E
+					{ def
+						{ .L,2
+							.RSPACK=10||built 00
+							{ .L,n
+								{ .L,3
+									.STRID=51||const||const 1
+									.STRACK=10||const||const 00
+									{ .L,n
+										.FCNID=51||const||const 1
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F50=Enhanced Remote Command Acknowledge
+				{ E
+					{ def
+						{ .L,2
+							.HCACK=10||built 00
+							{ .L,n
+								{ .L,2
+									.CPNAME=20||const||const TEXT
+									.CEPACK=51||const||const 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S3
+			{ F18
+				{ E
+					{ def
+						{ .L,2
+							.CAACK=10||built 00
+							{ .L,2
+								{ .L,2
+									.ERRCODE=51||const 11
+									.ERRTEXT=20||const ERROR11
+								}
+								{ .L,2
+									.ERRCODE=51||const 22
+									.ERRTEXT=20||const ERROR22
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S5
+			{ F1=Alarm Report Send (ARS)
+				{ E
+					{ def
+						{ .L,3
+							.ALCD=10
+							.ALID=31
+							.ALTX=20
+						}
+					}
+					cmd=alarm_send
+					{ exp=Reports a change in or presence of an alarm condition.  One message should be issued when the alarm is set and one message when the alarm is cleared.  Irrecoverable errors and attention flags may not have a corresponding clear message.
+						ioparams=1
+					}
+					check=ack=ACKC5
+					exsyn=
+				}
+			}
+			{ F4=Enable/Disable Alarm Acknowledge (EAA)
+				{ E
+					{ def
+						.ACKC5=10||built 00
+					}
+				}
+			}
+			{ F6=List Alarm Data (LAD)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,3
+								.ALCD=10||const||const 00
+								.ALID=31||const||const 1
+								.ALTX=20||const||const TEXT
+							}
+						}
+					}
+				}
+			}
+			{ F8=List Enabled Alarm Data (LEAD)
+				{ E
+					{ def
+						{ .L,n
+							{ .L,3
+								.ALCD=10||const||const 00
+								.ALID=31||const||const 1
+								.ALTX=20||const||const TEXT
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S6
+			{ F1=Trace Data Send (TDS)
+				{ E
+					{ def
+						{ .L,4
+							.TRID=20
+							.SMPLN=31
+							.STIME=20
+							{ .L,3
+								.SV=20
+								.UNNAMED=52||const 777
+								{ .L,2
+									.UNNAMED=20||const 888
+									.UNNAMED=20||const ednd
+								}
+							}
+						}
+					}
+					cmd=send_trace
+					{ exp=Sends data samples to the host according to the trace setup done by S2F23.  Trace is a time-driven form of equipment status.
+						ioparams=1
+					}
+					check=ack=ACKC6
+					exsyn=
+				}
+			}
+			{ F3=Discrete Variable Data Send (DVS)
+				{ E
+					{ def
+						{ .L,3
+							.DATAID=20
+							.CEID=20
+							{ .L,n
+								{ .L,2
+									.DSID=20
+									{ .L,n
+										{ .L,2
+											.DVNAME=20
+											.DVVAL=10
+										}
+									}
+								}
+							}
+						}
+					}
+					cmd=data_send
+					exp=Any data report initiated by an event, such as completion of a measurement, is called a discrete variable.  The SF reports such data.
+					check=ack=ACKC6
+				}
+			}
+			{ F5=Multi-block Data Send Inquire (MBI)
+				{ E
+					{ def
+						{ .L,2
+							.DATAID=20
+							.DATALENGTH=31
+						}
+					}
+					cmd=multi_ok
+					exp=If the discrete data report S6F3, F9, F11, or F13 can involve more than one block, this transaction must precede the transmission.
+					check=ack=GRANT6
+				}
+			}
+			{ F9=Formatted Variable Send (FVS)
+				{ E
+					{ def
+						{ .L,4
+							.PFCD=10
+							.DATAID=20
+							.CEID=20
+							{ .L,n
+								{ .L,2
+									.DSID=20
+									{ .L,n
+										.DVVAL=10
+									}
+								}
+							}
+						}
+					}
+					cmd=fdata_send
+					exp=Same as S6F3 except DVNAMEs are supplied in a predefined order known to the host rather than supplying them in the message.
+					check=ack=ACKC6
+				}
+			}
+			{ F11=Event Report Send (ERS)
+				{ E
+					{ def
+						{ .L,3
+							.DATAID=20
+							.CEID=20
+							{ .L,n
+								{ .L,2
+									.RPTID=20||command ID1
+									{ .L,n
+										.V=20||command V11
+									}
+								}
+							}
+						}
+					}
+					cmd=event_send
+					{ exp=Send a defined, linked, and enabled group of reports to the host upon the occurrence of an event (CEID).
+						ioparams=1
+					}
+					check=ack=ACKC6
+					exsyn=
+				}
+			}
+		}
+		{ S7
+			{ F2=Process Program Load Grant (PPG)
+				{ E
+					{ def
+						.PPGNT=10||built 00
+					}
+				}
+			}
+			{ F4=Process Program Acknowledge (PPA)
+				{ E
+					{ def
+						.ACKC7=10||built 00
+					}
+				}
+			}
+			{ F6=Process Program Data (PPD)
+				{ B
+					{ def
+						{ .L,2
+							.PPID=10||const||const 00
+							.PPBODY=10||const||const 00
+						}
+					}
+				}
+			}
+			{ F20
+				{ E
+					{ def
+						{ .L,2
+							.PPID=20||const PPID1
+							.UNNAMED=20||const PPID2
+						}
+					}
+				}
+			}
+			{ F24=Formatted Process Program Acknowledge (FPA)
+				{ E
+					{ def
+						.ACKC7=10||built 00
+					}
+				}
+			}
+			{ F26=Formatted Process Program Data (FPD)
+				{ E
+					{ def
+						{ .L,4
+							.PPID=10||const||const 00
+							.MDLN=20||const||const TEXT
+							.SOFTREV=20||const||const TEXT
+							{ .L,n
+								{ .L,2
+									.CCODE=32||const||const 2
+									{ .L,n
+										.PPARM=11||const||const 00
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S10
+			{ F1=Terminal Request (TRN)
+				{ E
+					{ def
+						{ .L,2
+							.TID=10
+							.TEXT=10
+						}
+					}
+					cmd=t_req
+					exp=Send a terminal text message to the host.
+					check=ack=ACKC10
+				}
+			}
+			{ F4=Terminal Display, Single Acknowledge (VTA)
+				{ E
+					{ def
+						.ACKC10=10||built 00
+					}
+				}
+			}
+			{ F6=Terminal Display, Multi-block Acknowledge (VMA)
+				{ E
+					{ def
+						.ACKC10=10||built 00
+					}
+				}
+			}
+			{ F7=Multi-block not allowed (MNN)
+				{ E
+					{ def
+						.TID=10
+					}
+					cmd=no_multi
+					exp=An error message from a terminal that cannot handle a multi-block message from S10F5.
+				}
+			}
+			{ F10=Broadcast Acknowledge (BCA)
+				{ E
+					{ def
+						.ACKC10=10||built 00
+					}
+				}
+			}
+		}
+		{ S14
+			{ F10
+				{ E
+					{ def
+						{ .L,3
+							.OBJSPEC=20||const||const||const 
+							{ .L,n
+								{ .L,2
+									.ATTRID=20||const||const||const 
+									.ATTRDATA=20||const||const||const 
+								}
+							}
+							{ .L,2
+								.OBJACK=10||built 00
+								{ .L,n
+									{ .L,2
+										.ERRCODE=51||const||const||const 
+										.ERRTEXT=20||const||const||const 
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ S16
+			{ F7
+				{ E
+					{ def
+						{ .L,4
+							.TIMESTAMP=20||command 
+							.PRJOBID=20||command 
+							.PRJOBMILESTONE=20||command 
+							{ .L,2
+								.ACK=10||const 00
+								{ .L,n
+									{ .L,2
+										.ERRCODE=51||command 
+										.ERRTEXT=20||command 
+									}
+								}
+							}
+						}
+					}
+					cmd=pjalertnotify
+					{ exp=
+						ioparams=1
+					}
+					exsyn=
+				}
+			}
+			{ F12
+				{ E
+					{ def
+						{ .L,2
+							.PRJOBID=20||const||const||const 
+							{ .L,2
+								.ACKA=10||built 00
+								{ .L,n
+									{ .L,2
+										.ERRCODE=51||built||const||const 
+										.ERRTEXT=20||built||const||const 
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{ F16
+				{ E
+					{ def
+						{ .L,2
+							{ .L,2
+								.PRJOBID=20||const JOB1
+								.PRJOBID=20||const JOB2
+							}
+							{ .L,2
+								.ACKA=20||built 00
+								{ .L,1
+									{ .L,2
+										.ERRCODE=51||const 3
+										.ERRTEXT=20||const Error 3
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+{ flags
+	contiguous_suffixes=TRUE
+}

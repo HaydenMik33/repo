@@ -1,0 +1,12 @@
+{ sys
+	{ eq
+		{ const
+			sxid
+		}
+		{ eqid
+			{ EQ99
+				sxid=0
+			}
+		}
+	}
+}

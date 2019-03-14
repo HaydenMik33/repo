@@ -1,0 +1,43 @@
+03/13/19: 13:22:28.339: Executing: an_S1F1_prereply {prereply currenv=generic_handler } generic_handler
+03/13/19: 13:22:28.340: starting AnObjInterpProc
+03/13/19: 13:22:28.340: Invoking procedure
+03/13/19: 13:22:28.340: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-01gw_log an_S1F1_prereply: starting "
+03/13/19: 13:22:28.340: SX_evalstr() returned 100
+03/13/19: 13:22:28.340: Executing: do=lg name=6-6-EVAP-01gw_log an_S1F1_prereply: starting 
+03/13/19: 13:22:28.340: reply=0 command=lg comment="Success" data=.
+03/13/19: 13:22:28.341: Checking: "restore file=%s [variable=%s] [parse [level=%d]] [trailing_newline=%s]" against: "do=restore file=../../6-6-EVAP-01/simdata.dv variable=simdata currenv=0"
+03/13/19: 13:22:28.341: SX_evalstr() returned 100
+03/13/19: 13:22:28.341: an_cmd executing: do=restore file=../../6-6-EVAP-01/simdata.dv variable=simdata currenv=0
+03/13/19: 13:22:28.341: reply=0 command=restore comment="Success" data=.
+03/13/19: 13:22:28.341: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-01gw_log checkGlobalFlags: starting "
+03/13/19: 13:22:28.342: SX_evalstr() returned 100
+03/13/19: 13:22:28.342: Executing: do=lg name=6-6-EVAP-01gw_log checkGlobalFlags: starting 
+03/13/19: 13:22:28.342: reply=0 command=lg comment="Success" data=.
+03/13/19: 13:22:28.342: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-01gw_log checkGlobalFlags: checking TransactionAbort= "
+03/13/19: 13:22:28.342: SX_evalstr() returned 100
+03/13/19: 13:22:28.342: Executing: do=lg name=6-6-EVAP-01gw_log checkGlobalFlags: checking TransactionAbort= 
+03/13/19: 13:22:28.342: reply=0 command=lg comment="Success" data=.
+03/13/19: 13:22:28.342: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-01gw_log checkGlobalFlags: returning true "
+03/13/19: 13:22:28.343: SX_evalstr() returned 100
+03/13/19: 13:22:28.343: Executing: do=lg name=6-6-EVAP-01gw_log checkGlobalFlags: returning true 
+03/13/19: 13:22:28.343: reply=0 command=lg comment="Success" data=.
+03/13/19: 13:22:28.343: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-6-EVAP-01gw_log an_S1F1_prereply: ending "
+03/13/19: 13:22:28.343: SX_evalstr() returned 100
+03/13/19: 13:22:28.343: Executing: do=lg name=6-6-EVAP-01gw_log an_S1F1_prereply: ending 
+03/13/19: 13:22:28.343: reply=0 command=lg comment="Success" data=.
+03/13/19: 13:22:28.343: Procedure returned 0
+03/13/19: 13:22:28.344: leaving AnObjInterpProc
+03/13/19: 13:22:28.344: Done executing Tcl command
+03/13/19: 13:22:28.344: Setting interpreter result to:
+reply=0 command=lg comment="Success"
+03/13/19: 13:22:28.344:  generic_handler executing sxreply
+03/13/19: 13:22:28.344: Sending SECS message.
+03/13/19: 13:22:28.345:  generic_handler executing distribute
+03/13/19: 13:22:28.345: 	No servers monitoring at present
+03/13/19: 13:22:28.345: generic_handler returned 0
+03/13/19: 13:22:28.345: Message ignored.
+03/13/19: 13:22:28.345: Checking queue.
+*********************************************
+03/13/19: 16:57:55.246: Server is terminating.
+03/13/19: 16:57:55.247: Not removing message queue, localexitflag=1
+03/13/19: 16:57:55.249: Exiting server.

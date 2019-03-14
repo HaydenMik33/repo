@@ -1,0 +1,1101 @@
+{ eqcmds
+	{ areyouthere=S1F1
+		timeout=30
+	}
+	{ status=S1F3
+		timeout=30
+		postreceive_cmd=S1F3_postreceive
+	}
+	{ svidlist=S1F11
+		timeout=30
+	}
+	{ communicate=S1F13
+		timeout=30
+	}
+	{ gooffline=S1F15
+		timeout=30
+	}
+	{ goonline=S1F17
+		timeout=30
+	}
+	{ eqconstreq=S2F13
+		timeout=30
+		postreceive_cmd=S2F13_postreceive
+	}
+	{ eqconstset=S2F15
+		timeout=30
+	}
+	{ dtreq=S2F17
+		timeout=30
+	}
+	{ rcmd=S2F21
+		timeout=30
+	}
+	{ traceset=S2F23
+		timeout=30
+	}
+	{ startprocess=S2F27
+		timeout=30
+	}
+	{ ecidlist=S2F29
+		timeout=30
+	}
+	{ dtset=S2F31
+		timeout=30
+	}
+	{ reportdef=S2F33
+		timeout=30
+	}
+	{ reportlink=S2F35
+		timeout=30
+	}
+	{ reportset=S2F37
+		timeout=30
+	}
+	{ hcmd=S2F41
+		timeout=30
+	}
+	{ resetspoolingstrfun=S2F43
+		timeout=30
+	}
+	{ enhancedhcmd=S2F49
+		timeout=30
+	}
+	{ carrieraction=S3F17
+		timeout=30
+	}
+	{ alarmset=S5F3
+		timeout=30
+	}
+	{ alarmlist=S5F5
+		timeout=30
+	}
+	{ alarmenabled=S5F7
+		timeout=30
+	}
+	{ pplinquire=S7F1
+		timeout=30
+	}
+	{ ppdownload=S7F3
+		timeout=30
+	}
+	{ ppupload=S7F5
+		timeout=30
+		receive_flags=nodata
+	}
+	{ eppdrequest=S7F19
+		timeout=30
+		postreceive_cmd=S7F19_postreceive
+	}
+	{ fppdownload=S7F23
+		timeout=30
+	}
+	{ fppupload=S7F25
+		timeout=30
+		receive_flags=nodata
+	}
+	{ display1=S10F3
+		timeout=30
+	}
+	{ displayn=S10F5
+		timeout=30
+	}
+	{ displayall=S10F9
+		timeout=30
+	}
+	{ createobj=S14F9
+		timeout=30
+	}
+	{ pjcreateenh=S16F11
+		timeout=30
+	}
+	{ pjcreatemulti=S16F15
+		timeout=30
+	}
+}
+{ sys
+	{ sxencode
+		{ 1,3=TEMPLATE
+			{ 1=LIST
+				{ 1=(DV)ncparms>SVID
+					type=(DV)ncparms>SVID_TYPE
+				}
+			}
+		}
+		{ 1,11=TEMPLATE
+			{ 1=LIST
+				{ 1=(DV)ncparms>SVID
+					type=ASC
+				}
+			}
+		}
+		{ 1,13
+			1=LIST 0
+		}
+		{ 2,13=TEMPLATE
+			{ 1=LIST
+				{ 1=(DV)ncparms>ECID
+					type=ASC
+				}
+			}
+		}
+		{ 2,15=TEMPLATE
+			{ 1=LIST
+				{ 1=LIST 2
+					{ 1=(DV)ncparms>ECID
+						type=ASC
+					}
+					{ 2=(DV)ncparms>ECV
+						type=BIN
+					}
+				}
+			}
+		}
+		{ 2,21
+			{ 1=(* >ncparms>RCMD)
+				type=ASC
+			}
+		}
+		{ 2,23=TEMPLATE
+			{ 1=LIST 5
+				{ 1=(* >ncparms>TRID)
+					type=(* >ncparms>TRID_TYPE)
+				}
+				{ 2=(* >ncparms>DSPER)
+					type=(* >ncparms>DSPER_TYPE)
+				}
+				{ 3=(* >ncparms>TOTSMP)
+					type=(* >ncparms>TOTSMP_TYPE)
+				}
+				{ 4=(* >ncparms>REPGSZ)
+					type=(* >ncparms>REPGSZ_TYPE)
+				}
+				{ 5=LIST
+					{ 1=(DV)ncparms>SVID
+						type=(DV)ncparms>SVID_TYPE
+					}
+				}
+			}
+		}
+		{ 2,27=TEMPLATE
+			{ 1=LIST 3
+				{ 1=(* >ncparms>LOC)
+					type=(* >ncparms>LOC_TYPE)
+				}
+				{ 2=(* >ncparms>PPID)
+					type=(* >ncparms>PPID_TYPE)
+				}
+				{ 3=LIST
+					{ 1=(DV)ncparms>MID
+						type=(DV)ncparms>MID_TYPE
+					}
+				}
+			}
+		}
+		{ 2,29=TEMPLATE
+			{ 1=LIST
+				{ 1=(DV)ncparms>ECID
+					type=ASC
+				}
+			}
+		}
+		{ 2,31
+			{ 1=(* >ncparms>TIME)
+				type=ASC
+			}
+		}
+		{ 2,33=TEMPLATE
+			{ 1=LIST 2
+				{ 1=(* >ncparms>DATAID)
+					type=(* >ncparms>DATAID_TYPE)
+				}
+				{ 2=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>RPTID
+							type=(DV)ncparms>RPTID_TYPE
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>VID
+								type=(DV)ncparms>VID_TYPE
+							}
+						}
+					}
+				}
+			}
+		}
+		{ 2,35=TEMPLATE
+			{ 1=LIST 2
+				{ 1=(* >ncparms>DATAID)
+					type=(* >ncparms>DATAID_TYPE)
+				}
+				{ 2=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>CEID
+							type=(DV)ncparms>CEID_TYPE
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>RPTID
+								type=(DV)ncparms>RPTID_TYPE
+							}
+						}
+					}
+				}
+			}
+		}
+		{ 2,37=TEMPLATE
+			{ 1=LIST 2
+				{ 1=(* >ncparms>CEED)
+					type=(* >ncparms>CEED_TYPE)
+				}
+				{ 2=LIST
+					{ 1=(DV)ncparms>CEID
+						type=(DV)ncparms>CEID_TYPE
+					}
+				}
+			}
+		}
+		{ 2,41=TEMPLATE
+			{ 1=LIST 2
+				{ 1=(* >ncparms>RCMD)
+					type=(* >ncparms>RCMD_TYPE)
+				}
+				{ 2=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>CPNAME
+							type=(DV)ncparms>CPNAME_TYPE
+						}
+						{ 2=(DV)ncparms>CPVAL
+							type=(DV)ncparms>CPVAL_TYPE
+						}
+					}
+				}
+			}
+		}
+		{ 2,43=TEMPLATE
+			{ 1=LIST
+				{ 1=LIST 2
+					{ 1=(DV)ncparms>STRID
+						type=UI1
+					}
+					{ 2=LIST
+						{ 1=(DV)ncparms>FCNID
+							type=UI1
+						}
+					}
+				}
+			}
+		}
+		{ 2,49=TEMPLATE
+			{ 1=LIST 4
+				{ 1=(* >ncparms>DATAID)
+					type=(* >ncparms>DATAID_TYPE)
+				}
+				{ 2=(* >ncparms>OBJSPEC)
+					type=(* >ncparms>OBJSPEC_TYPE)
+				}
+				{ 3=(* >ncparms>RCMD)
+					type=(* >ncparms>RCMD_TYPE)
+				}
+				4=LIST
+			}
+		}
+		{ 2,49,DEFAULT=(!= (* RCMD) PP-SELECT)
+			{ 1=LIST 4
+				{ 4=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>CPNAME
+							type=ASC
+						}
+						{ 2=(DV)ncparms>CEPVAL
+							type=ASC
+						}
+					}
+				}
+			}
+		}
+		{ 2,49,PP-SELECT=(= (* RCMD) PP-SELECT)
+			{ 1=LIST 4
+				{ 4=LIST 2
+					{ 1=LIST 2
+						{ 1=PORTID
+							type=ASC
+						}
+						{ 2=(* >ncparms>PORTID)
+							type=(* >ncparms>PORTID_TYPE)
+						}
+					}
+					{ 2=LIST 2
+						{ 1=RECIPES
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=LIST 2
+								{ 1=LIST 2
+									{ 1=RECIPEID
+										type=ASC
+									}
+									{ 2=(DV)ncparms>RECIPEID
+										type=(DV)ncparms>RECIPEID_TYPE
+									}
+								}
+								{ 2=LIST 2
+									{ 1=SLOTMAP
+										type=ASC
+									}
+									{ 2=LIST
+										{ 1=(DV)ncparms>SLOTID
+											type=(DV)ncparms>SLOTID_TYPE
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		{ 3,17=TEMPLATE
+			{ 1=LIST 5
+				{ 1=(* >ncparms>DATAID)
+					type=(* >ncparms>DATAID_TYPE)
+				}
+				{ 2=(* >ncparms>CARRIERACTION)
+					type=(* >ncparms>CARRIERACTION_TYPE)
+				}
+				{ 3=(* >ncparms>CARRIERSPEC)
+					type=(* >ncparms>CARRIERSPEC_TYPE)
+				}
+				{ 4=(* >ncparms>PTN)
+					type=(* >ncparms>PTN_TYPE)
+				}
+				{ 5=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>CATTRID
+							type=(DV)ncparms>CATTRID_TYPE
+						}
+						{ 2=(DV)ncparms>CATTRDATA
+							type=(DV)ncparms>CATTRDATA_TYPE
+						}
+					}
+				}
+			}
+		}
+		{ 5,2
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 5,3
+			{ 1=LIST 2
+				{ 1=(* >ncparms>ALED)
+					type=(* >ncparms>ALED_TYPE)
+				}
+				{ 2=(* >ncparms>ALID)
+					type=(* >ncparms>ALID_TYPE)
+				}
+			}
+		}
+		{ 5,5=TEMPLATE
+			{ 1=LIST
+				{ 1=(DV)ncparms>ALID
+					type=SI1
+				}
+			}
+		}
+		{ 6,2
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 6,4
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 6,6
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 6,10
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 6,12
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 7,1
+			{ 1=LIST 2
+				{ 1=(* >ncparms>PPID)
+					type=BIN
+				}
+				{ 2=(* >ncparms>LENGTH)
+					type=SI2
+				}
+			}
+		}
+		{ 7,3
+			{ 1=LIST 2
+				{ 1=(* >ncparms>PPID)
+					type=BIN
+				}
+				{ 2=(* >ncparms>PPBODY)
+					type=BIN
+				}
+			}
+		}
+		{ 7,5
+			{ 1=(* >ncparms>PPID)
+				type=BIN
+			}
+		}
+		{ 7,23=TEMPLATE
+			{ 1=LIST 4
+				{ 1=(* >ncparms>PPID)
+					type=BIN
+				}
+				{ 2=(* >ncparms>MDLN)
+					type=ASC
+				}
+				{ 3=(* >ncparms>SOFTREV)
+					type=ASC
+				}
+				{ 4=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>CCODE
+							type=SI2
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>PPARM
+								type=BOOL
+							}
+						}
+					}
+				}
+			}
+		}
+		{ 7,25
+			{ 1=(* >ncparms>PPID)
+				type=BIN
+			}
+		}
+		{ 10,2
+			{ 1=00
+				type=BIN
+			}
+		}
+		{ 10,3
+			{ 1=LIST 2
+				{ 1=(* >ncparms>TID)
+					type=BIN
+				}
+				{ 2=(* >ncparms>TEXT)
+					type=BIN
+				}
+			}
+		}
+		{ 10,5=TEMPLATE
+			{ 1=LIST 2
+				{ 1=(* >ncparms>TID)
+					type=BIN
+				}
+				{ 2=LIST
+					{ 1=(DV)ncparms>TEXT
+						type=BIN
+					}
+				}
+			}
+		}
+		{ 10,9
+			{ 1=(* >ncparms>TEXT)
+				type=BIN
+			}
+		}
+		{ 14,9=TEMPLATE
+			{ 1=LIST 3
+				{ 1=(* >ncparms>OBJSPEC)
+					type=(* >ncparms>OBJSPEC_TYPE)
+				}
+				{ 2=(* >ncparms>OBJTYPE)
+					type=(* >ncparms>OBJTYPE_TYPE)
+				}
+				3=LIST
+			}
+		}
+		{ 14,9,CONTROLJOB=(= (* OBJTYPE) ControlJob)
+			{ 1=LIST 3
+				{ 3=LIST 9
+					{ 1=LIST 2
+						{ 1=ObjID
+							type=ASC
+						}
+						{ 2=(* >ncparms>ObjID)
+							type=(* >ncparms>ObjID_TYPE)
+						}
+					}
+					{ 2=LIST 2
+						{ 1=DataCollectionPlan
+							type=ASC
+						}
+						{ 2=(* >ncparms>DataCollectionPlan)
+							type=(* >ncparms>DataCollectionPlan_TYPE)
+						}
+					}
+					{ 3=LIST 2
+						{ 1=CarrierInputSpec
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>CarrierInputSpec
+								type=(DV)ncparms>CarrierInputSpec_TYPE
+							}
+						}
+					}
+					{ 4=LIST 2
+						{ 1=MtrlOutSpec
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>MtrlOutSpec
+								type=(DV)ncparms>MtrlOutSpec_TYPE
+							}
+						}
+					}
+					{ 5=LIST 2
+						{ 1=MtrlOutByStatus
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>MtrlOutByStatus
+								type=(DV)ncparms>MtrlOutByStatus_TYPE
+							}
+						}
+					}
+					{ 6=LIST 2
+						{ 1=PauseEvent
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>PauseEvent
+								type=(DV)ncparms>PauseEvent_TYPE
+							}
+						}
+					}
+					{ 7=LIST 2
+						{ 1=ProcessingCtrlSpec
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=LIST
+								{ 1=(DV)ncparms>ProcessingCtrlSpec
+									type=(DV)ncparms>ProcessingCtrlSpec_TYPE
+								}
+							}
+						}
+					}
+					{ 8=LIST 2
+						{ 1=ProcessOrderMgmt
+							type=ASC
+						}
+						{ 2=(* >ncparms>ProcessOrderMgmt)
+							type=(* >ncparms>ProcessOrderMgmt_TYPE)
+						}
+					}
+					{ 9=LIST 2
+						{ 1=StartMethod
+							type=ASC
+						}
+						{ 2=(* >ncparms>StartMethod)
+							type=(* >ncparms>StartMethod_TYPE)
+						}
+					}
+				}
+			}
+		}
+		{ 14,9,GENERIC=(!= (* OBJTYPE) ControlJob)
+			{ 1=LIST 3
+				{ 3=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>ATTRID
+							type=(DV)ncparms>ATTRID_TYPE
+						}
+						{ 2=(DV)ncparms>ATTRDATA
+							type=(DV)ncparms>ATTRDATA_TYPE
+						}
+					}
+				}
+			}
+		}
+		{ 16,11=TEMPLATE
+			{ 1=LIST 7
+				{ 1=(* >ncparms>DATAID)
+					type=ASC
+				}
+				{ 2=(* >ncparms>PRJOBID)
+					type=ASC
+				}
+				{ 3=(* >ncparms>MF)
+					type=ASC
+				}
+				4=LIST
+				{ 5=LIST 3
+					{ 1=(* >ncparms>PRRECIPEMETHOD)
+						type=ASC
+					}
+					{ 2=(* >ncparms>RCPSPEC)
+						type=ASC
+					}
+					{ 3=LIST
+						{ 1=LIST 2
+							{ 1=(DV)ncparms>RCPPARNM
+								type=ASC
+							}
+							{ 2=(DV)ncparms>RCPPARVAL
+								type=ASC
+							}
+						}
+					}
+				}
+				{ 6=(* >ncparms>PRPROCESSSTART)
+					type=ASC
+				}
+				{ 7=(* >ncparms>PRPAUSEEVENT)
+					type=ASC
+				}
+			}
+		}
+		{ 16,11,MF_MID=(= (* MF) MID)
+			{ 1=LIST 7
+				{ 4=LIST
+					{ 1=(DV)ncparms>MID
+						type=ASC
+					}
+				}
+				{ 5=LIST 3
+					{ 3=LIST
+						1=LIST 2
+					}
+				}
+			}
+		}
+		{ 16,11,MF_CARRIER=(= (* MF) CARRIER)
+			{ 1=LIST 7
+				{ 4=LIST
+					{ 1=LIST 2
+						{ 1=(DV)ncparms>CARRIERID
+							type=ASC
+						}
+						{ 2=LIST
+							{ 1=(DV)ncparms>SLOTID
+								type=UI1
+							}
+						}
+					}
+				}
+				{ 5=LIST 3
+					{ 3=LIST
+						1=LIST 2
+					}
+				}
+			}
+		}
+		{ 16,15=TEMPLATE
+			{ 1=LIST 2
+				{ 1=(* >ncparms>DATAID)
+					type=(* >ncparms>DATAID_TYPE)
+				}
+				{ 2=LIST
+					{ 1=LIST 6
+						{ 1=(DV)ncparms>PRJOBID
+							type=(DV)ncparms>PRJOBID_TYPE
+						}
+						{ 2=(DV)ncparms>MF
+							type=(DV)ncparms>MF_TYPE
+						}
+						3=LIST
+						{ 4=LIST 3
+							{ 1=(DV)ncparms>PRRECIPEMETHOD
+								type=(DV)ncparms>PRRECIPEMETHOD_TYPE
+							}
+							{ 2=(DV)ncparms>RCPSPEC
+								type=(DV)ncparms>RCPSPEC_TYPE
+							}
+							{ 3=LIST
+								{ 1=LIST 2
+									{ 1=(DV)ncparms>RCPPARNM
+										type=(DV)ncparms>RCPPARNM_TYPE
+									}
+									{ 2=(DV)ncparms>RCPPARVAL
+										type=(DV)ncparms>RCPPARVAL_TYPE
+									}
+								}
+							}
+						}
+						{ 5=(DV)ncparms>PRPROCESSSTART
+							type=(DV)ncparms>PRPROCESSSTART_TYPE
+						}
+						{ 6=(DV)ncparms>PRPAUSEEVENT
+							type=(DV)ncparms>PRPAUSEEVENT_TYPE
+						}
+					}
+				}
+			}
+		}
+		{ 16,15,MF_MID=(= (* MF>1) MID)
+			{ 1=LIST 2
+				{ 2=LIST
+					{ 1=LIST 6
+						{ 3=LIST
+							{ 1=(DV)ncparms>MID
+								type=(DV)ncparms>MID_TYPE
+							}
+						}
+						{ 4=LIST 3
+							{ 3=LIST
+								1=LIST 2
+							}
+						}
+					}
+				}
+			}
+		}
+		{ 16,15,MF_CARRIER=(= (* MF>1) CARRIER)
+			{ 1=LIST 2
+				{ 2=LIST
+					{ 1=LIST 6
+						{ 3=LIST
+							{ 1=LIST 2
+								{ 1=(DV)ncparms>CARRIERID
+									type=(DV)ncparms>CARRIERID_TYPE
+								}
+								{ 2=LIST
+									{ 1=(DV)ncparms>SLOTID
+										type=(DV)ncparms>SLOTID_TYPE
+									}
+								}
+							}
+						}
+						{ 4=LIST 3
+							{ 3=LIST
+								1=LIST 2
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	{ sxdecode
+		{ 1,2
+			1,1=MDLN
+			1,2=SOFTREV
+		}
+		{ 1,4
+			1=SV_SIZE
+			1,*=SV.,SV_SIZE.
+		}
+		{ 1,12
+			1,n,1=SVID.
+			1,n,2=SVNAME.
+			1,n,3=UNITS.
+		}
+		{ 1,14
+			1,1=COMMACK
+			1,2,1=MDLN
+			1,2,2=SOFTREV
+		}
+		{ 1,16
+			1=OFLACK
+		}
+		{ 1,18
+			1=ONLACK
+		}
+		{ 2,14
+			1,n=ECV.
+		}
+		{ 2,16
+			1=EAC
+		}
+		{ 2,18
+			1=TIME
+		}
+		{ 2,22
+			1=CMDA
+		}
+		{ 2,24
+			1=TIAACK
+		}
+		{ 2,28
+			1=CMDA
+		}
+		{ 2,30
+			1,n,1=ECID.
+			1,n,2=ECNAME.
+			1,n,3=ECMIN.
+			1,n,4=ECMAX.
+			1,n,5=ECDEF.
+			1,n,6=UNITS.
+		}
+		{ 2,32
+			1=TIACK
+		}
+		{ 2,34
+			1=DRACK
+		}
+		{ 2,36
+			1=LRACK
+		}
+		{ 2,38
+			1=ERACK
+		}
+		{ 2,42
+			1,1=HCACK
+			1,2,n,1=CPNAME.
+			1,2,n,2=CPACK.
+		}
+		{ 2,44
+			1,1=RSPACK
+			1,2,n,1=STRID.
+			1,2,n,2=STRACK.
+			1,2,n,3,n=FCNID.
+		}
+		{ 2,50
+			1,1=HCACK
+			1,2,n,1=CPNAME.
+			1,2,n,2=CEPACK.
+		}
+		{ 3,18
+			1,1=CAACK
+			1,2=ERRCT
+			1,2,n,1=ERRCODE.
+			1,2,n,2=ERRTEXT.
+		}
+		{ 5,1=generic_handler
+			1,1=ALCD
+			1,2=ALID
+			1,3=ALTX
+		}
+		{ 5,4
+			1=ACKC5
+		}
+		{ 5,6
+			1,n,1=ALCD.
+			1,n,2=ALID.
+			1,n,3=ALTX.
+		}
+		{ 5,8
+			1,n,1=ALCD.
+			1,n,2=ALID.
+			1,n,3=ALTX.
+		}
+		{ 6,1=generic_handler
+			1,1=TRID
+			1,2=SMPLN
+			1,3=STIME
+			1,4=SV_SIZE
+			1,4,*=SV.,SV_SIZE.
+		}
+		{ 6,3=generic_handler
+			1,1=DATAID
+			1,2=CEID
+			1,3,n,1=DSID.
+			1,3,n,2,n,1=DVNAME.
+			1,3,n,2,n,2=DVVAL.
+		}
+		{ 6,5=generic_handler
+			1,1=DATAID
+			1,2=DATALENGTH
+		}
+		{ 6,9=generic_handler
+			1,1=PFCD
+			1,2=DATAID
+			1,3=CEID
+			1,4,n,1=DSID.
+			1,4,n,2,n=DVVAL.
+		}
+		{ 6,11=generic_handler
+			1,1=DATAID
+			1,2=CEID
+			1,3,n,1=RPTID.
+			1,3,n,2,n=V.
+		}
+		{ 7,2
+			1=PPGNT
+		}
+		{ 7,4
+			1=ACKC7
+		}
+		{ 7,6
+			1,1=PPID
+			1,2=PPBODY
+		}
+		{ 7,20
+			1,n=PPID.
+		}
+		{ 7,24
+			1=ACKC7
+		}
+		{ 7,26
+			1,1=PPID
+			1,2=MDLN
+			1,3=SOFTREV
+			1,4,n,1=CCODE.
+			1,4,n,2,n=PPARM.
+		}
+		{ 10,1=generic_handler
+			1,1=TID
+			1,2=TEXT
+		}
+		{ 10,4
+			1=ACKC10
+		}
+		{ 10,6
+			1=ACKC10
+		}
+		{ 10,7=generic_handler
+			1=TID
+		}
+		{ 10,10
+			1=ACKC10
+		}
+		{ 14,10
+			1,1=OBJSPEC
+			1,2=ATTRCT
+			1,2,n,1=ATTRID.
+			1,2,n,2=ATTRDATA.
+			1,3,1=OBJACK
+			1,3,2=ERRCT
+			1,3,2,n,1=ERRCODE.
+			1,3,2,n,2=ERRTEXT.
+		}
+		{ 16,7=generic_handler
+			1,1=TIMESTAMP
+			1,2=PRJOBID
+			1,3=PRJOBMILESTONE
+			1,4,1=ACK
+			1,4,2=ERRCT
+			1,4,2,n,1=ERRCODE.
+			1,4,2,n,2=ERRTEXT.
+		}
+		{ 16,12
+			1,1=PRJOBID
+			1,2,1=ACKA
+			1,2,2=ERRCT
+			1,2,2,n,1=ERRCODE.
+			1,2,2,n,2=ERRTEXT.
+		}
+		{ 16,16
+			1,1=PRJOBCT
+			1,1,n=PRJOBID.
+			1,2,1=ACKA
+			1,2,2=ERRCT
+			1,2,2,n,1=ERRCODE.
+			1,2,2,n,2=ERRTEXT.
+		}
+	}
+	{ monitor
+		{ dataitems
+			MDLN
+			SOFTREV
+			SV.
+			SV_SIZE.
+			SVID.
+			SVNAME.
+			UNITS.
+			COMMACK
+			OFLACK
+			ONLACK
+			ECV.
+			EAC
+			TIME
+			CMDA
+			TIAACK
+			ECID.
+			ECNAME.
+			ECMIN.
+			ECMAX.
+			ECDEF.
+			TIACK
+			DRACK
+			LRACK
+			ERACK
+			HCACK
+			CPNAME.
+			CPACK.
+			RSPACK
+			STRID.
+			STRACK.
+			FCNID.
+			CEPACK.
+			CAACK
+			ERRCT
+			ERRCODE.
+			ERRTEXT.
+			ALCD
+			ALID
+			ALTX
+			ACKC5
+			ALCD.
+			ALID.
+			ALTX.
+			SV_TYPE
+			SV_TYPE.
+			TRID
+			SMPLN
+			STIME
+			DATAID
+			CEID
+			DSID.
+			DVNAME.
+			DVVAL.
+			DATALENGTH
+			PFCD
+			V_TYPE
+			V_TYPE.
+			RPTID.
+			V.
+			PPGNT
+			ACKC7
+			PPID
+			PPBODY
+			PPID.
+			CCODE.
+			PPARM.
+			TID
+			TEXT
+			ACKC10
+			OBJSPEC
+			ATTRCT
+			ATTRID.
+			ATTRDATA.
+			OBJACK
+			TIMESTAMP
+			PRJOBID
+			PRJOBMILESTONE
+			ACK
+			ACKA
+			PRJOBCT
+			PRJOBID.
+		}
+	}
+	{ waiting
+		generic_handler=generic_handler
+	}
+}
+{ handlers
+	{ S6F1
+		prereply_cmd=S6F1_prereply
+	}
+	{ S6F3
+		prereply_cmd=S6F3_prereply
+	}
+	{ S6F9
+		prereply_cmd=S6F9_prereply
+	}
+	{ S6F11
+		prereply_cmd=S6F11_prereply
+	}
+}

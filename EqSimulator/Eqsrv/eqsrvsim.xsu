@@ -1,0 +1,14 @@
+# added by eqb
+log name=all level=3 namestamp=0 timestamp=1 datestamp=1 milliseconds=1
+strexon
+log name=SECSlog file=secssim.log
+log name="(* >name)_verb" file=verbsim.log
+log name="(* >name)_log" file=simulator.log create namestamp=0 timestamp=1 datestamp=1 milliseconds=1 size=1000
+log name=mq_hist file=mqsim.log
+strexoff
+set scrsyntax=ON
+strextype AUTOSHELL
+set mirror_rbit=1
+include file=(rel)eqsrvsim.esu
+restore file=(rel)eqsrvsim.xdv
+set sys>msg_dest=eqsrv
