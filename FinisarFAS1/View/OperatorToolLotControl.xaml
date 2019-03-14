@@ -134,7 +134,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="0,0,0,0" Orientation="Horizontal" VerticalAlignment="Top" 
-                    Visibility="{Binding PortLotInfo.Lot2Active, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}" >
+                    Visibility="{Binding PortLotInfo.Lot2Active, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
             <StackPanel Margin="2,5,0,0" Orientation="Horizontal"  >
                 <Label FontSize="18" Content="Lot 2:" VerticalAlignment="Center" />
                 <TextBox x:Name="Lot2" Background="{Binding PortLotInfo.Port1Lot2Color}" Width="180" KeyboardNavigation.TabIndex="3" 

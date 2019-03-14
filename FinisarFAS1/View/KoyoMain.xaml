@@ -109,6 +109,30 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="StayOn" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate  TargetType="Button">
+                            <Grid>
+                                <Border Name="ButtonBorder" CornerRadius="7,7,7,7"  BorderBrush="Black" BorderThickness="2">
+                                    <ContentPresenter/>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Button.IsPressed" Value="True">
+                                    <Setter TargetName="ButtonBorder" Property="BorderBrush" 
+                                        Value="Orange" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="StayOn2" TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            </Style>
+
         </ResourceDictionary>
     </Window.Resources>
 
@@ -187,30 +211,30 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
                     VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Vertical" >
             <StackPanel Orientation="Horizontal" >
-                <Button Width="180" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"
-                        ToolTip="Show Port A Status" 
+                <Button x:Name="PortA" Width="180" Height="55" Margin="0,2" Background="{Binding TabProcessingColor}"                        
+                        ToolTip="Show Port A Status"  Click="Button_Click" 
                         Command="{Binding Path=PortACmd}" >
                     <TextBlock Text="Port A" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <Button.Template>
+                    <!--<Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                                 <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" />
                             </Border>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="Button.IsFocused" Value="True">
+                                <Trigger Property="IsFocused" Value="True">
                                     <Setter TargetName="Border" Property="Background" Value="Gray" />
                                     <Setter Property="Foreground" Value="White" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
-                    </Button.Template>
+                    </Button.Template>-->
                 </Button>
-                <Button Width="180" Height="55" Margin="10,2" Background="{Binding TabProcessingColor2}"
+                <Button Width="180" Height="55" Margin="10,2" Background="{Binding TabProcessingColor2}"                        
                         ToolTip="Show Port B Status" 
-                        Command="{Binding Path=PortBCmd}"
+                        Command="{Binding Path=PortBCmd}" Click="Button_Click"
                         Visibility="{Binding PortBActive, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
                     <TextBlock Text="Port B" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <Button.Template>
+                    <!--<Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                                 <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" />
@@ -222,7 +246,7 @@
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
-                    </Button.Template>
+                    </Button.Template>-->
                 </Button>
                 <Button Width="180" Height="55" Margin="10,2" Background="Gray"
                         ToolTip="Show Port C Status" 
