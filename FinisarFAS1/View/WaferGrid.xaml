@@ -75,7 +75,7 @@
                       RowHeight="25" FontSize="16" 
                       ItemsSource="{Binding WaferList}" AutoGenerateColumns="False" 
                       IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False"
-                      SelectionMode="Extended" SelectionUnit="FullRow"                    
+                      SelectionMode="Extended"  SelectionUnit="FullRow"                    
                       SelectionChanged="DataGrid_SelectionChanged"                      
                        >
                 

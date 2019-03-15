@@ -103,6 +103,8 @@ namespace FinisarFAS1.View
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
             
             Messenger.Default.Send(new InitializeSystemMessage());
+
+            Button_Click(PortA, null);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -153,5 +155,34 @@ namespace FinisarFAS1.View
         {           
         }
 
+        Button currentPort = null;
+        Brush cpBack, cpFore; 
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button port = sender as Button;
+
+            if (port!=null)
+            {
+                if (currentPort==null)
+                {
+                    cpBack = port.Background;
+                    cpFore = port.Foreground;
+                    currentPort = port;
+                    currentPort.Background = Brushes.Gray;
+                    currentPort.Foreground = Brushes.White;
+                }
+                else
+                if (port!=currentPort)
+                {
+                    currentPort.Background = cpBack;
+                    currentPort.Foreground = cpFore; 
+                    currentPort = port;
+                    currentPort.Background = Brushes.Gray;
+                    currentPort.Foreground = Brushes.White; 
+                }
+            }
+
+        }
     }
 }
