@@ -159,6 +159,7 @@ namespace FinisarFAS1.ViewModel
 
         private void ReInitializeSystemHandler(ReInitializeSystemMessage msg)
         {
+            if (msg.PortNo != -1 && msg.PortNo != thisPortNo) return;
             if (msg.fullReset == 0)
             {
                 OperatorID = ToolID = "";
@@ -172,10 +173,10 @@ namespace FinisarFAS1.ViewModel
                 Messenger.Default.Send(new ReFocusMessage("OperatorField", null));
             else
                 Messenger.Default.Send(new ReFocusMessage(string.Empty, null));
-#if DEBUG
-            OperatorID = "john.mik";
-            ToolID = CurrentToolConfig.Toolid;
-#endif
+//#if DEBUG
+//            OperatorID = "john.mik";
+//            ToolID = CurrentToolConfig.Toolid;
+//#endif
 
         }
 

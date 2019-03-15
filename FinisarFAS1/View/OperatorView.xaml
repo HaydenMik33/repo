@@ -321,7 +321,7 @@
                         <StackPanel Orientation="Vertical"  Visibility="{Binding MoveInComplete, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}" >
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical" >
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
-                                    <Label Margin="0,0" FontSize="18" Content="Lot 1:" HorizontalAlignment="Center" />
+                                    <Label Margin="0,0" FontSize="18" Content="Lot 1:" HorizontalAlignment="Center" RenderTransformOrigin="0.407,0.294" />
                                     <TextBlock Margin="0,-4,0,0" FontSize="18" Padding="5,0"
                                                Text="{Binding Path=Port1Lot1}" HorizontalAlignment="Center" />
                                 </StackPanel>
@@ -424,11 +424,11 @@
             <StackPanel Grid.Column="2" Grid.Row="1" 
                         Orientation="Vertical" Margin="0,0,0,0" 
                         Background="{DynamicResource ResourceKey=BlueGlass}" >
-                <StackPanel Margin="0,0,0,0" >
+                <StackPanel Margin="0,0,0,0" RenderTransformOrigin="0.5,0.333" Height="295" >
                     <Button ToolTip="Go Remote" FontSize="22"
                                         Visibility="{Binding IsLocal, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
                                             Command="{Binding Path=GoRemoteCmd}"
-                                            Content="Go Remote"  />
+                                            Content="Go Remote" Height="50" Margin="35,10"  />
                     <Button ToolTip="Go Local" FontSize="22"
                                         Visibility="{Binding IsLocal, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}"                            
                                             Command="{Binding Path=GoLocalCmd}"

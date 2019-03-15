@@ -131,7 +131,7 @@ namespace FinisarFAS1.ViewModel
                 // MoveInComplete = false;            
                 Completed = false;
                 Aborted = Started = false;    
-                TabProcessingColorChanges(READY);
+                TabProcessingColorChanges(READY,true);
                 CurrentRecipe = CurrentRunType = "";
             });
 
@@ -436,6 +436,7 @@ namespace FinisarFAS1.ViewModel
          private void ProcessAbortMsgHandler(ProcessAbortMessage msg)
         {
             MyLog.Information($"SECS->SendSECSAbort(PortNo={msg.PortNo})");
+            TabProcessingColorChanges("ABORT", false);
             currentTool.SendSECSAbort();
             Started = false;
             Aborted = true;            
@@ -446,7 +447,7 @@ namespace FinisarFAS1.ViewModel
         private void ProcessingCompleteMsgHandler(ProcessCompletedMessage msg)
         {
             if (Aborted) return;    // Do not Complete Aborted wafers... this happened in Simbut prob not real life
-            TabProcessingColorChanges(COMPLETE);
+            TabProcessingColorChanges(COMPLETE,false);
             Completed = true;
             Application.Current.Dispatcher.Invoke((Action)delegate
             {
@@ -483,7 +484,7 @@ namespace FinisarFAS1.ViewModel
                 if (msg.Message.Contains(PROCESSING))
                 {
                     // UpdateWaferStatus("In Processing");
-                    TabProcessingColorChanges(PROCESSING);
+                    TabProcessingColorChanges(PROCESSING,false);
                 }
             }
             else if (msg.MsgType == "E")
@@ -492,7 +493,7 @@ namespace FinisarFAS1.ViewModel
                 var vm = new DialogViewModel(s, "", "Ok");
 
                 Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Critical Error"));
-                TabProcessingColorChanges(CRITICAL_ERROR);
+                TabProcessingColorChanges(CRITICAL_ERROR,false);
                 if (msg.Message.Contains("Unable to start AutoShell comm"))
                 {
                     // Only show cannot comm with Camstar at beginning then every 10 times
@@ -786,13 +787,24 @@ namespace FinisarFAS1.ViewModel
                 RaisePropertyChanged(nameof(TabProcessingColor2));
             }
         }
-        public void TabProcessingColorChanges(string color)
+        public void TabProcessingColorChanges(string color, bool reset)
         {
-            if (PortLotInfo == PortLotList[1])
+            if (reset)
             {
                 TabProcessingColor = color;
+                TabProcessingColor2 = color;
             }
-            else { TabProcessingColor2 = color; }
+            else
+            {
+                if (thisPortNo == 1)
+                {
+                    TabProcessingColor = color;
+                }
+                else if (thisPortNo == 2)
+                {
+                    TabProcessingColor2 = color;
+                }
+            }
         }
         private ObservableCollection<string> _loadPortNames;
         public ObservableCollection<string> LoadPortNames
@@ -861,7 +873,7 @@ namespace FinisarFAS1.ViewModel
             bool movedIn2 = false;
             bool requiredCertification = CurrentToolConfig.MoveInRequireCertification;
 
-            int portNo = 1; // TOOD: msg.PortNo;
+            int portNo = msg.PortNo;
 
             // Thread.Sleep(3000);
             // Try to movein lot1
@@ -907,7 +919,7 @@ namespace FinisarFAS1.ViewModel
                 else
                 {
                     Messenger.Default.Send(new SetAllWafersStatusMessage(portNo, PortLotInfo.Port1Lot1, WaferStatus.MovedIn.ToString()));
-                    TabProcessingColorChanges(MOVEDIN);
+                    TabProcessingColorChanges(MOVEDIN,false);
                 }
             }
             else
@@ -949,7 +961,7 @@ namespace FinisarFAS1.ViewModel
                 else
                 {
                     Messenger.Default.Send(new SetAllWafersStatusMessage(portNo, PortLotInfo.Port1Lot2, WaferStatus.MovedIn.ToString()));
-                    TabProcessingColorChanges(MOVEDIN);
+                    TabProcessingColorChanges(MOVEDIN,false);
                 }
             }
             else
@@ -1187,11 +1199,13 @@ namespace FinisarFAS1.ViewModel
 
         public ICommand CamstarCmd => new RelayCommand(camstarCmdHandler);
         public ICommand ResetHostCmd => new RelayCommand(resetHostCmdHandler);
+        public ICommand ResetPortCmd => new RelayCommand(resetPortCmdHandler);
         public ICommand ExitHostCmd => new RelayCommand(exitHostCmdHandler);
         
         private void showPortACmdHandler()
         {
             PortLotInfo = PortLotList[1];
+            thisPortNo = 1;
             RaisePropertyChanged(nameof(PortLotInfo));
             WaferGridInfo = WaferGridList[1];
             RaisePropertyChanged(nameof(WaferGridList));
@@ -1200,6 +1214,7 @@ namespace FinisarFAS1.ViewModel
         private void showPortBCmdHandler()
         {
             PortLotInfo = PortLotList[2];
+            thisPortNo = 2;
             RaisePropertyChanged(nameof(PortLotInfo));
             WaferGridInfo = WaferGridList[2];
             RaisePropertyChanged(nameof(WaferGridList));
@@ -1256,6 +1271,21 @@ namespace FinisarFAS1.ViewModel
             }
         }
 
+        private void resetPortCmdHandler()
+        {
+            var vm = new DialogViewModel($"Are you sure you want to reset port ?", "Yes", "No");
+            bool? result = dialogService.ShowDialog(vm);
+            if (result.HasValue && result.GetValueOrDefault() == true)
+            {
+                MyLog.Information("Reset Port called...");
+                emailViewHandler("Resetting Port");
+                Messenger.Default.Send(new ReInitializeSystemMessage(thisPortNo, 0));
+            }
+            else
+            {
+
+            }
+        }
 
         #region EMAIL HANDLERS
 
@@ -1389,7 +1419,7 @@ namespace FinisarFAS1.ViewModel
                 dialogService.ShowDialog(vm);
             }
         }
-#endregion
+        #endregion
 
         private void exitHostCmdHandler()
         {
