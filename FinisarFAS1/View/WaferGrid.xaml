@@ -321,6 +321,7 @@
                                         Visibility="{Binding IsLocal, Converter={StaticResource ResourceKey=BooleanToCollapsedConverter}}"
                                             Command="{Binding Path=GoRemoteCmd}"
                                             Content="Go Remote"  />
+                  
                     <Button ToolTip="Go Local" FontSize="22"
                                         Visibility="{Binding IsLocal, Converter={StaticResource ResourceKey=OppositeBooleanToCollapsedConverter}}"                            
                                             Command="{Binding Path=GoLocalCmd}"

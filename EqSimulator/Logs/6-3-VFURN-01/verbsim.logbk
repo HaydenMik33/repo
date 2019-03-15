@@ -1,0 +1,32 @@
+03/14/19: 22:13:17.115: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-3-VFURN-01gw_log an_S1F3_prereply: valAndType=2 UI4 lindex=2 "
+03/14/19: 22:13:17.116: SX_evalstr() returned 100
+03/14/19: 22:13:17.116: Executing: do=lg name=6-3-VFURN-01gw_log an_S1F3_prereply: valAndType=2 UI4 lindex=2 
+03/14/19: 22:13:17.116: reply=0 command=lg comment="Success" data=.
+03/14/19: 22:13:17.117: Checking: "defsxncode str=%s fun=%s [label=%s [condition=%s]]
+  {[pos=%s]
+    {[type=LIST|BIN|BOOL|ASC|SI8|SI1|SI2|SI4|FP8|FP4|UI8|UI1|UI2|UI4]
+      {value=%s [size=%d],
+        -array value.<enum>=%s },
+      clear },
+    check }
+   [lengthbytes=1|2|3]" against: "do=defsxncode str=1 fun=4 pos=1,2 value="2" type=UI4 currenv=0"
+03/14/19: 22:13:17.123: SX_evalstr() returned 100
+03/14/19: 22:13:17.124: an_cmd executing: do=defsxncode str=1 fun=4 pos=1,2 value="2" type=UI4 currenv=0
+03/14/19: 22:13:17.124: reply=0 command=defsxncode comment="success" data=.
+03/14/19: 22:13:17.124: Checking: "lg name=%s [file=%s] [ {msg=%s, %s} ] [level=%d]" against: "do=lg name=6-3-VFURN-01gw_log an_S1F3_prereply: ending "
+03/14/19: 22:13:17.125: SX_evalstr() returned 100
+03/14/19: 22:13:17.125: Executing: do=lg name=6-3-VFURN-01gw_log an_S1F3_prereply: ending 
+03/14/19: 22:13:17.125: reply=0 command=lg comment="Success" data=.
+03/14/19: 22:13:17.126: Procedure returned 0
+03/14/19: 22:13:17.126: leaving AnObjInterpProc
+03/14/19: 22:13:17.126: Done executing Tcl command
+03/14/19: 22:13:17.126: Setting interpreter result to:
+reply=0 command=lg comment="Success"
+03/14/19: 22:13:17.127:  generic_handler executing sxreply
+03/14/19: 22:13:17.127: Sending SECS message.
+03/14/19: 22:13:17.128:  generic_handler executing distribute
+03/14/19: 22:13:17.129: 	No servers monitoring at present
+03/14/19: 22:13:17.129: generic_handler returned 0
+03/14/19: 22:13:17.130: Message ignored.
+03/14/19: 22:13:17.130: Checking queue.
+*********************************************

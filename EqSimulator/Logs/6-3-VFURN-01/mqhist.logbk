@@ -1,0 +1,2487 @@
+03/14/19: 22:03:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552618996"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:03:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ebd"
+receivetime="1552618996"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3772
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3773.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ebd"
+receivetime="1552618996"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3772
+==================================================
+03/14/19: 22:03:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:03:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ebd receivetime=1552618996 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3771 
+
+reply=0 command=defineAndSend comment="Success" ctxt=40
+==================================================
+03/14/19: 22:03:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:03:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=41
+==================================================
+03/14/19: 22:03:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3775
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3775
+==================================================
+03/14/19: 22:03:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e c0 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:03:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3776" id=3776.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3776" id=3776.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e c0 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:03:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3776.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:03:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:03:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552618996"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:03:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ec0"
+receivetime="1552618996"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3775
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3776.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:03:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ec0"
+receivetime="1552618996"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3775
+==================================================
+03/14/19: 22:03:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:03:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ec0 receivetime=1552618996 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3774 
+
+reply=0 command=defineAndSend comment="Success" ctxt=41
+==================================================
+03/14/19: 22:04:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:04:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=42
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3778
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3778
+==================================================
+03/14/19: 22:04:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e c3                    ..........
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3779" id=3779.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3779" id=3779.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e c3 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3779.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:04:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:04:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619056"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ec3"
+receivetime="1552619056"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3778
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3779.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ec3"
+receivetime="1552619056"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3778
+==================================================
+03/14/19: 22:04:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:04:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ec3 receivetime=1552619056 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3777 
+
+reply=0 command=defineAndSend comment="Success" ctxt=42
+==================================================
+03/14/19: 22:04:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:04:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=43
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3781
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3781
+==================================================
+03/14/19: 22:04:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e c6 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3782" id=3782.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3782" id=3782.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e c6 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3782.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:04:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:04:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619056"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:04:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ec6"
+receivetime="1552619056"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3781
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3782.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:04:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ec6"
+receivetime="1552619056"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3781
+==================================================
+03/14/19: 22:04:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:04:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ec6 receivetime=1552619056 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3780 
+
+reply=0 command=defineAndSend comment="Success" ctxt=43
+==================================================
+03/14/19: 22:05:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:05:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=44
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3784
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3784
+==================================================
+03/14/19: 22:05:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e c9                    ..........
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3785" id=3785.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3785" id=3785.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e c9 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3785.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:05:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:05:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619116"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ec9"
+receivetime="1552619116"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3784
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3785.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ec9"
+receivetime="1552619116"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3784
+==================================================
+03/14/19: 22:05:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:05:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ec9 receivetime=1552619116 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3783 
+
+reply=0 command=defineAndSend comment="Success" ctxt=44
+==================================================
+03/14/19: 22:05:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:05:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=45
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3787
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3787
+==================================================
+03/14/19: 22:05:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e cc 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3788" id=3788.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3788" id=3788.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e cc 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3788.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:05:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:05:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619116"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:05:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ecc"
+receivetime="1552619116"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3787
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3788.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:05:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ecc"
+receivetime="1552619116"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3787
+==================================================
+03/14/19: 22:05:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:05:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ecc receivetime=1552619116 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3786 
+
+reply=0 command=defineAndSend comment="Success" ctxt=45
+==================================================
+03/14/19: 22:06:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:06:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=46
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3790
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3790
+==================================================
+03/14/19: 22:06:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e cf                    ..........
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3791" id=3791.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3791" id=3791.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e cf 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3791.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:06:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:06:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619176"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ecf"
+receivetime="1552619176"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3790
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3791.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ecf"
+receivetime="1552619176"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3790
+==================================================
+03/14/19: 22:06:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:06:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ecf receivetime=1552619176 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3789 
+
+reply=0 command=defineAndSend comment="Success" ctxt=46
+==================================================
+03/14/19: 22:06:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:06:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=47
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3793
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3793
+==================================================
+03/14/19: 22:06:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e d2 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3794" id=3794.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3794" id=3794.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e d2 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3794.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:06:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:06:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619176"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:06:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ed2"
+receivetime="1552619176"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3793
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3794.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:06:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ed2"
+receivetime="1552619176"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3793
+==================================================
+03/14/19: 22:06:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:06:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ed2 receivetime=1552619176 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3792 
+
+reply=0 command=defineAndSend comment="Success" ctxt=47
+==================================================
+03/14/19: 22:07:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:07:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=48
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3796
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3796
+==================================================
+03/14/19: 22:07:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e d5                    ..........
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3797" id=3797.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3797" id=3797.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e d5 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3797.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:07:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:07:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619236"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ed5"
+receivetime="1552619236"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3796
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3797.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ed5"
+receivetime="1552619236"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3796
+==================================================
+03/14/19: 22:07:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:07:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ed5 receivetime=1552619236 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3795 
+
+reply=0 command=defineAndSend comment="Success" ctxt=48
+==================================================
+03/14/19: 22:07:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:07:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=49
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3799
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3799
+==================================================
+03/14/19: 22:07:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e d8 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3800" id=3800.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3800" id=3800.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e d8 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3800.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:07:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:07:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619236"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:07:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ed8"
+receivetime="1552619236"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3799
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3800.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:07:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ed8"
+receivetime="1552619236"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3799
+==================================================
+03/14/19: 22:07:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:07:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ed8 receivetime=1552619236 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3798 
+
+reply=0 command=defineAndSend comment="Success" ctxt=49
+==================================================
+03/14/19: 22:08:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:08:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=50
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3802
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3802
+==================================================
+03/14/19: 22:08:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e db                    ..........
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3803" id=3803.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3803" id=3803.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e db 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3803.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:08:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:08:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619296"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000edb"
+receivetime="1552619296"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3802
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3803.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000edb"
+receivetime="1552619296"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3802
+==================================================
+03/14/19: 22:08:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:08:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000edb receivetime=1552619296 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3801 
+
+reply=0 command=defineAndSend comment="Success" ctxt=50
+==================================================
+03/14/19: 22:08:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:08:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=51
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3805
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3805
+==================================================
+03/14/19: 22:08:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e de 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3806" id=3806.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3806" id=3806.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e de 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3806.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:08:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:08:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619296"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:08:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ede"
+receivetime="1552619296"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3805
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3806.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:08:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ede"
+receivetime="1552619296"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3805
+==================================================
+03/14/19: 22:08:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:08:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ede receivetime=1552619296 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3804 
+
+reply=0 command=defineAndSend comment="Success" ctxt=51
+==================================================
+03/14/19: 22:09:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:09:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=52
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3808
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3808
+==================================================
+03/14/19: 22:09:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e e1                    ..........
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3809" id=3809.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3809" id=3809.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e e1 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3809.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:09:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:09:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619356"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ee1"
+receivetime="1552619356"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3808
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3809.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ee1"
+receivetime="1552619356"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3808
+==================================================
+03/14/19: 22:09:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:09:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ee1 receivetime=1552619356 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3807 
+
+reply=0 command=defineAndSend comment="Success" ctxt=52
+==================================================
+03/14/19: 22:09:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:09:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=53
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3811
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3811
+==================================================
+03/14/19: 22:09:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e e4 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3812" id=3812.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3812" id=3812.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e e4 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3812.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:09:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:09:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619356"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:09:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ee4"
+receivetime="1552619356"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3811
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3812.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:09:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ee4"
+receivetime="1552619356"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3811
+==================================================
+03/14/19: 22:09:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:09:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ee4 receivetime=1552619356 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3810 
+
+reply=0 command=defineAndSend comment="Success" ctxt=53
+==================================================
+03/14/19: 22:10:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:10:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=54
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3814
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3814
+==================================================
+03/14/19: 22:10:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e e7                    ..........
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3815" id=3815.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3815" id=3815.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e e7 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3815.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:10:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:10:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619416"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ee7"
+receivetime="1552619416"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3814
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3815.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ee7"
+receivetime="1552619416"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3814
+==================================================
+03/14/19: 22:10:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:10:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ee7 receivetime=1552619416 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3813 
+
+reply=0 command=defineAndSend comment="Success" ctxt=54
+==================================================
+03/14/19: 22:10:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:10:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=55
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3817
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3817
+==================================================
+03/14/19: 22:10:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e ea 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3818" id=3818.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3818" id=3818.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e ea 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3818.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:10:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:10:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619416"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:10:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000eea"
+receivetime="1552619416"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3817
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3818.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:10:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000eea"
+receivetime="1552619416"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3817
+==================================================
+03/14/19: 22:10:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:10:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000eea receivetime=1552619416 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3816 
+
+reply=0 command=defineAndSend comment="Success" ctxt=55
+==================================================
+03/14/19: 22:11:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:11:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=56
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3820
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3820
+==================================================
+03/14/19: 22:11:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e ed                    ..........
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3821" id=3821.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3821" id=3821.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e ed 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3821.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:11:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:11:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619476"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000eed"
+receivetime="1552619476"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3820
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3821.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000eed"
+receivetime="1552619476"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3820
+==================================================
+03/14/19: 22:11:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:11:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000eed receivetime=1552619476 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3819 
+
+reply=0 command=defineAndSend comment="Success" ctxt=56
+==================================================
+03/14/19: 22:11:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:11:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=57
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3823
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3823
+==================================================
+03/14/19: 22:11:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e f0 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3824" id=3824.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3824" id=3824.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e f0 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3824.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:11:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:11:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619476"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:11:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ef0"
+receivetime="1552619476"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3823
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3824.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:11:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ef0"
+receivetime="1552619476"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3823
+==================================================
+03/14/19: 22:11:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:11:16: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ef0 receivetime=1552619476 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3822 
+
+reply=0 command=defineAndSend comment="Success" ctxt=57
+==================================================
+03/14/19: 22:12:16: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:12:16: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=58
+==================================================
+03/14/19: 22:12:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3826
+==================================================
+03/14/19: 22:12:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3826
+==================================================
+03/14/19: 22:12:16: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e f3                    ..........
+==================================================
+03/14/19: 22:12:16: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3827" id=3827.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:12:16: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3827" id=3827.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e f3 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:12:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3827.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:12:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:12:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619537"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:12:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ef3"
+receivetime="1552619537"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3826
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3827.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ef3"
+receivetime="1552619537"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3826
+==================================================
+03/14/19: 22:12:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:12:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ef3 receivetime=1552619537 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3825 
+
+reply=0 command=defineAndSend comment="Success" ctxt=58
+==================================================
+03/14/19: 22:12:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:12:17: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=59
+==================================================
+03/14/19: 22:12:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3829
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3829
+==================================================
+03/14/19: 22:12:17: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e f6 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:12:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3830" id=3830.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3830" id=3830.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e f6 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:12:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3830.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:12:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:12:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619537"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:12:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ef6"
+receivetime="1552619537"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3829
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3830.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:12:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000ef6"
+receivetime="1552619537"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3829
+==================================================
+03/14/19: 22:12:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:12:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000ef6 receivetime=1552619537 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3828 
+
+reply=0 command=defineAndSend comment="Success" ctxt=59
+==================================================
+03/14/19: 22:13:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:13:17: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=225
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=areyouthere eq=6-3-VFURN-01 messages="defsxdcode str=1 fun=2 clear
+defsxdcode str=1 fun=2 id=MDLN pos=1,1
+defsxdcode str=1 fun=2 id=SOFTREV pos=1,2
+" ctxt=60
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3832
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=79
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=areyouthere eq=6-3-VFURN-01 ctxt=3832
+==================================================
+03/14/19: 22:13:17: 
+ SENDING message, acitype=0x44440000 antype=1 size=10
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 01 80 00 00 00 0e f9                    ..........
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3833" id=3833.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3833" id=3833.6-3-VFURN-01.S1.F1 seconds=30 noreply
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=30
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 02 80 00 00 00 0e f9 01 02 41 04 4b 68  ............A.Kh
+   0x0010: 61 6e 41 0a 31 30 30 35 2e 30 2e 38 2e 30        anA.1005.0.8.0
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3833.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:13:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:13:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=175
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F2"
+str="1"
+fun="2"
+sxid="0"
+receivetime="1552619597"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ef9"
+receivetime="1552619597"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3832
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3833.6-3-VFURN-01.S1.F1 noreply
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=216
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000102800000000ef9"
+receivetime="1552619597"
+receivesize="30"
+MDLN="Khan"
+SOFTREV="1005.0.8.0"
+reply=0 command=areyouthere comment="success" ctxt=3832
+==================================================
+03/14/19: 22:13:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:13:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=223
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000102800000000ef9 receivetime=1552619597 receivesize=30 MDLN=Khan SOFTREV=1005.0.8.0 currenv=3831 
+
+reply=0 command=defineAndSend comment="Success" ctxt=60
+==================================================
+03/14/19: 22:13:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:13:17: 
+ RECEIVING message, acitype=0x44440003 antype=32000 size=353
+     FROM:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+fr=DESKTOP-QETBNHCFAS to=6-3-VFURN-01srv do=defineAndSend eqCommand=status eq=6-3-VFURN-01 messages="defsxncode str=1 fun=3 clear
+defsxncode str=1 fun=3 pos=1,1 type=UI4 value=13
+defsxncode str=1 fun=3 pos=1,2 type=UI4 value=16
+defsxdcode str=1 fun=4 clear
+defsxdcode str=1 fun=4 pos=1 id=SV_SIZE
+defsxdcode str=1 fun=4 pos=1,* id=SV.,SV_SIZE.
+" ctxt=61
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3835
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=74
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv do=status eq=6-3-VFURN-01 ctxt=3835
+==================================================
+03/14/19: 22:13:17: 
+ SENDING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    6-3-VFURN-01gw  
+   0x0000: 00 00 81 03 80 00 00 00 0e fc 01 02 b1 04 00 00  ................
+   0x0010: 00 0d b1 04 00 00 00 10                          ........
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3836" id=3836.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=119
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=send msg="timeout=6-3-VFURN-01 ctxt=3836" id=3836.6-3-VFURN-01.S1.F3 seconds=30 noreply
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING message, acitype=0x44440000 antype=1 size=24
+     FROM:    6-3-VFURN-01gw  
+       TO:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+   0x0000: 80 00 01 04 80 00 00 00 0e fc 01 02 b1 04 00 00  ................
+   0x0010: 00 05 b1 04 00 00 00 02                          ........
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3836.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:13:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:13:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=172
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS 
+SF="S1F4"
+str="1"
+fun="4"
+sxid="0"
+receivetime="1552619597"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+eq=6-3-VFURN-01 command=monitor ctxt=1 
+==================================================
+03/14/19: 22:13:17: 
+ SENDING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000efc"
+receivetime="1552619597"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3835
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=73
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=timer do=cancel id=3836.6-3-VFURN-01.S1.F3 noreply
+==================================================
+03/14/19: 22:13:17: 
+ RECEIVING INTERNAL message, acitype=0x44440003 antype=32000 size=238
+     FROM:    6-3-VFURN-01srv 
+       TO:    6-3-VFURN-01srv 
+fr=6-3-VFURN-01srv to=6-3-VFURN-01srv 
+eq=6-3-VFURN-01
+header="80000104800000000efc"
+receivetime="1552619597"
+receivesize="24"
+SV_SIZE="2"
+SV.1="5"
+SV.2="2"
+SV_TYPE.1=UI4 SV_TYPE.2=UI4 
+
+reply=0 command=status comment="success" ctxt=3835
+==================================================
+03/14/19: 22:13:17: pathfilter: no filter DVs or non-ANet message.
+03/14/19: 22:13:17: 
+ SENDING message, acitype=0x44440003 antype=32000 size=246
+     FROM:    6-3-VFURN-01srv (6-3-VFURN-01srv)
+       TO:    DESKTOP-QETBNHCFAS (DESKTOP-QETBNHCFAS)
+fr=6-3-VFURN-01srv to=DESKTOP-QETBNHCFAS
+eq=6-3-VFURN-01 header=80000104800000000efc receivetime=1552619597 receivesize=24 SV_SIZE=2 SV.1=5 SV.2=2 SV_TYPE.1=UI4 SV_TYPE.2=UI4 currenv=3834 
+
+reply=0 command=defineAndSend comment="Success" ctxt=61
+==================================================

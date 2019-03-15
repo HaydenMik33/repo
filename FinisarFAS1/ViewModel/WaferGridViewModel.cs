@@ -350,7 +350,8 @@ namespace FinisarFAS1.ViewModel
         private void startCmdHandler()
         {
             // Can use something like idx = CurrentTab (prob s/b CurrentTabIndex)
-            string port = CurrentToolConfig.Loadports[0];
+            //string port = CurrentToolConfig.Loadports[0];
+            string port = CurrentToolConfig.Loadports[thisPortNo-1];
             string startMessage = "Do you want to start the other port as well?";
 
             StopTimer();
@@ -430,11 +431,13 @@ namespace FinisarFAS1.ViewModel
             if (result.HasValue && result.GetValueOrDefault() == true)
             {
                 MyLog.Information($"SECS->SendSECSAbort()");
-                currentTool.SendSECSAbort();
-                // TODO: Review with Zahir if this os ok
-                Aborted = true;
-                Started = false;
-                IsProcessing = false;
+                //currentTool.SendSECSAbort();
+                //// TODO: Review with Zahir if this os ok
+                //Aborted = true;
+                //Started = false;
+                //IsProcessing = false;
+                //messenger underneath does the same thing as above
+                Messenger.Default.Send(new ProcessAbortMessage(thisPortNo));
                 // HoldWafers("Aborted by: " + portLotInfo.OperatorID);
                 Messenger.Default.Send(new SetAllWafersStatusMessage(thisPortNo, "", "Aborted"));
             }

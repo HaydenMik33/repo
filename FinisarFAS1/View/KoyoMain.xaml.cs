@@ -101,6 +101,7 @@ namespace FinisarFAS1.View
             //Found this code on internet to remove the Windows title bar close button.
             var hwnd = new WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+            
             Messenger.Default.Send(new InitializeSystemMessage());
 
             Button_Click(PortA, null);

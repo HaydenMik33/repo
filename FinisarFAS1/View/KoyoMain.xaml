@@ -318,6 +318,7 @@
                     <Button ToolTip="Reset FAS program" Width="160" Margin="20,5"
                                     Command="{Binding Path=ResetHostCmd}"
                                     Content="Reset Host"  />
+                    <Button ToolTip="Exit FAS program" Command="{Binding Path=ResetPortCmd}" Content="Reset Port" Width="160" Margin="20,5" />
                     <Button ToolTip="Exit FAS program" Width="160" Margin="20,5"
                                     Command="{Binding Path=ExitHostCmd}"
                                     Content="Exit Host"  />
