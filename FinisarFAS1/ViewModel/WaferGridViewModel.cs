@@ -330,7 +330,7 @@ namespace FinisarFAS1.ViewModel
             MoveInComplete = msg.Result;
             if (MoveInComplete)
             {
-                ShowStartButton = true; 
+                ShowStartButton = false; 
                 StartTimers(StartTimerSeconds);
             }
         }
